@@ -4,7 +4,19 @@ import json
 import os
 import time
 import urllib.parse
+import urllib.request
 from database import init_db, get_db
+
+def verify_google_token(id_token):
+    try:
+        url = f"https://oauth2.googleapis.com/tokeninfo?id_token={id_token}"
+        req = urllib.request.Request(url)
+        with urllib.request.urlopen(req, timeout=5) as response:
+            if response.status == 200:
+                return json.loads(response.read().decode('utf-8'))
+    except Exception as e:
+        print("Google token verification network call failed:", e)
+    return None
 
 PORT = 5000
 
@@ -137,6 +149,52 @@ class KnotSpotHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             conn.commit()
             conn.close()
             self.respond_json(body)
+
+        elif path == '/api/auth/google':
+            id_token = body.get('idToken')
+            branch = body.get('branch', 'CSE')
+            campus = body.get('campus', 'ks-layout')
+            
+            verified_data = None
+            if id_token:
+                verified_data = verify_google_token(id_token)
+            
+            # If Google token verification succeeded or fallback student data provided
+            if verified_data:
+                google_id = verified_data.get('sub')
+                email = verified_data.get('email')
+                name = verified_data.get('name', body.get('name', 'DSU Student'))
+                picture = verified_data.get('picture', 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80')
+                email_verified = 1 if (verified_data.get('email_verified') == 'true' or verified_data.get('email_verified') is True) else 0
+
+                user_id = f"g-{google_id}"
+                cursor.execute('''
+                    INSERT INTO users (id, google_id, name, email, verified_email, branch, year, campus, avatar, profile_complete)
+                    VALUES (?, ?, ?, ?, ?, ?, '1st Year', ?, ?, 1)
+                    ON CONFLICT(email) DO UPDATE SET
+                        google_id=excluded.google_id,
+                        name=excluded.name,
+                        verified_email=excluded.verified_email,
+                        branch=excluded.branch,
+                        campus=excluded.campus,
+                        avatar=excluded.avatar,
+                        profile_complete=1
+                ''', (user_id, google_id, name, email, email_verified, branch, campus, picture))
+                conn.commit()
+
+                cursor.execute("SELECT * FROM users WHERE email = ?", (email,))
+                row = cursor.fetchone()
+                if row:
+                    u = dict(row)
+                    u['profileComplete'] = bool(u.pop('profile_complete', 1))
+                    u['verifiedEmail'] = bool(u.pop('verified_email', 0))
+                    conn.close()
+                    self.respond_json(u)
+                    return
+            
+            # Fallback error for invalid or unverified token
+            conn.close()
+            self.respond_json({'error': 'Invalid or unverified Google Auth ID token'}, 400)
 
         elif path == '/api/logout':
             cursor.execute("DELETE FROM users")

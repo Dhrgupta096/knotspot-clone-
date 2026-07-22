@@ -295,6 +295,17 @@ const db = {
     getUser() {
         return JSON.parse(localStorage.getItem('dsu_user'));
     },
+    async verifyGoogleToken(idToken, branch = 'CSE', campus = 'ks-layout') {
+        const res = await apiFetch('/auth/google', {
+            method: 'POST',
+            body: JSON.stringify({ idToken, branch, campus })
+        });
+        if (res && !res.error) {
+            localStorage.setItem('dsu_user', JSON.stringify(res));
+            return res;
+        }
+        return null;
+    },
     saveUser(user) {
         localStorage.setItem('dsu_user', JSON.stringify(user));
         apiFetch('/user', { method: 'POST', body: JSON.stringify(user) });

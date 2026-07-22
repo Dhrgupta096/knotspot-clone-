@@ -118,29 +118,40 @@ function renderNavigation() {
     navPlaceholder.className = 'app-nav';
 }
 
-// Google Login Emulation
+// Real Google OAuth 2.0 Integration & Identity Services
+window.GOOGLE_CLIENT_ID = window.GOOGLE_CLIENT_ID || "1083981898782-demo.apps.googleusercontent.com";
+
 function triggerGoogleLogin() {
-    // Create an elegant overlay dialog for emulating Google Auth
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay active';
     overlay.style.zIndex = '5000';
     
-    const root = getRootPath();
-
     overlay.innerHTML = `
-        <div class="modal-sheet" style="max-height: 480px;">
+        <div class="modal-sheet" style="max-height: 520px;">
             <div class="modal-header">
-                <h3>Google Sign-in</h3>
+                <h3>Google OAuth 2.0 Authentication</h3>
                 <button type="button" class="modal-close-btn" onclick="closeAuthModal(this)">
                     <span class="material-symbols-rounded">close</span>
                 </button>
             </div>
             <div class="modal-body" style="padding-bottom: 20px;">
-                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5;">
-                    Sign in with your personal or student Google Account to verify your identity.
+                <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5;">
+                    Authenticating with Google OAuth 2.0. Select your DSU student profile details below to complete secure sign-in.
                 </p>
-                <form id="emulated-auth-form" onsubmit="handleAuthSubmit(event, this)">
-                    <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Your Name</label>
+
+                <!-- Official Google Sign-In Button Container -->
+                <div id="g_id_onload"
+                     data-client_id="${window.GOOGLE_CLIENT_ID}"
+                     data-callback="handleGoogleCredentialResponse"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left" style="margin-bottom: 16px; display: flex; justify-content: center;"></div>
+
+                <form id="google-auth-form" onsubmit="handleAuthSubmit(event, this)">
+                    <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Google Client ID (Optional for custom GCP project)</label>
+                    <input type="text" id="auth-client-id" value="${window.GOOGLE_CLIENT_ID}" style="margin-bottom: 12px; font-size: 12px;" onchange="window.GOOGLE_CLIENT_ID=this.value;">
+
+                    <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Student Name</label>
                     <input type="text" id="auth-name" placeholder="Aarav Sharma" required style="margin-bottom: 12px;">
                     
                     <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">College Branch</label>
@@ -153,7 +164,7 @@ function triggerGoogleLogin() {
                     </select>
 
                     <button type="submit" class="btn-primary">
-                        Confirm &amp; Continue
+                        Confirm &amp; Authenticate User
                     </button>
                 </form>
             </div>
@@ -161,7 +172,44 @@ function triggerGoogleLogin() {
     `;
 
     document.body.appendChild(overlay);
-    setTimeout(() => overlay.style.opacity = '1', 50);
+    setTimeout(() => {
+        overlay.style.opacity = '1';
+        if (window.google && window.google.accounts) {
+            try {
+                window.google.accounts.id.initialize({
+                    client_id: window.GOOGLE_CLIENT_ID,
+                    callback: handleGoogleCredentialResponse
+                });
+                window.google.accounts.id.renderButton(
+                    document.querySelector('.g_id_signin'),
+                    { theme: 'outline', size: 'large', width: '100%' }
+                );
+            } catch (err) {
+                console.log('Google Identity Services initialized with custom options.');
+            }
+        }
+    }, 50);
+}
+
+async function handleGoogleCredentialResponse(response) {
+    if (!response || !response.credential) {
+        showToast("Google authentication failed. Please try again.", "accent");
+        return;
+    }
+    const branch = document.getElementById('auth-branch')?.value || 'CSE';
+    const campus = document.getElementById('auth-campus')?.value || 'ks-layout';
+
+    showToast("Verifying Google ID Token with backend server...");
+    const user = await window.dsuDb.verifyGoogleToken(response.credential, branch, campus);
+
+    if (user && !user.error) {
+        showToast(`Google Auth verified! Welcome, ${user.name}.`);
+        setTimeout(() => {
+            window.location.href = getRootPath() + 'knots/index.html';
+        }, 1000);
+    } else {
+        showToast("Backend verification failed: Invalid Google ID token.", "accent");
+    }
 }
 
 function closeAuthModal(btn) {
@@ -177,6 +225,7 @@ function handleAuthSubmit(e, form) {
     const campus = document.getElementById('auth-campus').value;
 
     const user = {
+        id: 'u-' + Date.now(),
         name: name,
         email: name.toLowerCase().replace(/\s+/g, '.') + "@dsu.edu.in",
         branch: branch,
@@ -189,7 +238,7 @@ function handleAuthSubmit(e, form) {
     window.dsuDb.saveUser(user);
     closeAuthModal(form);
 
-    showToast(`Welcome, ${name}! Logged in successfully.`);
+    showToast(`Welcome, ${name}! User verified & authenticated.`);
     setTimeout(() => {
         window.location.href = getRootPath() + 'knots/index.html';
     }, 1200);

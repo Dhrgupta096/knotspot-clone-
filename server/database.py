@@ -18,8 +18,10 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id TEXT PRIMARY KEY,
+            google_id TEXT,
             name TEXT NOT NULL,
             email TEXT UNIQUE NOT NULL,
+            verified_email INTEGER DEFAULT 0,
             branch TEXT,
             year TEXT,
             campus TEXT,
