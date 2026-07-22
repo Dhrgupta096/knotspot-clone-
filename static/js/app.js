@@ -119,15 +119,23 @@ function renderNavigation() {
 }
 
 // Real Google OAuth 2.0 Integration & Identity Services
-window.GOOGLE_CLIENT_ID = window.GOOGLE_CLIENT_ID || "1083981898782-demo.apps.googleusercontent.com";
+window.GOOGLE_CLIENT_ID = localStorage.getItem('dsu_google_client_id') || "";
+
+function setGoogleClientId(val) {
+    window.GOOGLE_CLIENT_ID = val.trim();
+    localStorage.setItem('dsu_google_client_id', window.GOOGLE_CLIENT_ID);
+    showToast("Google Client ID saved!");
+}
 
 function triggerGoogleLogin() {
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay active';
     overlay.style.zIndex = '5000';
     
+    const hasClientId = Boolean(window.GOOGLE_CLIENT_ID);
+
     overlay.innerHTML = `
-        <div class="modal-sheet" style="max-height: 520px;">
+        <div class="modal-sheet" style="max-height: 540px;">
             <div class="modal-header">
                 <h3>Google OAuth 2.0 Authentication</h3>
                 <button type="button" class="modal-close-btn" onclick="closeAuthModal(this)">
@@ -135,21 +143,29 @@ function triggerGoogleLogin() {
                 </button>
             </div>
             <div class="modal-body" style="padding-bottom: 20px;">
-                <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5;">
-                    Authenticating with Google OAuth 2.0. Select your DSU student profile details below to complete secure sign-in.
-                </p>
+                ${!hasClientId ? `
+                    <div style="background: #fff8e6; border: 1px solid #ffe58f; padding: 12px 14px; border-radius: 8px; margin-bottom: 16px; font-size: 12.5px; color: #873800; line-height: 1.4;">
+                        <strong>🔑 Google OAuth Client ID Required:</strong><br>
+                        To log in with real Google accounts, paste your <strong>OAuth 2.0 Client ID</strong> from <a href="https://console.cloud.google.com/apis/credentials" target="_blank" style="color: var(--primary); text-decoration: underline;">Google Cloud Console</a> into the field below.
+                    </div>
+                ` : `
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5;">
+                        Authenticating via Google OAuth 2.0 using Client ID: <code style="font-size: 11px;">${window.GOOGLE_CLIENT_ID.substring(0, 25)}...</code>
+                    </p>
+                `}
 
-                <!-- Official Google Sign-In Button Container -->
-                <div id="g_id_onload"
-                     data-client_id="${window.GOOGLE_CLIENT_ID}"
-                     data-callback="handleGoogleCredentialResponse"
-                     data-auto_prompt="false">
-                </div>
-                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left" style="margin-bottom: 16px; display: flex; justify-content: center;"></div>
+                ${hasClientId ? `
+                    <div id="g_id_onload"
+                         data-client_id="${window.GOOGLE_CLIENT_ID}"
+                         data-callback="handleGoogleCredentialResponse"
+                         data-auto_prompt="false">
+                    </div>
+                    <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left" style="margin-bottom: 16px; display: flex; justify-content: center;"></div>
+                ` : ''}
 
                 <form id="google-auth-form" onsubmit="handleAuthSubmit(event, this)">
-                    <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Google Client ID (Optional for custom GCP project)</label>
-                    <input type="text" id="auth-client-id" value="${window.GOOGLE_CLIENT_ID}" style="margin-bottom: 12px; font-size: 12px;" onchange="window.GOOGLE_CLIENT_ID=this.value;">
+                    <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Your Google OAuth Client ID</label>
+                    <input type="text" id="auth-client-id" value="${window.GOOGLE_CLIENT_ID}" placeholder="123456789-abc.apps.googleusercontent.com" style="margin-bottom: 12px; font-size: 12px;" onchange="setGoogleClientId(this.value)">
 
                     <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Student Name</label>
                     <input type="text" id="auth-name" placeholder="Aarav Sharma" required style="margin-bottom: 12px;">
