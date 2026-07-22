@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Knots Campus Threads | DSU KnotSpot</title>
+    
+    <!-- Typography & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        /* Forum-specific styles */
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            margin-bottom: 16px;
+            padding-bottom: 4px;
+        }
+
+        .filter-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            border-radius: 100px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 12.5px;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-chip:hover, .filter-chip.active {
+            background: var(--primary-soft);
+            color: var(--primary);
+            border-color: var(--primary-soft-border);
+        }
+
+        .knot-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.22s ease;
+            cursor: pointer;
+        }
+
+        .knot-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(10, 74, 199, 0.1);
+        }
+
+        .knot-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .knot-author {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .knot-author img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .knot-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            line-height: 1.35;
+            letter-spacing: -0.3px;
+        }
+
+        .knot-desc {
+            font-size: 13.5px;
+            color: #475569;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            word-break: break-word;
+        }
+
+        .knot-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            padding-top: 12px;
+        }
+
+        .knot-actions-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-icon-btn {
+            border: none;
+            background: var(--surface-muted);
+            color: var(--text-muted);
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-icon-btn:hover {
+            background: var(--primary-soft);
+            color: var(--primary);
+        }
+
+        .action-icon-btn.starred {
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .action-icon-btn.starred .material-symbols-rounded {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Upvote styling */
+        .upvote-btn {
+            background: var(--surface-muted);
+            border: none;
+            border-radius: 100px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .upvote-btn:hover {
+            background: var(--primary-soft);
+            color: var(--primary);
+        }
+
+        .upvote-btn.upvoted {
+            background: var(--primary-soft);
+            color: var(--primary);
+        }
+
+        .upvote-btn.upvoted .material-symbols-rounded {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Comment layouts */
+        .comment-box {
+            padding: 12px 16px;
+            background: var(--surface-soft);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+        }
+
+        .comment-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .comment-meta img {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+        }
+
+        .comment-text {
+            font-size: 13px;
+            color: #334155;
+            line-height: 1.45;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sticky Header -->
+        <header class="feed-header">
+            <div class="feed-header-main">
+                <a href="../index.html" class="feed-header-icon" style="text-decoration: none;">
+                    <span class="material-symbols-rounded">arrow_back</span>
+                </a>
+                <h1>Knots</h1>
+            </div>
+            <div class="feed-header-icon">
+                <span class="material-symbols-rounded">forum</span>
+            </div>
+        </header>
+
+        <!-- Search & Campus Filters -->
+        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+            <div style="position: relative; flex: 1; height: 44px;">
+                <span class="material-symbols-outlined" style="position: absolute; left: 14px; top: 12px; color: var(--text-muted); font-size: 20px;">search</span>
+                <input type="search" id="knot-search" placeholder="Search threads..." oninput="searchKnots(this.value)" style="padding-left: 44px; margin-bottom: 0; height: 44px; border-radius: 100px;">
+            </div>
+            
+            <select id="campus-filter" onchange="loadKnots()" style="width: auto; margin-bottom: 0; height: 44px; border-radius: 100px; padding: 0 16px; font-weight: 700; font-size: 13px; border-color: var(--border);">
+                <option value="all">All Campuses</option>
+                <option value="ks-layout">KS Layout</option>
+                <option value="kanakapura">Harohalli</option>
+            </select>
+        </div>
+
+        <!-- Category Chip Row -->
+        <div class="filter-row">
+            <button class="filter-chip active" onclick="filterCategory('all', this)">All Topics</button>
+            <button class="filter-chip" onclick="filterCategory('General', this)">General</button>
+            <button class="filter-chip" onclick="filterCategory('Academics', this)">Academics</button>
+            <button class="filter-chip" onclick="filterCategory('Coding', this)">Coding</button>
+            <button class="filter-chip" onclick="filterCategory('Sports', this)">Sports</button>
+        </div>
+
+        <!-- Knots Threads Container -->
+        <div id="knots-feed-container">
+            <!-- Loaded dynamically by JS -->
+        </div>
+
+        <!-- FAB to post a new Knot -->
+        <button class="fab-btn" onclick="openKnotModal()">
+            <span class="material-symbols-rounded">add</span>
+        </button>
+
+        <!-- Bottom Navigation Bar Placeholder -->
+        <nav id="global-nav"></nav>
+    </div>
+
+    <!-- Modals -->
+
+    <!-- Create Knot Modal -->
+    <div id="knot-modal" class="modal-overlay" onclick="closeKnotModalOnOverlay(event)">
+        <div class="modal-sheet">
+            <div class="modal-header">
+                <h3>Create a Knot Thread</h3>
+                <button type="button" class="modal-close-btn" onclick="closeKnotModal()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="knot-form" onsubmit="submitKnot(event)">
+                    <div style="display: flex; gap: 8px;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Category</label>
+                            <select id="new-knot-category" required>
+                                <option value="General">General</option>
+                                <option value="Academics">Academics</option>
+                                <option value="Coding">Coding</option>
+                                <option value="Sports">Sports</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Campus Location</label>
+                            <select id="new-knot-campus" required>
+                                <option value="ks-layout">KS Layout</option>
+                                <option value="kanakapura">Harohalli</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Title</label>
+                    <input type="text" id="new-knot-title" placeholder="What's on your mind? Be descriptive..." required>
+
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Details (Optional)</label>
+                    <textarea id="new-knot-desc" placeholder="Share more details about your thread topic..." rows="4" style="resize: none;"></textarea>
+
+                    <button type="submit" class="btn-primary">
+                        Post Thread
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Drawer / Modal -->
+    <div id="detail-modal" class="modal-overlay" onclick="closeDetailModalOnOverlay(event)">
+        <div class="modal-sheet" style="max-height: 85vh;">
+            <div class="modal-header">
+                <h3>Thread Discussion</h3>
+                <button type="button" class="modal-close-btn" onclick="closeDetailModal()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="modal-body" style="display: flex; flex-direction: column;">
+                
+                <!-- Expanded Knot Area -->
+                <div id="expanded-knot-box" style="padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px;">
+                    <!-- Filled Dynamically -->
+                </div>
+
+                <!-- Comments List -->
+                <div id="thread-comments-container" style="flex: 1; min-height: 150px;">
+                    <!-- Filled Dynamically -->
+                </div>
+
+                <!-- Reply Composer -->
+                <form id="reply-form" onsubmit="submitReply(event)" style="margin-top: 16px;">
+                    <input type="hidden" id="active-knot-id">
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="reply-text" placeholder="Write a reply..." required style="margin-bottom: 0; flex: 1;">
+                        <button type="submit" class="btn-primary" style="width: auto; padding: 0 20px; height: 48px;">
+                            <span class="material-symbols-rounded" style="margin: 0;">send</span>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Scripts -->
+    <script src="../static/js/db.js"></script>
+    <script src="../static/js/app.js"></script>
+    <script>
+        let selectedCategory = 'all';
+        let searchQuery = '';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadKnots();
+        });
+
+        function filterCategory(category, btn) {
+            selectedCategory = category;
+
+            const chips = btn.parentNode.querySelectorAll('.filter-chip');
+            chips.forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+
+            loadKnots();
+        }
+
+        function searchKnots(query) {
+            searchQuery = query.toLowerCase().trim();
+            loadKnots();
+        }
+
+        function loadKnots() {
+            const feedContainer = document.getElementById('knots-feed-container');
+            feedContainer.innerHTML = '';
+
+            const knots = window.dsuDb.getKnots();
+            const campusFilter = document.getElementById('campus-filter').value;
+            const user = window.dsuDb.getUser();
+            const userEmail = user ? user.email : "guest";
+
+            // Apply Filters (Campus, Category, Search Query)
+            const filtered = knots.filter(k => {
+                const matchesCampus = (campusFilter === 'all') || (k.campus === campusFilter);
+                const matchesCategory = (selectedCategory === 'all') || (k.category === selectedCategory);
+                const matchesSearch = !searchQuery || 
+                                     k.title.toLowerCase().includes(searchQuery) || 
+                                     k.content.toLowerCase().includes(searchQuery);
+                return matchesCampus && matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                feedContainer.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <span class="material-symbols-rounded">forum</span>
+                        </div>
+                        <h3>No Threads Found</h3>
+                        <p>Adjust your search filters or start a new thread conversation!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(k => {
+                const isUpvoted = k.upvotedBy && k.upvotedBy.includes(userEmail);
+                const upvotedClass = isUpvoted ? 'upvoted' : '';
+                const starredClass = k.starred ? 'starred' : '';
+                
+                const timeString = formatTime(k.createdAt);
+
+                const card = document.createElement('div');
+                card.className = 'knot-card';
+                card.onclick = (e) => {
+                    // Prevent clicking action buttons from opening detail drawer
+                    if (e.target.closest('button')) return;
+                    openDetailModal(k.id);
+                };
+
+                card.innerHTML = `
+                    <div class="knot-meta">
+                        <div class="knot-author">
+                            <img src="${k.authorAvatar}" alt="Avatar">
+                            <span>${k.authorName}</span>
+                            <span>•</span>
+                            <span>${timeString}</span>
+                        </div>
+                        <div style="display: flex; gap: 4px; align-items: center;">
+                            <span class="pill-badge">${k.category}</span>
+                            <span class="pill-badge accent">${k.campus === 'ks-layout' ? 'KS Layout' : 'Harohalli'}</span>
+                        </div>
+                    </div>
+                    <div class="knot-title">${escapeHTML(k.title)}</div>
+                    <div class="knot-desc">${escapeHTML(k.content)}</div>
+                    <div class="knot-footer">
+                        <div class="knot-actions-group">
+                            <button class="upvote-btn ${upvotedClass}" onclick="handleUpvote('${k.id}', this, event)">
+                                <span class="material-symbols-rounded" style="font-size:16px;">thumb_up</span>
+                                <span>${k.upvotes || 0}</span>
+                            </button>
+                            <div class="upvote-btn" style="cursor: default;">
+                                <span class="material-symbols-rounded" style="font-size:16px;">comment</span>
+                                <span>${k.commentsCount || 0} replies</span>
+                            </div>
+                        </div>
+                        <button class="action-icon-btn ${starredClass}" onclick="handleStar('${k.id}', this, event)">
+                            <span class="material-symbols-rounded" style="font-size:18px;">star</span>
+                        </button>
+                    </div>
+                `;
+
+                feedContainer.appendChild(card);
+            });
+        }
+
+        // Upvote
+        function handleUpvote(id, btn, e) {
+            e.stopPropagation();
+            const user = window.dsuDb.getUser();
+            if (!user) {
+                window.showToast("Please log in to upvote threads.", "accent");
+                return;
+            }
+
+            const updated = window.dsuDb.upvoteKnot(id);
+            if (updated) {
+                const countSpan = btn.querySelector('span:last-child');
+                countSpan.textContent = updated.upvotes;
+                
+                if (updated.upvotedBy.includes(user.email)) {
+                    btn.classList.add('upvoted');
+                } else {
+                    btn.classList.remove('upvoted');
+                }
+            }
+        }
+
+        // Star
+        function handleStar(id, btn, e) {
+            e.stopPropagation();
+            const user = window.dsuDb.getUser();
+            if (!user) {
+                window.showToast("Please log in to star threads.", "accent");
+                return;
+            }
+
+            const updated = window.dsuDb.starKnot(id);
+            if (updated) {
+                if (updated.starred) {
+                    btn.classList.add('starred');
+                    window.showToast("Thread saved to bookmarks.");
+                } else {
+                    btn.classList.remove('starred');
+                    window.showToast("Thread removed from bookmarks.");
+                }
+            }
+        }
+
+        // Create Thread Modal
+        function openKnotModal() {
+            if (!window.dsuDb.getUser()) {
+                window.showToast("Please log in to create threads.", "accent");
+                return;
+            }
+            document.getElementById('knot-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeKnotModal() {
+            document.getElementById('knot-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('knot-form').reset();
+        }
+
+        function closeKnotModalOnOverlay(e) {
+            if (e.target === document.getElementById('knot-modal')) {
+                closeKnotModal();
+            }
+        }
+
+        function submitKnot(e) {
+            e.preventDefault();
+            const title = document.getElementById('new-knot-title').value.trim();
+            const desc = document.getElementById('new-knot-desc').value.trim();
+            const category = document.getElementById('new-knot-category').value;
+            const campus = document.getElementById('new-knot-campus').value;
+
+            if (!title) return;
+
+            window.dsuDb.createKnot(title, desc, category, campus);
+            closeKnotModal();
+            window.showToast("Discussion thread posted successfully!");
+            loadKnots();
+        }
+
+        // Detailed Thread Drawer
+        function openDetailModal(knotId) {
+            const knot = window.dsuDb.getKnot(knotId);
+            if (!knot) return;
+
+            document.getElementById('active-knot-id').value = knotId;
+            
+            // Render Expanded Thread Content
+            const timeString = formatTime(knot.createdAt);
+            document.getElementById('expanded-knot-box').innerHTML = `
+                <div class="knot-meta">
+                    <div class="knot-author">
+                        <img src="${knot.authorAvatar}" alt="Avatar">
+                        <strong>${knot.authorName}</strong>
+                        <span>•</span>
+                        <span>${timeString}</span>
+                    </div>
+                    <div style="display:flex; gap:4px;">
+                        <span class="pill-badge">${knot.category}</span>
+                        <span class="pill-badge accent">${knot.campus === 'ks-layout' ? 'KS Layout' : 'Harohalli'}</span>
+                    </div>
+                </div>
+                <h2 style="font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; line-height: 1.3;">
+                    ${escapeHTML(knot.title)}
+                </h2>
+                <p style="font-size: 14px; line-height: 1.6; color: #475569; white-space: pre-wrap; word-break: break-word;">
+                    ${escapeHTML(knot.content)}
+                </p>
+            `;
+
+            loadReplies(knotId);
+
+            document.getElementById('detail-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detail-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('reply-form').reset();
+        }
+
+        function closeDetailModalOnOverlay(e) {
+            if (e.target === document.getElementById('detail-modal')) {
+                closeDetailModal();
+            }
+        }
+
+        function loadReplies(knotId) {
+            const container = document.getElementById('thread-comments-container');
+            container.innerHTML = '';
+
+            const comments = window.dsuDb.getKnotComments(knotId);
+
+            if (comments.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state" style="padding: 20px 0;">
+                        <p style="font-size: 13px; color: var(--text-muted);">No replies yet. Be the first to answer!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            comments.forEach(c => {
+                const div = document.createElement('div');
+                div.className = 'comment-box';
+                div.innerHTML = `
+                    <div class="comment-meta">
+                        <img src="${c.authorAvatar}" alt="Avatar">
+                        <strong>${c.authorName}</strong>
+                        <span>•</span>
+                        <span>${formatTime(c.createdAt)}</span>
+                    </div>
+                    <div class="comment-text">${escapeHTML(c.content)}</div>
+                `;
+                container.appendChild(div);
+            });
+
+            // Scroll container to bottom
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function submitReply(e) {
+            e.preventDefault();
+            const knotId = document.getElementById('active-knot-id').value;
+            const text = document.getElementById('reply-text').value.trim();
+
+            if (!text) return;
+            if (!window.dsuDb.getUser()) {
+                window.showToast("Please log in to add comments.", "accent");
+                return;
+            }
+
+            window.dsuDb.addKnotComment(knotId, text);
+            document.getElementById('reply-text').value = '';
+            
+            // Reload replies & update knots feed
+            loadReplies(knotId);
+            loadKnots();
+        }
+
+        // Helper Utilities
+        function formatTime(isoString) {
+            const date = new Date(isoString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMins / 60);
+
+            if (diffMins < 1) return 'just now';
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffHours < 24) return `${diffHours}h ago`;
+            return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>

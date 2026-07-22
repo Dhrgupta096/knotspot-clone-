@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Roommate Finder | DSU KnotSpot</title>
+    
+    <!-- Typography & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        /* Roomfinder-specific styles */
+        .rf-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 12px;
+        }
+
+        .rf-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s ease;
+        }
+
+        .rf-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(10, 74, 199, 0.1);
+        }
+
+        .rf-card-image-wrap {
+            height: 200px;
+            position: relative;
+            background: var(--surface-muted);
+        }
+
+        .rf-card-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rf-price-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(15, 23, 42, 0.76);
+            backdrop-filter: blur(4px);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 100px;
+        }
+
+        .rf-campus-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .rf-card-body {
+            padding: 20px;
+        }
+
+        .rf-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .rf-type-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .rf-card-title {
+            font-size: 16.5px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            line-height: 1.35;
+            letter-spacing: -0.3px;
+        }
+
+        .rf-card-desc {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            word-break: break-word;
+        }
+
+        .rf-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            padding-top: 14px;
+        }
+
+        .rf-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .rf-author img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sticky Header -->
+        <header class="feed-header">
+            <div class="feed-header-main">
+                <a href="../index.html" class="feed-header-icon" style="text-decoration: none;">
+                    <span class="material-symbols-rounded">arrow_back</span>
+                </a>
+                <h1>Room Finder</h1>
+            </div>
+            <div class="feed-header-icon">
+                <span class="material-symbols-rounded">bed</span>
+            </div>
+        </header>
+
+        <!-- Search and Campus filter -->
+        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+            <div style="position: relative; flex: 1; height: 44px;">
+                <span class="material-symbols-outlined" style="position: absolute; left: 14px; top: 12px; color: var(--text-muted); font-size: 20px;">search</span>
+                <input type="search" id="room-search" placeholder="Search rooms/PGs..." oninput="searchRooms(this.value)" style="padding-left: 44px; margin-bottom: 0; height: 44px; border-radius: 100px;">
+            </div>
+            
+            <select id="room-campus-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 44px; border-radius: 100px; padding: 0 16px; font-weight: 700; font-size: 13px; border-color: var(--border);">
+                <option value="all">All Campuses</option>
+                <option value="ks-layout">KS Layout</option>
+                <option value="kanakapura">Harohalli</option>
+            </select>
+        </div>
+
+        <!-- Segmented Tab bar for Room Types -->
+        <div class="segmented-control">
+            <button class="segmented-tab active" onclick="filterRoomType('all', this)">All listings</button>
+            <button class="segmented-tab" onclick="filterRoomType('Sharing PG / Room', this)">PG Rooms</button>
+            <button class="segmented-tab" onclick="filterRoomType('Room in Flat', this)">Flats</button>
+            <button class="segmented-tab" onclick="filterRoomType('Single Room PG', this)">Single PG</button>
+        </div>
+
+        <!-- Room Feed List -->
+        <div id="rooms-list-container" class="rf-feed">
+            <!-- Loaded dynamically by JS -->
+        </div>
+
+        <!-- FAB to post a room offer -->
+        <button class="fab-btn" onclick="openRoomModal()">
+            <span class="material-symbols-rounded">add</span>
+        </button>
+
+        <!-- Bottom Navigation Bar Placeholder -->
+        <nav id="global-nav"></nav>
+    </div>
+
+    <!-- Modals -->
+
+    <!-- Create Room Listing Modal -->
+    <div id="room-modal" class="modal-overlay" onclick="closeRoomModalOnOverlay(event)">
+        <div class="modal-sheet" style="max-height: 85vh;">
+            <div class="modal-header">
+                <h3>Add a Room Listing</h3>
+                <button type="button" class="modal-close-btn" onclick="closeRoomModal()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="room-form" onsubmit="submitRoomListing(event)">
+                    <div style="display: flex; gap: 8px;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Campus Location</label>
+                            <select id="new-room-campus" required>
+                                <option value="ks-layout">KS Layout Campus</option>
+                                <option value="kanakapura">Harohalli Campus</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Room Type</label>
+                            <select id="new-room-type" required>
+                                <option value="Sharing PG / Room">Sharing PG / Room</option>
+                                <option value="Room in Flat">Room in Flat</option>
+                                <option value="Single Room PG">Single Room PG</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Title</label>
+                    <input type="text" id="new-room-title" placeholder="e.g. Furnished single room near KS Layout gate" required>
+
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Monthly Rent (₹)</label>
+                    <input type="number" id="new-room-rent" placeholder="e.g. 5500" required>
+
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Contact Phone / Email</label>
+                    <input type="text" id="new-room-contact" placeholder="e.g. +91 99887 76655" required>
+
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Description</label>
+                    <textarea id="new-room-desc" placeholder="Detail amenities, food availability, roommate preference, etc." rows="3" required style="resize: none;"></textarea>
+
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Room Image URL (Optional)</label>
+                    <input type="text" id="new-room-image" placeholder="Paste an image URL, or leave blank for a default placeholder">
+
+                    <button type="submit" class="btn-primary">
+                        Publish Listing
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Scripts -->
+    <script src="../static/js/db.js"></script>
+    <script src="../static/js/app.js"></script>
+    <script>
+        let selectedRoomType = 'all';
+        let roomSearchQuery = '';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRooms();
+        });
+
+        function filterRoomType(type, btn) {
+            selectedRoomType = type;
+
+            const tabs = btn.parentNode.querySelectorAll('.segmented-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+
+            loadRooms();
+        }
+
+        function searchRooms(query) {
+            roomSearchQuery = query.toLowerCase().trim();
+            loadRooms();
+        }
+
+        function loadRooms() {
+            const container = document.getElementById('rooms-list-container');
+            container.innerHTML = '';
+
+            const rooms = window.dsuDb.getRooms();
+            const campusFilter = document.getElementById('room-campus-filter').value;
+
+            // Apply filters
+            const filtered = rooms.filter(r => {
+                const matchesCampus = (campusFilter === 'all') || (r.campus === campusFilter);
+                const matchesType = (selectedRoomType === 'all') || (r.roomType === selectedRoomType);
+                const matchesSearch = !roomSearchQuery || 
+                                     r.title.toLowerCase().includes(roomSearchQuery) || 
+                                     r.description.toLowerCase().includes(roomSearchQuery);
+                return matchesCampus && matchesType && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <span class="material-symbols-rounded">bed</span>
+                        </div>
+                        <h3>No Rooms Available</h3>
+                        <p>Try adjusting your search criteria or add your own roommate request!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(r => {
+                const campusText = r.campus === 'ks-layout' ? 'KS Layout' : 'Harohalli';
+                const card = document.createElement('div');
+                card.className = 'rf-card';
+                
+                card.innerHTML = `
+                    <div class="rf-card-image-wrap">
+                        <img src="${r.images && r.images[0] ? r.images[0] : 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80'}" alt="Room image">
+                        <div class="rf-campus-badge">${campusText}</div>
+                        <div class="rf-price-badge">₹${r.rent.toLocaleString()}/mo</div>
+                    </div>
+                    <div class="rf-card-body">
+                        <div class="rf-card-header">
+                            <span class="rf-type-label">${r.roomType}</span>
+                            <span style="font-size:11px; color:var(--text-muted); font-weight:600;">${formatTime(r.createdAt)}</span>
+                        </div>
+                        <h2 class="rf-card-title">${escapeHTML(r.title)}</h2>
+                        <p class="rf-card-desc">${escapeHTML(r.description)}</p>
+                        
+                        <div class="rf-card-footer">
+                            <div class="rf-author">
+                                <img src="${r.authorAvatar}" alt="Avatar">
+                                <span>${r.authorName}</span>
+                            </div>
+                            <button class="btn-ghost" onclick="revealContact('${r.id}', '${escapeHTML(r.contact)}', this)" style="padding: 8px 16px; font-size:12px;">
+                                <span class="material-symbols-rounded" style="font-size:16px;">call</span>
+                                <span>Get Contact</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function revealContact(id, contact, btn) {
+            if (!window.dsuDb.getUser()) {
+                window.showToast("Please log in to view contact details.", "accent");
+                return;
+            }
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(contact)
+                .then(() => {
+                    window.showToast("Contact copied to clipboard!");
+                    btn.innerHTML = `
+                        <span class="material-symbols-rounded" style="font-size:16px; color:#10b981;">check</span>
+                        <span style="color:#10b981;">Copied!</span>
+                    `;
+                    setTimeout(() => {
+                        btn.innerHTML = `
+                            <span class="material-symbols-rounded" style="font-size:16px;">call</span>
+                            <span>Get Contact</span>
+                        `;
+                    }, 2500);
+                })
+                .catch(() => {
+                    alert(`Contact Details: ${contact}`);
+                });
+        }
+
+        // Room modal actions
+        function openRoomModal() {
+            if (!window.dsuDb.getUser()) {
+                window.showToast("Please log in to add room listings.", "accent");
+                return;
+            }
+            document.getElementById('room-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRoomModal() {
+            document.getElementById('room-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('room-form').reset();
+        }
+
+        function closeRoomModalOnOverlay(e) {
+            if (e.target === document.getElementById('room-modal')) {
+                closeRoomModal();
+            }
+        }
+
+        function submitRoomListing(e) {
+            e.preventDefault();
+            const title = document.getElementById('new-room-title').value.trim();
+            const rent = document.getElementById('new-room-rent').value;
+            const campus = document.getElementById('new-room-campus').value;
+            const type = document.getElementById('new-room-type').value;
+            const contact = document.getElementById('new-room-contact').value.trim();
+            const desc = document.getElementById('new-room-desc').value.trim();
+            const image = document.getElementById('new-room-image').value.trim();
+
+            if (!title || !rent || !contact || !desc) return;
+
+            window.dsuDb.createRoomListing(title, desc, rent, campus, type, contact, image);
+            closeRoomModal();
+            window.showToast("Room listing published successfully!");
+            loadRooms();
+        }
+
+        // Helper Utilities
+        function formatTime(isoString) {
+            const date = new Date(isoString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMins / 60);
+
+            if (diffMins < 1) return 'just now';
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffHours < 24) return `${diffHours}h ago`;
+            return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>

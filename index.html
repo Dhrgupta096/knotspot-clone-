@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnotSpot – DSU Student Social Platform | Knots, Confessions, Roommate Finder & Events</title>
+    <meta name="description" content="KnotSpot connects Dayananda Sagar University (DSU) students. Read Knots campus threads, post anonymous confessions, find roommates near KS Layout & Kanakapura campuses, and discover events.">
+    <meta name="keywords" content="DSU Bangalore, Dayananda Sagar University, college confessions, campus threads, roommate finder Bangalore, college roommate finder, student community India">
+    
+    <!-- Open Graph / SEO -->
+    <meta property="og:site_name" content="DSU KnotSpot">
+    <meta property="og:title" content="DSU KnotSpot – Student Social Platform">
+    <meta property="og:description" content="Meet DSU students, read Knots discussions, post anonymous confessions, find roommates, and connect with campus communities across KS Layout & Harohalli campuses.">
+    <meta property="og:image" content="static/images/favicon.png">
+    
+    <!-- Typography & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        /* Specific overrides for the Landing Page layout */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 24px;
+        }
+
+        .landing-wrap {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-self: center;
+            align-items: center;
+            padding: 6px 14px;
+            border-radius: 100px;
+            background: rgba(10, 74, 199, 0.08);
+            border: 1px solid rgba(10, 74, 199, 0.12);
+            margin-bottom: 8px;
+        }
+
+        .hero-pill span {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .hero-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--text-main);
+            text-align: center;
+            line-height: 1.15;
+            letter-spacing: -0.04em;
+        }
+
+        .hero-title span {
+            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            font-size: 15px;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.5;
+            max-width: 360px;
+            margin: 0 auto;
+        }
+
+        /* Action Cards on Landing */
+        .action-card-link {
+            text-decoration: none;
+            display: block;
+        }
+
+        .confess-banner {
+            background: #ffffff;
+            border: 1px solid rgba(10, 74, 199, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s ease;
+        }
+
+        .confess-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(10, 74, 199, 0.16);
+        }
+
+        .confess-banner-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            flex-shrink: 0;
+            box-shadow: 0 6px 16px rgba(10, 74, 199, 0.15);
+        }
+
+        .confess-banner-icon i {
+            font-size: 20px;
+        }
+
+        .confess-banner-text h3 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 2px;
+            letter-spacing: -0.3px;
+        }
+
+        .confess-banner-text p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .confess-banner-arrow {
+            margin-left: auto;
+            color: var(--primary);
+        }
+
+        /* Google Sign-in card overrides */
+        .auth-card {
+            text-align: center;
+        }
+
+        .auth-card h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+        }
+
+        .auth-card .desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 22px;
+            line-height: 1.45;
+        }
+
+        .lock-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(100, 116, 139, 0.7);
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 14px;
+        }
+
+        .lock-info .material-symbols-outlined {
+            font-size: 16px;
+        }
+
+        /* Features Section */
+        .features-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(10, 74, 199, 0.05);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.85);
+            border-color: rgba(10, 74, 199, 0.1);
+        }
+
+        .feature-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-card-text h4 {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .feature-card-text p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Capability List Card */
+        .capability-card {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px dashed rgba(10, 74, 199, 0.15);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+        }
+
+        .capability-card h4 {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .capability-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .capability-list li {
+            font-size: 13.5px;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .check-icon {
+            font-size: 17px;
+            color: #10b981;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Popular Searches */
+        .popular-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .popular-tag {
+            font-size: 11px;
+            font-weight: 700;
+            color: #475569;
+            background: rgba(10, 74, 199, 0.05);
+            border: 1px solid rgba(10, 74, 199, 0.08);
+            padding: 6px 12px;
+            border-radius: 100px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .popular-tag:hover {
+            background: var(--primary-soft);
+            color: var(--primary);
+        }
+
+        /* FAQs styling */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(10, 74, 199, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .faq-item[open] {
+            background: #ffffff;
+            border-color: rgba(10, 74, 199, 0.15);
+        }
+
+        .faq-question {
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--text-main);
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .faq-question::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-icon {
+            font-size: 18px;
+            color: var(--text-muted);
+            transition: transform 0.2s ease;
+        }
+
+        .faq-item[open] .faq-icon {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            padding: 0 18px 14px;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Footer styling */
+        .app-footer {
+            width: 100%;
+            margin-top: 48px;
+            padding: 24px 0 12px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .footer-logo span {
+            color: var(--primary);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 16px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-copy {
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        /* Responsive adjustments for desktop */
+        @media (min-width: 1024px) {
+            body {
+                background-image: radial-gradient(ellipse at 30% 0%, rgba(180, 197, 255, 0.4) 0%, #eef4ff 40%, #f7f9fb 80%);
+                padding: 60px 24px;
+            }
+
+            .landing-wrap {
+                max-width: 1100px;
+                display: grid;
+                grid-template-columns: 1.1fr 0.9fr;
+                grid-template-rows: auto 1fr;
+                grid-template-areas:
+                    "hero    action"
+                    "info     action";
+                column-gap: 48px;
+                row-gap: 24px;
+                align-items: start;
+            }
+
+            .hero-block {
+                grid-area: hero;
+                text-align: left;
+            }
+
+            .hero-pill {
+                align-self: flex-start;
+            }
+
+            .hero-title {
+                text-align: left;
+                font-size: 48px;
+            }
+
+            .hero-sub {
+                text-align: left;
+                margin: 12px 0 0 0;
+                max-width: 100%;
+            }
+
+            .action-block {
+                grid-area: action;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                position: sticky;
+                top: 40px;
+            }
+
+            .info-block {
+                grid-area: info;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="landing-wrap">
+        
+        <!-- Hero Header Block -->
+        <div class="hero-block">
+            <div class="hero-pill">
+                <span>DSU Campus Hub</span>
+            </div>
+            <h1 class="hero-title">KnotSpot <span>DSU</span></h1>
+            <p class="hero-sub" style="margin-top: 10px; font-weight:800; font-size:22px; color: var(--text-main); letter-spacing:-0.5px;">
+                Find Friends, Roommates &amp; DSU Conversations
+            </p>
+            <p class="hero-sub" style="margin-top: 8px;">
+                KnotSpot is a college social platform that helps Dayananda Sagar University students read Knots discussions, find flatmates, share anonymous confessions, and discover DSU events.
+            </p>
+        </div>
+
+        <!-- Action Section (Confessions preview and google login card) -->
+        <div class="action-block">
+            <a href="confessions/index.html" class="action-card-link">
+                <div class="confess-banner">
+                    <div class="confess-banner-icon">
+                        <i class="fas fa-mask"></i>
+                    </div>
+                    <div class="confess-banner-text">
+                        <h3>Anonymous Confessions</h3>
+                        <p>See what's happening on DSU campus anonymously</p>
+                    </div>
+                    <div class="confess-banner-arrow">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </div>
+                </div>
+            </a>
+
+            <div class="glass-card auth-card">
+                <h2>Join the DSU Hub</h2>
+                <p class="desc">Log in to create Knots, reply to threads, search flatmates near Kanakapura or KS Layout campuses, and build friendships.</p>
+                
+                <button type="button" onclick="triggerGoogleLogin()" class="btn-primary">
+                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                    Continue with Google
+                </button>
+
+                <div class="lock-info">
+                    <span class="material-symbols-outlined">lock</span>
+                    <span>Securely verified student access.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info / SEO / Features Section -->
+        <div class="info-block">
+            
+            <div class="features-section">
+                <a href="knots/index.html" class="feature-card">
+                    <div class="feature-card-icon" style="background: #eef4ff; color: #2563eb;">
+                        <span class="material-symbols-rounded">forum</span>
+                    </div>
+                    <div class="feature-card-text">
+                        <h4>Knots Forum Threads</h4>
+                        <p>Discuss exams guidance, coding club updates, local eating joints, and college topics.</p>
+                    </div>
+                </a>
+
+                <a href="confessions/index.html" class="feature-card">
+                    <div class="feature-card-icon" style="background: #fff1f2; color: #f43f5e;">
+                        <i class="fas fa-mask"></i>
+                    </div>
+                    <div class="feature-card-text">
+                        <h4>Anonymous Confessions</h4>
+                        <p>Share funny stories, library alerts, or exam frustrations with total anonymity.</p>
+                    </div>
+                </a>
+
+                <a href="roomfinder/index.html" class="feature-card">
+                    <div class="feature-card-icon" style="background: #ecfdf5; color: #059669;">
+                        <span class="material-symbols-rounded">bed</span>
+                    </div>
+                    <div class="feature-card-text">
+                        <h4>Roommate Finder</h4>
+                        <p>Search rooms, double-sharing PGs, and flats near KS Layout or Harohalli campuses.</p>
+                    </div>
+                </a>
+
+                <a href="events/index.html" class="feature-card">
+                    <div class="feature-card-icon" style="background: #f5f3ff; color: #7c3aed;">
+                        <span class="material-symbols-rounded">event</span>
+                    </div>
+                    <div class="feature-card-text">
+                        <h4>DSU Events &amp; Fests</h4>
+                        <p>Discover the Derby annual fest, hackathons, sports championships, and seminars.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Capabilities checklist -->
+            <div class="capability-card">
+                <h4>What you can do on KnotSpot DSU:</h4>
+                <ul class="capability-list">
+                    <li><span class="material-symbols-outlined check-icon">check_circle</span> Find double/single roommate PGs near campus</li>
+                    <li><span class="material-symbols-outlined check-icon">check_circle</span> Discuss exam papers, marks, and professors</li>
+                    <li><span class="material-symbols-outlined check-icon">check_circle</span> RSVP to Dayananda Sagar University cultural fests</li>
+                    <li><span class="material-symbols-outlined check-icon">check_circle</span> Read and upvote college rumors anonymously</li>
+                    <li><span class="material-symbols-outlined check-icon">check_circle</span> Connect with peers in engineering, pharmacy, and design</li>
+                </ul>
+            </div>
+
+            <!-- Popular Searches -->
+            <div style="margin-top: 8px;">
+                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Popular DSU Searches</h4>
+                <div class="popular-tags">
+                    <span class="popular-tag">KS Layout PGs</span>
+                    <span class="popular-tag">Kanakapura Road student rooms</span>
+                    <span class="popular-tag">Derby 2026 dates</span>
+                    <span class="popular-tag">DSU computer science club</span>
+                    <span class="popular-tag">Dayananda Sagar internal marks</span>
+                    <span class="popular-tag">Hostel roommate locator</span>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-block" style="margin-top: 12px;">
+                <h3 style="font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 14px; letter-spacing: -0.3px;">Frequently Asked Questions</h3>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>How do I search for flatmates near KS Layout?</span>
+                            <span class="material-symbols-outlined faq-icon">expand_more</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Once signed in, visit the Rooms section. You can filter roommate profiles and PG offers by DSU campus locations and budget ranges.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>Are the confessions on KnotSpot actually anonymous?</span>
+                            <span class="material-symbols-outlined faq-icon">expand_more</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Yes. The confessions engine doesn't store your user profile links when posting a confession. You are assigned a randomly generated code name (e.g. "Anonymous Tiger") to ensure total privacy.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>Can students from all DSU branches join?</span>
+                            <span class="material-symbols-outlined faq-icon">expand_more</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Absolutely! Whether you're in B.Tech CSE, MBA, B.Pharm, or design courses, you can log in and participate in discussions relevant to your campus and class.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>Is this project officially run by DSU?</span>
+                            <span class="material-symbols-outlined faq-icon">expand_more</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>KnotSpot is a student-built community forum designed to connect peers. It is free and run independently for and by DSU college students.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-logo">
+                <span class="material-symbols-rounded">hub</span>
+                <span>KnotSpot DSU</span>
+            </div>
+            <div class="footer-links">
+                <a href="knots/index.html">Forum</a>
+                <a href="confessions/index.html">Confessions</a>
+                <a href="roomfinder/index.html">Room Finder</a>
+                <a href="events/index.html">Events</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="footer-copy">
+                &copy; 2026 KnotSpot DSU. Built for Dayananda Sagar University.
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/js/db.js"></script>
+    <script src="static/js/app.js"></script>
+    <script>
+        // Check if user is already logged in, redirect to forum directly
+        if (window.dsuDb && window.dsuDb.getUser()) {
+            window.location.href = "knots/index.html";
+        }
+    </script>
+</body>
+</html>

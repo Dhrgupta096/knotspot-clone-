@@ -1,0 +1,24 @@
+{
+  "name": "KnotSpot DSU",
+  "short_name": "KnotSpot",
+  "description": "Student Social Platform for Dayananda Sagar University, Bangalore",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f7f9fb",
+  "theme_color": "#0a4ac7",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://api.dicebear.com/7.x/identicon/svg?seed=dsu-knotspot-192",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://api.dicebear.com/7.x/identicon/svg?seed=dsu-knotspot-512",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
