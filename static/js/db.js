@@ -273,6 +273,22 @@ function initDatabase() {
 
 initDatabase();
 
+const API_BASE = 'http://localhost:5000/api';
+
+// Helper to make API requests with fallback
+async function apiFetch(endpoint, options = {}) {
+    try {
+        const res = await fetch(`${API_BASE}${endpoint}`, {
+            headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+            ...options
+        });
+        if (res.ok) return await res.json();
+    } catch (e) {
+        console.warn('API server unreachable, using local storage fallback.', e);
+    }
+    return null;
+}
+
 // DB Access Methods
 const db = {
     // Current User Profile
@@ -281,10 +297,12 @@ const db = {
     },
     saveUser(user) {
         localStorage.setItem('dsu_user', JSON.stringify(user));
+        apiFetch('/user', { method: 'POST', body: JSON.stringify(user) });
         return user;
     },
     logoutUser() {
         localStorage.removeItem('dsu_user');
+        apiFetch('/logout', { method: 'POST' });
     },
 
     // Knots (Forum Discussions)
