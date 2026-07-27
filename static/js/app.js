@@ -164,6 +164,11 @@ function triggerGoogleLogin() {
                 ` : ''}
 
                 <form id="google-auth-form" onsubmit="handleAuthSubmit(event, this)">
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 8px; margin-bottom: 14px;">
+                        <label style="font-size: 11.5px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">Real Google OAuth 2.0 Client ID (Optional)</label>
+                        <input type="text" id="auth-client-id" value="${window.GOOGLE_CLIENT_ID}" placeholder="Paste Google Client ID from Google Cloud Console" style="margin-bottom: 0; font-size: 11.5px; padding: 6px 10px;" onchange="setGoogleClientId(this.value)">
+                    </div>
+
                     <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Student Full Name</label>
                     <input type="text" id="auth-name" placeholder="e.g. Aarav Sharma" required style="margin-bottom: 12px;">
                     
