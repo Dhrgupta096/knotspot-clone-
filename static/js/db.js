@@ -171,24 +171,32 @@ const SEED_CONF_COMMENTS = [
 const SEED_ROOMS = [
     {
         id: "r-1",
-        title: "Fully Furnished 1 BHK (Double sharing) - near KS Layout Campus",
-        description: "Looking for a female roommate. 1 BHK apartment situated 5 minutes walk from DSU Kumaraswamy Layout campus. High-speed Wi-Fi, geyser, refrigerator, washing machine, and cupboard available. Vegetarian preferred.",
-        rent: 5500,
+        title: "DSU On-Campus Girls Hostel - 2 Seater Room Vacancy",
+        description: "Looking for a female roommate in DSU Block-B Hostel. 2 seater spacious room with attached bath, study tables, high-speed Wi-Fi, 3-time mess meals, and 24x7 power backup. CSE/ISE preferred.",
+        rent: 6500,
         campus: "ks-layout",
-        roomType: "Sharing PG / Room",
+        roomType: "College Hostel",
+        genderPref: "Girls Only",
+        seaterType: "2 Seater",
+        hostelType: "College Hostel",
+        preferredBranch: "Computer Science (CSE)",
         contact: "+91 98765 43210",
         authorName: "Meera Nair",
         authorAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
         createdAt: "2026-07-17T09:00:00Z",
-        images: ["https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80"]
+        images: ["https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80"]
     },
     {
         id: "r-2",
-        title: "Spacious Room in 2 BHK Flat - near Harohalli Campus",
-        description: "Single room available for male student in a 2 BHK gated society flat. Very quiet area, perfect for study. The flat is fully set up, roommate is a final year CSE student. 10 mins ride to DSU Kanakapura Campus.",
-        rent: 4200,
+        title: "Kanakapura Campus Boys Hostel - 3 Seater Sharing",
+        description: "1 spot open for male student in 3-seater quad room near DSU Harohalli Campus main gate. Clean mess food included, spacious cupboards, balcony view. Looking for non-smoker, CSE/ECE student.",
+        rent: 4800,
         campus: "kanakapura",
-        roomType: "Room in Flat",
+        roomType: "College Hostel",
+        genderPref: "Boys Only",
+        seaterType: "3 Seater",
+        hostelType: "College Hostel",
+        preferredBranch: "Computer Science (CSE)",
         contact: "+91 99887 76655",
         authorName: "Siddharth Sen",
         authorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
@@ -197,16 +205,20 @@ const SEED_ROOMS = [
     },
     {
         id: "r-3",
-        title: "Single PG Room near DSU KS Layout",
-        description: "Cozy single occupancy room in a student hostel building. Food included (3 meals/day). Hot water, daily housekeeping, security, and power backup. Looking for any DSU student.",
-        rent: 8500,
+        title: "4 Seater Budget PG Room near KS Layout Campus",
+        description: "Need 2 male roommates for a 4-seater room in Royal Heights PG (5 mins from DSU). Includes Wi-Fi, washing machine, hot water, and 2 times daily food. Great for 1st/2nd year engineering students.",
+        rent: 3800,
         campus: "ks-layout",
-        roomType: "Single Room PG",
-        contact: "+91 88877 66554",
-        authorName: "Amit Patel",
+        roomType: "Sharing PG / Room",
+        genderPref: "Boys Only",
+        seaterType: "4 Seater",
+        hostelType: "Private PG",
+        preferredBranch: "Any Branch",
+        contact: "+91 91234 56789",
+        authorName: "Kunal Verma",
         authorAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
         createdAt: "2026-07-19T06:30:00Z",
-        images: ["https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=600&q=80"]
+        images: ["https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -490,7 +502,20 @@ const db = {
     getRooms() {
         return JSON.parse(localStorage.getItem('dsu_rooms'));
     },
-    createRoomListing(title, description, rent, campus, roomType, contact, imageUrl) {
+    calculateRoomMatchScore(room, user) {
+        if (!user) return 85;
+        let score = 55;
+
+        if (room.campus === user.campus) score += 20;
+        if (room.preferredBranch === 'Any Branch' || (user.branch && room.preferredBranch && user.branch.toLowerCase().includes(room.preferredBranch.toLowerCase()))) {
+            score += 15;
+        }
+        if (room.genderPref === 'Any Gender' || (user.gender && room.genderPref.toLowerCase().includes(user.gender.toLowerCase()))) {
+            score += 10;
+        }
+        return Math.min(score, 98);
+    },
+    createRoomListing(title, description, rent, campus, roomType, genderPref, seaterType, hostelType, preferredBranch, contact, imageUrl) {
         const rooms = this.getRooms();
         const user = this.getUser();
         const newRoom = {
@@ -500,6 +525,10 @@ const db = {
             rent: Number(rent),
             campus: campus,
             roomType: roomType,
+            genderPref: genderPref || 'Any Gender',
+            seaterType: seaterType || '2 Seater',
+            hostelType: hostelType || 'Private PG',
+            preferredBranch: preferredBranch || 'Any Branch',
             contact: contact,
             authorName: user ? user.name : "Student",
             authorAvatar: user ? user.avatar : "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
@@ -508,6 +537,7 @@ const db = {
         };
         rooms.unshift(newRoom);
         localStorage.setItem('dsu_rooms', JSON.stringify(rooms));
+        apiFetch('/rooms', { method: 'POST', body: JSON.stringify(newRoom) });
         return newRoom;
     },
 

@@ -152,10 +152,10 @@
         </header>
 
         <!-- Search and Campus filter -->
-        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+        <div style="display: flex; gap: 8px; margin-bottom: 10px;">
             <div style="position: relative; flex: 1; height: 44px;">
                 <span class="material-symbols-outlined" style="position: absolute; left: 14px; top: 12px; color: var(--text-muted); font-size: 20px;">search</span>
-                <input type="search" id="room-search" placeholder="Search rooms/PGs..." oninput="searchRooms(this.value)" style="padding-left: 44px; margin-bottom: 0; height: 44px; border-radius: 100px;">
+                <input type="search" id="room-search" placeholder="Search rooms, seater, PGs..." oninput="searchRooms(this.value)" style="padding-left: 44px; margin-bottom: 0; height: 44px; border-radius: 100px;">
             </div>
             
             <select id="room-campus-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 44px; border-radius: 100px; padding: 0 16px; font-weight: 700; font-size: 13px; border-color: var(--border);">
@@ -165,12 +165,36 @@
             </select>
         </div>
 
+        <!-- Roommate Filter Bar (Gender, Seater Sharing, Hostel Type) -->
+        <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 12px; scrollbar-width: none;">
+            <select id="room-gender-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 38px; border-radius: 100px; padding: 0 14px; font-weight: 700; font-size: 12px; border-color: var(--border); background: #ffffff;">
+                <option value="all">All Genders</option>
+                <option value="Boys Only">Boys Only</option>
+                <option value="Girls Only">Girls Only</option>
+            </select>
+
+            <select id="room-seater-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 38px; border-radius: 100px; padding: 0 14px; font-weight: 700; font-size: 12px; border-color: var(--border); background: #ffffff;">
+                <option value="all">All Seaters</option>
+                <option value="2 Seater">2 Seater Sharing</option>
+                <option value="3 Seater">3 Seater Sharing</option>
+                <option value="4 Seater">4 Seater Sharing</option>
+                <option value="1 Seater">Single Seater</option>
+            </select>
+
+            <select id="room-hostel-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 38px; border-radius: 100px; padding: 0 14px; font-weight: 700; font-size: 12px; border-color: var(--border); background: #ffffff;">
+                <option value="all">Hostel & PG Types</option>
+                <option value="College Hostel">College Hostel (On-Campus)</option>
+                <option value="Private PG">Private PG</option>
+                <option value="Flat">Flat / Apartment</option>
+            </select>
+        </div>
+
         <!-- Segmented Tab bar for Room Types -->
         <div class="segmented-control">
             <button class="segmented-tab active" onclick="filterRoomType('all', this)">All listings</button>
+            <button class="segmented-tab" onclick="filterRoomType('College Hostel', this)">College Hostel</button>
             <button class="segmented-tab" onclick="filterRoomType('Sharing PG / Room', this)">PG Rooms</button>
             <button class="segmented-tab" onclick="filterRoomType('Room in Flat', this)">Flats</button>
-            <button class="segmented-tab" onclick="filterRoomType('Single Room PG', this)">Single PG</button>
         </div>
 
         <!-- Room Feed List -->
@@ -191,9 +215,9 @@
 
     <!-- Create Room Listing Modal -->
     <div id="room-modal" class="modal-overlay" onclick="closeRoomModalOnOverlay(event)">
-        <div class="modal-sheet" style="max-height: 85vh;">
+        <div class="modal-sheet" style="max-height: 90vh; overflow-y: auto;">
             <div class="modal-header">
-                <h3>Add a Room Listing</h3>
+                <h3>Add a Roommate Listing</h3>
                 <button type="button" class="modal-close-btn" onclick="closeRoomModal()">
                     <span class="material-symbols-rounded">close</span>
                 </button>
@@ -209,32 +233,73 @@
                             </select>
                         </div>
                         <div style="flex: 1;">
-                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Room Type</label>
-                            <select id="new-room-type" required>
-                                <option value="Sharing PG / Room">Sharing PG / Room</option>
-                                <option value="Room in Flat">Room in Flat</option>
-                                <option value="Single Room PG">Single Room PG</option>
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Hostel / Property Type</label>
+                            <select id="new-room-hostel-type" required>
+                                <option value="College Hostel">College Hostel (On-Campus)</option>
+                                <option value="Private PG">Private PG</option>
+                                <option value="Flat">Flat / Apartment</option>
                             </select>
                         </div>
                     </div>
 
-                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Title</label>
-                    <input type="text" id="new-room-title" placeholder="e.g. Furnished single room near KS Layout gate" required>
+                    <div style="display: flex; gap: 8px;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Gender Preference</label>
+                            <select id="new-room-gender" required>
+                                <option value="Boys Only">Boys Only</option>
+                                <option value="Girls Only">Girls Only</option>
+                                <option value="Any Gender">Any Gender</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Seater / Sharing</label>
+                            <select id="new-room-seater" required>
+                                <option value="2 Seater">2 Seater (Double Sharing)</option>
+                                <option value="3 Seater">3 Seater (Triple Sharing)</option>
+                                <option value="4 Seater">4 Seater (Quad Sharing)</option>
+                                <option value="1 Seater">Single Seater</option>
+                            </select>
+                        </div>
+                    </div>
 
-                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Monthly Rent (₹)</label>
-                    <input type="number" id="new-room-rent" placeholder="e.g. 5500" required>
+                    <div style="display: flex; gap: 8px;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Preferred Student Branch</label>
+                            <select id="new-room-branch" required>
+                                <option value="Computer Science (CSE)">Computer Science (CSE)</option>
+                                <option value="Information Science (ISE)">Information Science (ISE)</option>
+                                <option value="Electronics (ECE)">Electronics (ECE)</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Any Branch">Any Branch</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Category Label</label>
+                            <select id="new-room-type" required>
+                                <option value="College Hostel">College Hostel</option>
+                                <option value="Sharing PG / Room">Sharing PG / Room</option>
+                                <option value="Room in Flat">Room in Flat</option>
+                            </select>
+                        </div>
+                    </div>
 
-                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Contact Phone / Email</label>
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Listing Title</label>
+                    <input type="text" id="new-room-title" placeholder="e.g. 2-Seater vacancy in Block-B Girls Hostel" required>
+
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Monthly Rent / Mess Charges (₹)</label>
+                    <input type="number" id="new-room-rent" placeholder="e.g. 6500" required>
+
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Contact Phone / WhatsApp</label>
                     <input type="text" id="new-room-contact" placeholder="e.g. +91 99887 76655" required>
 
-                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Description</label>
-                    <textarea id="new-room-desc" placeholder="Detail amenities, food availability, roommate preference, etc." rows="3" required style="resize: none;"></textarea>
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Description &amp; Hostel Rules</label>
+                    <textarea id="new-room-desc" placeholder="Detail mess food quality, Wi-Fi, study habits, gate curfew timing, etc." rows="3" required style="resize: none;"></textarea>
 
-                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Room Image URL (Optional)</label>
-                    <input type="text" id="new-room-image" placeholder="Paste an image URL, or leave blank for a default placeholder">
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Room / Hostel Photo URL (Optional)</label>
+                    <input type="text" id="new-room-image" placeholder="Paste image URL, or leave blank for placeholder">
 
-                    <button type="submit" class="btn-primary">
-                        Publish Listing
+                    <button type="submit" class="btn-primary" style="margin-top: 10px;">
+                        Publish Roommate Listing
                     </button>
                 </form>
             </div>
@@ -273,15 +338,25 @@
 
             const rooms = window.dsuDb.getRooms();
             const campusFilter = document.getElementById('room-campus-filter').value;
+            const genderFilter = document.getElementById('room-gender-filter').value;
+            const seaterFilter = document.getElementById('room-seater-filter').value;
+            const hostelFilter = document.getElementById('room-hostel-filter').value;
+
+            const currentUser = window.dsuDb.getUser();
 
             // Apply filters
             const filtered = rooms.filter(r => {
                 const matchesCampus = (campusFilter === 'all') || (r.campus === campusFilter);
                 const matchesType = (selectedRoomType === 'all') || (r.roomType === selectedRoomType);
+                const matchesGender = (genderFilter === 'all') || (r.genderPref === genderFilter);
+                const matchesSeater = (seaterFilter === 'all') || (r.seaterType === seaterFilter);
+                const matchesHostel = (hostelFilter === 'all') || (r.hostelType === hostelFilter);
+                
                 const matchesSearch = !roomSearchQuery || 
                                      r.title.toLowerCase().includes(roomSearchQuery) || 
-                                     r.description.toLowerCase().includes(roomSearchQuery);
-                return matchesCampus && matchesType && matchesSearch;
+                                     r.description.toLowerCase().includes(roomSearchQuery) ||
+                                     (r.seaterType && r.seaterType.toLowerCase().includes(roomSearchQuery));
+                return matchesCampus && matchesType && matchesGender && matchesSeater && matchesHostel && matchesSearch;
             });
 
             if (filtered.length === 0) {
@@ -290,8 +365,8 @@
                         <div class="empty-state-icon">
                             <span class="material-symbols-rounded">bed</span>
                         </div>
-                        <h3>No Rooms Available</h3>
-                        <p>Try adjusting your search criteria or add your own roommate request!</p>
+                        <h3>No Roommate Listings Found</h3>
+                        <p>Try adjusting your gender, seater sharing, or campus filters above!</p>
                     </div>
                 `;
                 return;
@@ -299,16 +374,29 @@
 
             filtered.forEach(r => {
                 const campusText = r.campus === 'ks-layout' ? 'KS Layout' : 'Harohalli';
+                const matchScore = window.dsuDb.calculateRoomMatchScore(r, currentUser);
                 const card = document.createElement('div');
                 card.className = 'rf-card';
                 
+                const genderTag = r.genderPref || 'Any Gender';
+                const seaterTag = r.seaterType || '2 Seater';
+                const hostelTag = r.hostelType || 'Private PG';
+                const branchTag = r.preferredBranch || 'Any Branch';
+
                 card.innerHTML = `
                     <div class="rf-card-image-wrap">
                         <img src="${r.images && r.images[0] ? r.images[0] : 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80'}" alt="Room image">
-                        <div class="rf-campus-badge">${campusText}</div>
+                        <div class="rf-campus-badge">${campusText} • ${hostelTag}</div>
                         <div class="rf-price-badge">₹${r.rent.toLocaleString()}/mo</div>
                     </div>
                     <div class="rf-card-body">
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px;">
+                            <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 800;">🔥 ${matchScore}% Compatibility</span>
+                            <span style="background: #eef4ff; color: #2563eb; padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 800;">${seaterTag}</span>
+                            <span style="background: #fff1f2; color: #f43f5e; padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 800;">${genderTag}</span>
+                            <span style="background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 700;">Branch: ${branchTag}</span>
+                        </div>
+
                         <div class="rf-card-header">
                             <span class="rf-type-label">${r.roomType}</span>
                             <span style="font-size:11px; color:var(--text-muted); font-weight:600;">${formatTime(r.createdAt)}</span>
@@ -323,7 +411,7 @@
                             </div>
                             <button class="btn-ghost" onclick="revealContact('${r.id}', '${escapeHTML(r.contact)}', this)" style="padding: 8px 16px; font-size:12px;">
                                 <span class="material-symbols-rounded" style="font-size:16px;">call</span>
-                                <span>Get Contact</span>
+                                <span>Contact Student</span>
                             </button>
                         </div>
                     </div>
@@ -350,7 +438,7 @@
                     setTimeout(() => {
                         btn.innerHTML = `
                             <span class="material-symbols-rounded" style="font-size:16px;">call</span>
-                            <span>Get Contact</span>
+                            <span>Contact Student</span>
                         `;
                     }, 2500);
                 })
@@ -387,15 +475,19 @@
             const rent = document.getElementById('new-room-rent').value;
             const campus = document.getElementById('new-room-campus').value;
             const type = document.getElementById('new-room-type').value;
+            const gender = document.getElementById('new-room-gender').value;
+            const seater = document.getElementById('new-room-seater').value;
+            const hostelType = document.getElementById('new-room-hostel-type').value;
+            const preferredBranch = document.getElementById('new-room-branch').value;
             const contact = document.getElementById('new-room-contact').value.trim();
             const desc = document.getElementById('new-room-desc').value.trim();
             const image = document.getElementById('new-room-image').value.trim();
 
             if (!title || !rent || !contact || !desc) return;
 
-            window.dsuDb.createRoomListing(title, desc, rent, campus, type, contact, image);
+            window.dsuDb.createRoomListing(title, desc, rent, campus, type, gender, seater, hostelType, preferredBranch, contact, image);
             closeRoomModal();
-            window.showToast("Room listing published successfully!");
+            window.showToast("Roommate listing published successfully!");
             loadRooms();
         }
 

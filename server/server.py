@@ -114,6 +114,10 @@ class KnotSpotHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
                 r['authorName'] = r.pop('author_name', '')
                 r['authorAvatar'] = r.pop('author_avatar', '')
                 r['roomType'] = r.pop('room_type', '')
+                r['genderPref'] = r.pop('gender_pref', 'Any Gender')
+                r['seaterType'] = r.pop('seater_type', '2 Seater')
+                r['hostelType'] = r.pop('hostel_type', 'Private PG')
+                r['preferredBranch'] = r.pop('preferred_branch', 'Any Branch')
                 r['createdAt'] = r.pop('created_at', '')
                 r['images'] = json.loads(r.get('images', '[]'))
             self.respond_json(rows)
@@ -309,17 +313,23 @@ class KnotSpotHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             author_avatar = user['avatar'] if user else "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80"
             img_url = body.get('imageUrl') or "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80"
 
+            gender_pref = body.get('genderPref', 'Any Gender')
+            seater_type = body.get('seaterType', '2 Seater')
+            hostel_type = body.get('hostelType', 'Private PG')
+            preferred_branch = body.get('preferredBranch', 'Any Branch')
+
             cursor.execute('''
-                INSERT INTO rooms (id, title, description, rent, campus, room_type, contact, author_name, author_avatar, images, created_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO rooms (id, title, description, rent, campus, room_type, gender_pref, seater_type, hostel_type, preferred_branch, contact, author_name, author_avatar, images, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ''', (room_id, body.get('title'), body.get('description'), int(body.get('rent', 0)), body.get('campus'),
-                  body.get('roomType'), body.get('contact'), author_name, author_avatar, json.dumps([img_url]), created_at))
+                  body.get('roomType'), gender_pref, seater_type, hostel_type, preferred_branch, body.get('contact'), author_name, author_avatar, json.dumps([img_url]), created_at))
             conn.commit()
             conn.close()
 
             self.respond_json({
                 'id': room_id, 'title': body.get('title'), 'description': body.get('description'),
                 'rent': int(body.get('rent', 0)), 'campus': body.get('campus'), 'roomType': body.get('roomType'),
+                'genderPref': gender_pref, 'seaterType': seater_type, 'hostelType': hostel_type, 'preferredBranch': preferred_branch,
                 'contact': body.get('contact'), 'authorName': author_name, 'authorAvatar': author_avatar,
                 'images': [img_url], 'createdAt': created_at
             })

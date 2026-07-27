@@ -94,6 +94,10 @@ def init_db():
             rent INTEGER NOT NULL,
             campus TEXT NOT NULL,
             room_type TEXT NOT NULL,
+            gender_pref TEXT DEFAULT 'Any Gender',
+            seater_type TEXT DEFAULT '2 Seater',
+            hostel_type TEXT DEFAULT 'Private PG',
+            preferred_branch TEXT DEFAULT 'Any Branch',
             contact TEXT NOT NULL,
             author_name TEXT NOT NULL,
             author_avatar TEXT NOT NULL,
@@ -133,8 +137,8 @@ def init_db():
 def seed_data(cursor):
     # Seed User
     cursor.execute('''
-        INSERT OR IGNORE INTO users (id, name, email, branch, year, campus, avatar, profile_complete)
-        VALUES ('u-1', 'Aarav Sharma', 'aarav.sharma@dsu.edu.in', 'Computer Science (CSE)', '3rd Year', 'ks-layout',
+        INSERT OR IGNORE INTO users (id, google_id, name, email, verified_email, branch, year, campus, avatar, profile_complete)
+        VALUES ('u-1', NULL, 'Aarav Sharma', 'aarav.sharma@dsu.edu.in', 1, 'Computer Science (CSE)', '3rd Year', 'ks-layout',
                 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80', 1)
     ''')
 
@@ -180,20 +184,26 @@ def seed_data(cursor):
 
     # Seed Rooms
     rooms = [
-        ('r-1', 'Fully Furnished 1 BHK (Double sharing) - near KS Layout Campus',
-         'Looking for a female roommate. 1 BHK apartment situated 5 minutes walk from DSU Kumaraswamy Layout campus. High-speed Wi-Fi, geyser, refrigerator, washing machine, and cupboard available. Vegetarian preferred.',
-         5500, 'ks-layout', 'Sharing PG / Room', '+91 98765 43210', 'Meera Nair',
+        ('r-1', 'DSU On-Campus Girls Hostel - 2 Seater Room Vacancy',
+         'Looking for a female roommate in DSU Block-B Hostel. 2 seater spacious room with attached bath, study tables, high-speed Wi-Fi, 3-time mess meals, and 24x7 power backup. CSE/ISE preferred.',
+         6500, 'ks-layout', 'College Hostel', 'Girls Only', '2 Seater', 'College Hostel', 'Computer Science (CSE)', '+91 98765 43210', 'Meera Nair',
          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80',
-         json.dumps(['https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80']),
+         json.dumps(['https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80']),
          '2026-07-17T09:00:00Z'),
-        ('r-2', 'Spacious Room in 2 BHK Flat - near Harohalli Campus',
-         'Single room available for male student in a 2 BHK gated society flat. Very quiet area, perfect for study. The flat is fully set up, roommate is a final year CSE student. 10 mins ride to DSU Kanakapura Campus.',
-         4200, 'kanakapura', 'Room in Flat', '+91 99887 76655', 'Siddharth Sen',
+        ('r-2', 'Kanakapura Campus Boys Hostel - 3 Seater Sharing',
+         '1 spot open for male student in 3-seater quad room near DSU Harohalli Campus main gate. Clean mess food included, spacious cupboards, balcony view. Looking for non-smoker, CSE/ECE student.',
+         4800, 'kanakapura', 'College Hostel', 'Boys Only', '3 Seater', 'College Hostel', 'Computer Science (CSE)', '+91 99887 76655', 'Siddharth Sen',
          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
          json.dumps(['https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=600&q=80']),
-         '2026-07-18T12:00:00Z')
+         '2026-07-18T12:00:00Z'),
+        ('r-3', '4 Seater Budget PG Room near KS Layout Campus',
+         'Need 2 male roommates for a 4-seater room in Royal Heights PG (5 mins from DSU). Includes Wi-Fi, washing machine, hot water, and 2 times daily food. Great for 1st/2nd year engineering students.',
+         3800, 'ks-layout', 'Sharing PG / Room', 'Boys Only', '4 Seater', 'Private PG', 'Any Branch', '+91 91234 56789', 'Kunal Verma',
+         'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80',
+         json.dumps(['https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80']),
+         '2026-07-20T10:00:00Z')
     ]
-    cursor.executemany('INSERT INTO rooms VALUES (?,?,?,?,?,?,?,?,?,?,?)', rooms)
+    cursor.executemany('INSERT INTO rooms VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', rooms)
 
     # Seed Events
     events = [
