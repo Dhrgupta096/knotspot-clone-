@@ -285,7 +285,8 @@ function initDatabase() {
 
 initDatabase();
 
-const API_BASE = 'http://localhost:5000/api';
+const API_HOSTNAME = window.location.hostname || 'localhost';
+const API_BASE = window.LOCATION_API_BASE || `http://${API_HOSTNAME}:5000/api`;
 
 // Helper to make API requests with fallback
 async function apiFetch(endpoint, options = {}) {
