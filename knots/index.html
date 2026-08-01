@@ -1,0 +1,3285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-site-verification" content="X4viSHKffVA_JGTZMiKQlf-ugS7MBoGgyMrrwF_xmwQ" />
+    <meta name="description" content="Read Knots on KnotSpot — Reddit-style campus discussion threads for DSU, VIT, Amrita and college students. Ask questions, share advice, and follow student conversations.">
+    <meta name="keywords" content="KnotSpot Knots, campus discussion threads, college forum, student questions, DSU discussion, VIT discussion, Amrita discussion, Reddit-style campus threads">
+    <meta property="og:site_name" content="KnotSpot">
+    <meta property="og:title" content="Knots | Campus Discussion Threads on KnotSpot">
+    <meta property="og:description" content="Browse public campus discussion threads on KnotSpot. Students can read Knots freely and log in to create, star, comment, or reply.">
+    <meta property="og:image" content="https://knotspot.online/static/favicon.png">
+    <meta property="og:url" content="https://www.knotspot.online/knots/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://www.knotspot.online/knots/">
+    <meta name="robots" content="index, follow">
+    <title>Knots | Campus Discussion Threads on KnotSpot</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link rel="apple-touch-icon" href="/static/favicon.png">
+    
+    
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="KnotSpot">
+    
+    
+    
+    <style>
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes qFadeIn { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #f7f9fb;
+            --bg-gradient: radial-gradient(circle at top left, rgba(180, 197, 255, 0.35), transparent 28%), radial-gradient(circle at top right, rgba(111, 251, 190, 0.12), transparent 22%), linear-gradient(180deg, #fbfcff 0%, #f7f9fb 52%, #eff4fb 100%);
+            --text-main: #191c1e;
+            --text-muted: #5e6777;
+            --primary: #004ac6;
+            --primary-strong: #0053db;
+            --primary-soft: #dbe7ff;
+            --accent: #ba1a1a;
+            --surface: #ffffff;
+            --surface-soft: rgba(255, 255, 255, 0.78);
+            --surface-muted: #eef2f7;
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --glass-border: rgba(0, 74, 198, 0.08);
+            --border: #d8e0eb;
+            --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 32px 80px rgba(15, 23, 42, 0.12);
+            --radius-md: 18px;
+            --radius-lg: 32px;
+            --shell-width: 560px;
+        }
+
+        html {
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+            tap-highlight-color: transparent;
+        }
+
+        a, button, label, summary,
+        input:not([type="text"]):not([type="search"]):not([type="email"]):not([type="password"]):not([type="number"]):not([type="tel"]):not([type="url"]),
+        select, textarea,
+        .nav-link, [role="button"], [role="tab"] {
+            -webkit-tap-highlight-color: transparent;
+            tap-highlight-color: transparent;
+        }
+
+        button:focus, a:focus, .nav-link:focus, label:focus {
+            outline: none;
+        }
+
+        button:focus-visible, a:focus-visible, .nav-link:focus-visible {
+            outline: 2px solid rgba(0, 83, 219, 0.3);
+            outline-offset: 3px;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+            tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        input, textarea, [contenteditable] {
+            -webkit-user-select: auto;
+            user-select: auto;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 22%);
+            z-index: -2;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+            line-height: 1;
+        }
+
+        .container {
+            width: min(100%, var(--shell-width));
+            max-width: var(--shell-width);
+            padding: 24px 20px 120px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        nav {
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: min(calc(100% - 20px), calc(var(--shell-width) - 16px));
+            padding: 10px;
+            padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+            background: var(--glass-bg);
+            backdrop-filter: blur(26px);
+            -webkit-backdrop-filter: blur(26px);
+            border: 1px solid var(--glass-border);
+            border-bottom: none;
+            border-radius: 24px 24px 0 0;
+            box-shadow: 0 -12px 40px rgba(15, 23, 42, 0.1), 0 4px 20px rgba(15, 23, 42, 0.04);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            gap: 2px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 11px;
+            flex: 1;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            padding: 6px 2px;
+            border-radius: 999px;
+            position: relative;
+            transition: color 0.22s ease, transform 0.22s ease;
+        }
+
+        .nav-link span:last-child {
+            white-space: nowrap;
+        }
+
+        .nav-icon-wrapper {
+            position: relative;
+            width: 54px;
+            height: 34px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+            background: transparent;
+            color: currentColor;
+        }
+
+        .nav-icon-wrapper .material-symbols-outlined,
+        .nav-icon-wrapper .material-symbols-rounded {
+            font-size: 22px;
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .nav-profile-pic {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active .nav-icon-wrapper {
+            background: transparent;
+        }
+
+        .nav-link.active .material-symbols-outlined,
+        .nav-link.active .material-symbols-rounded {
+            font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .nav-link.active .nav-profile-pic {
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        /* When Install btn is visible (7 items), shrink everything */
+        .nav-inner:has(#nav-install-btn:not([style*="display: none"])) .nav-link {
+            gap: 4px;
+            font-size: 10px;
+            padding: 4px 1px;
+        }
+        .nav-inner:has(#nav-install-btn:not([style*="display: none"])) .nav-icon-wrapper {
+            width: 44px;
+            height: 28px;
+        }
+        .nav-inner:has(#nav-install-btn:not([style*="display: none"])) .nav-icon-wrapper .material-symbols-outlined,
+        .nav-inner:has(#nav-install-btn:not([style*="display: none"])) .nav-icon-wrapper .material-symbols-rounded {
+            font-size: 19px;
+        }
+        .nav-inner:has(#nav-install-btn:not([style*="display: none"])) .nav-profile-pic {
+            width: 20px;
+            height: 20px;
+        }
+
+        .nav-link:active {
+            transform: scale(0.98);
+        }
+
+        .nav-link:active .nav-icon-wrapper {
+            transform: scale(0.94);
+        }
+
+        .badge-dot {
+            position: absolute;
+            top: 2px;
+            right: 10px;
+            width: 10px;
+            height: 10px;
+            background: #ef4444;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 4px 8px rgba(239, 68, 68, 0.18);
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+        }
+
+        input[type="text"], input[type="number"], input[type="email"], input[type="password"], input[type="tel"], input[type="url"], textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 15px;
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.84);
+        }
+
+        @media (min-width: 720px) {
+            body {
+                display: flex;
+                justify-content: center;
+                padding: 0;
+            }
+
+            .container {
+                min-height: 100vh;
+                background: rgba(255, 255, 255, 0.38);
+                border: 1px solid rgba(255, 255, 255, 0.65);
+                border-radius: 0;
+                box-shadow: 0 32px 90px rgba(15, 23, 42, 0.08);
+            }
+
+            nav {
+                width: min(calc(100% - 40px), 520px);
+                border-radius: 24px 24px 0 0;
+            }
+        }
+
+        /* ── App-style custom selects (see static/js/app-select.js) ── */
+        .app-select {
+            position: relative;
+            width: 100%;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        .app-select-native {
+            position: absolute !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: 0 !important;
+        }
+        .app-select-trigger {
+            width: 100%;
+            min-height: 48px;
+            padding: 13px 42px 13px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(37, 99, 235, 0.12);
+            background: #f6f9fe;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f172a;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.05);
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .app-select-trigger:active { transform: scale(0.99); }
+        .app-select.is-open .app-select-trigger {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+        }
+        .app-select.is-disabled .app-select-trigger {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+        .app-select-value {
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .app-select-value.is-placeholder { color: #94a3b8; font-weight: 500; }
+        .app-select-chevron {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 11px;
+            pointer-events: none;
+            transition: transform 0.22s ease;
+        }
+        .app-select.is-open .app-select-chevron { transform: translateY(-50%) rotate(180deg); }
+        .app-select-list {
+            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: calc(100% + 6px);
+            max-height: min(260px, 45vh);
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: #fff;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            border-radius: 14px;
+            box-shadow: 0 20px 45px -5px rgba(12, 25, 41, 0.25), 0 8px 20px -3px rgba(37, 99, 235, 0.15);
+            z-index: 8000;
+            padding: 6px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            transform-origin: top center;
+        }
+        .app-select.is-open .app-select-list {
+            display: block;
+            animation: app-dropdown-slide 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        @keyframes app-dropdown-slide {
+            from {
+                opacity: 0;
+                transform: translateY(-8px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .app-select-option {
+            width: 100%;
+            text-align: left;
+            padding: 12px 14px;
+            border: none;
+            background: transparent;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .app-select-option:hover { background: rgba(37, 99, 235, 0.08); color: #1e3a8a; }
+        .app-select-option.is-selected {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: #fff;
+        }
+        .app-select-option.is-disabled { opacity: 0.45; pointer-events: none; }
+        .app-select--compact { margin-bottom: 0; }
+        .app-select--compact .app-select-trigger {
+            min-height: 42px;
+            padding: 10px 36px 10px 14px;
+            font-size: 13px;
+            border-radius: 12px;
+        }
+        .app-select--modal {
+            position: relative;
+            margin-bottom: 0;
+        }
+        .app-select--modal .app-select-list {
+            top: auto;
+            bottom: calc(100% + 6px);
+            transform-origin: bottom center;
+            box-shadow: 0 -20px 45px -5px rgba(12, 25, 41, 0.25), 0 -8px 20px -3px rgba(37, 99, 235, 0.15);
+        }
+        .app-select--modal.is-open .app-select-list {
+            animation: app-dropdown-slide-up 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        @keyframes app-dropdown-slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(8px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        /* Toast Notifications */
+        .messages-toast-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 10000; width: 90%; max-width: 400px; display: flex; flex-direction: column; gap: 10px; }
+        .message-toast { background: white; padding: 14px 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; border-left: 4px solid var(--primary); animation: toastIn 0.4s ease; }
+        @keyframes toastIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Custom Alert */
+        .custom-alert-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); z-index: 100000; display: none; justify-content: center; align-items: center; }
+        .custom-alert-box { background: white; border-radius: 24px; padding: 30px; width: 90%; max-width: 320px; text-align: center; }
+    </style>
+    <style id="knots-styles">
+    :root {
+        --knot-primary: #2563eb;
+        --knot-primary-strong: #1d4ed8;
+        --knot-primary-soft: #eff6ff;
+        --knot-text: #172033;
+        --knot-muted: #667085;
+        --knot-border: #e4e9f2;
+        --knot-surface: #ffffff;
+        --knot-bg: #f5f7fb;
+        --knot-danger: #dc2626;
+        --knot-shadow: 0 12px 34px rgba(15, 23, 42, .09);
+        --knot-shadow-soft: 0 5px 16px rgba(15, 23, 42, .08);
+        --knot-shadow-raised: 0 18px 46px rgba(15, 23, 42, .16);
+    }
+
+    body { background: var(--knot-bg); }
+    html,
+    body,
+    .container,
+    .knots-shell,
+    .knots-detail-shell,
+    .knots-body,
+    .filter-sheet,
+    .filter-panel,
+    .knot-composer-shell,
+    .knot-composer,
+    .knot-composer-main,
+    .knot-options-menu,
+    .knot-rich-editor {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar,
+    .container::-webkit-scrollbar,
+    .knots-shell::-webkit-scrollbar,
+    .knots-detail-shell::-webkit-scrollbar,
+    .knots-body::-webkit-scrollbar,
+    .filter-sheet::-webkit-scrollbar,
+    .filter-panel::-webkit-scrollbar,
+    .knot-composer-shell::-webkit-scrollbar,
+    .knot-composer::-webkit-scrollbar,
+    .knot-composer-main::-webkit-scrollbar,
+    .knot-options-menu::-webkit-scrollbar,
+    .knot-rich-editor::-webkit-scrollbar {
+        display: none;
+    }
+    .container {
+        width: 100%;
+        max-width: 560px;
+        min-height: 100dvh;
+        margin: 0 auto;
+        padding: 0 0 112px;
+        background: var(--knot-bg);
+        box-sizing: border-box;
+    }
+    .sr-only {
+        position: absolute !important;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+    }
+    [hidden] { display: none !important; }
+    .knots-shell, .knots-detail-shell {
+        width: 100%;
+        min-height: calc(100dvh - 112px);
+        color: var(--knot-text);
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        box-sizing: border-box;
+    }
+
+    .knots-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        min-height: 72px;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, .94);
+        border-bottom: 0;
+        box-shadow: 0 5px 20px rgba(15, 23, 42, .07);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-sizing: border-box;
+    }
+    .knots-header-main {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        min-width: 0;
+    }
+    .knots-header h1, .knots-header h2 {
+        margin: 0;
+        color: var(--knot-text);
+        font-size: 21px;
+        line-height: 1.2;
+        font-weight: 800;
+        letter-spacing: -.025em;
+    }
+    .knots-header-sub {
+        max-width: 350px;
+        margin: 3px 0 0;
+        color: var(--knot-muted);
+        font-size: 11.5px;
+        line-height: 1.35;
+        font-weight: 500;
+    }
+    .knots-back-btn, .knot-icon-btn, .sheet-close-btn {
+        display: inline-flex;
+        flex: 0 0 44px;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        border-radius: 17px;
+        background: #fff;
+        box-shadow: var(--knot-shadow-soft);
+        color: #344054;
+        text-decoration: none;
+        cursor: pointer;
+        box-sizing: border-box;
+        transition: background .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+    .knots-header-icon {
+        display: inline-flex;
+        flex: 0 0 44px;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 17px;
+        background: var(--knot-primary-soft);
+        color: var(--knot-primary);
+        box-shadow: var(--knot-shadow-soft);
+        box-sizing: border-box;
+    }
+    .knots-back-btn .material-symbols-outlined { font-size: 21px; }
+    .knots-header-icon .material-symbols-outlined {
+        font-size: 25px;
+        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+    .knots-back-btn:active, .knot-icon-btn:active, .sheet-close-btn:active { transform: scale(.96); }
+    .knots-header-badge {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        min-width: 31px;
+        height: 28px;
+        padding: 0 9px;
+        border-radius: 999px;
+        background: var(--knot-primary-soft);
+        color: var(--knot-primary-strong);
+        font-size: 12px;
+        font-weight: 800;
+        box-sizing: border-box;
+    }
+
+    .knots-body { width: 100%; box-sizing: border-box; }
+    .knots-body-inner { padding: 0 12px 20px; box-sizing: border-box; }
+    .knots-detail-shell .knots-body-inner { padding-right: 0; padding-left: 0; }
+    #knotFilterForm { margin: 0; }
+    .knots-toolbar {
+        position: relative;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px;
+        background: var(--knot-bg);
+        box-sizing: border-box;
+    }
+    .knots-search-wrap {
+        position: relative;
+        display: flex;
+        flex: 1 1 auto;
+        min-width: 0;
+        align-items: center;
+    }
+    .knots-search-wrap > .material-symbols-outlined {
+        position: absolute;
+        left: 12px;
+        z-index: 1;
+        color: #98a2b3;
+        font-size: 19px;
+        pointer-events: none;
+    }
+    .knots-search-wrap input[type="search"] {
+        width: 100%;
+        height: 44px;
+        min-width: 0;
+        margin: 0;
+        padding: 0 38px;
+        border: 0;
+        border-radius: 17px;
+        outline: 0;
+        background: #fff;
+        color: var(--knot-text);
+        font: 600 14px/1 'Plus Jakarta Sans', sans-serif;
+        box-shadow: var(--knot-shadow-soft);
+        box-sizing: border-box;
+        appearance: none;
+    }
+    .knots-search-wrap input[type="search"]:focus {
+        border-color: #7aa7fa;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+    }
+    .knots-search-clear {
+        position: absolute;
+        right: 5px;
+        display: inline-flex;
+        width: 34px;
+        height: 34px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: #667085;
+        cursor: pointer;
+    }
+    .knots-search-clear .material-symbols-outlined { font-size: 18px; }
+    .knots-compact-btn {
+        display: inline-flex;
+        flex: 0 0 auto;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: var(--knot-shadow-soft);
+        color: #344054;
+        font: 700 12px/1 'Plus Jakarta Sans', sans-serif;
+        white-space: nowrap;
+        cursor: pointer;
+        box-sizing: border-box;
+        list-style: none;
+        user-select: none;
+    }
+    .knots-compact-btn::-webkit-details-marker { display: none; }
+    .knots-compact-btn .material-symbols-outlined { font-size: 17px; }
+    .knots-sort-menu { position: relative; flex: 0 0 auto; }
+    .knots-sort-menu[open] > .knots-compact-btn {
+        background: var(--knot-primary-soft);
+        color: var(--knot-primary-strong);
+        box-shadow: 0 7px 20px rgba(37, 99, 235, .14);
+    }
+    .knots-sort-menu[open] > .knots-compact-btn .material-symbols-outlined { transform: rotate(180deg); }
+    .knots-sort-dropdown {
+        position: absolute;
+        top: calc(100% + 7px);
+        right: 0;
+        z-index: 80;
+        width: 142px;
+        padding: 6px;
+        border: 0;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 16px 36px rgba(15, 23, 42, .16);
+        box-sizing: border-box;
+    }
+    .knots-sort-btn {
+        display: flex;
+        width: 100%;
+        min-height: 40px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 9px;
+        background: transparent;
+        color: #475467;
+        font: 650 13px/1 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+    }
+    .knots-sort-btn:hover, .knots-sort-btn.active { background: var(--knot-primary-soft); color: var(--knot-primary-strong); }
+    .knots-sort-btn .material-symbols-outlined { font-size: 17px; }
+    .knots-filter-btn { position: relative; min-width: 58px; }
+    .filter-count {
+        display: inline-flex;
+        min-width: 18px;
+        height: 18px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5px;
+        border-radius: 999px;
+        background: var(--knot-primary);
+        color: #fff;
+        font-size: 10px;
+        box-sizing: border-box;
+    }
+
+    .filter-chips {
+        display: flex;
+        gap: 7px;
+        overflow-x: auto;
+        padding: 0 12px 10px;
+        scrollbar-width: none;
+    }
+    .filter-chips::-webkit-scrollbar { display: none; }
+    .filter-chip, .knot-category, .knot-campus-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        min-height: 25px;
+        padding: 0 9px;
+        border-radius: 999px;
+        background: var(--knot-primary-soft);
+        color: var(--knot-primary-strong);
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: .02em;
+        white-space: nowrap;
+        box-sizing: border-box;
+    }
+    .filter-chip button {
+        display: inline-flex;
+        width: 24px; height: 24px;
+        align-items: center; justify-content: center;
+        margin-right: -7px;
+        padding: 0; border: 0;
+        background: transparent; color: inherit;
+        cursor: pointer;
+    }
+    .filter-chip button .material-symbols-outlined { font-size: 15px; }
+    .knot-category { background: #f2f4f7; color: #475467; }
+
+    .knot-feed { display: grid; gap: 10px; }
+    .knot-card {
+        position: relative;
+        padding: 14px;
+        border: 0;
+        border-radius: 24px;
+        background: var(--knot-surface);
+        box-shadow: var(--knot-shadow);
+        box-sizing: border-box;
+    }
+    .knot-card-link { display: block; color: inherit; text-decoration: none; }
+    .knot-author { display: flex; align-items: center; gap: 10px; min-width: 0; padding-right: 36px; }
+    .knot-avatar {
+        flex: 0 0 auto;
+        width: 38px; height: 38px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #eef2f6;
+    }
+    .knot-author-copy { min-width: 0; }
+    .knot-admin-email {
+        max-width: 210px;
+        margin-top: 1px;
+        overflow: hidden;
+        color: #b42318;
+        font-size: 11px;
+        font-weight: 800;
+        line-height: 1.2;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .knot-profile-link { color: inherit; text-decoration: none; }
+    .knot-avatar-link { display: inline-flex; flex: 0 0 auto; border-radius: 999px; }
+    .knot-profile-click { cursor: pointer; }
+    .comment[data-profile-url] .knot-avatar,
+    .comment[data-profile-url] .knot-author-name { cursor: pointer; }
+    .knot-profile-link:hover .knot-avatar,
+    .knot-avatar.knot-profile-click:hover { filter: brightness(.96); }
+    .knot-profile-link:focus-visible,
+    .knot-profile-click:focus-visible {
+        outline: 2px solid rgba(37, 99, 235, .28);
+        outline-offset: 3px;
+        border-radius: 999px;
+    }
+    .knot-author-name {
+        overflow: hidden;
+        color: #263244;
+        font-size: 14px;
+        font-weight: 750;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .knot-meta { margin-top: 2px; color: #7c8798; font-size: 11.5px; line-height: 1.35; font-weight: 600; }
+    .knot-chips-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 11px 0 8px; }
+    .knot-author > .knot-chips-row {
+        flex: 0 1 auto;
+        max-width: 52%;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        gap: 4px;
+        margin: 0 0 0 auto;
+        overflow: hidden;
+    }
+    .knot-author > .knot-chips-row > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    .knot-card h2 {
+        margin: 9px 0 7px;
+        color: #172033;
+        font-size: 18.5px;
+        line-height: 1.35;
+        font-weight: 800;
+        letter-spacing: -.018em;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+    .knot-content {
+        display: -webkit-box;
+        overflow: hidden;
+        margin: 0;
+        color: #344054;
+        font-size: 14.5px;
+        line-height: 1.62;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }
+    .knot-list-excerpt {
+        text-overflow: ellipsis;
+    }
+    .knot-card-detail .knot-content { display: block; overflow: visible; -webkit-line-clamp: unset; }
+    .knot-link {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
+        margin-top: 11px;
+        padding: 9px 10px;
+        border-radius: 15px;
+        background: #f8fafc;
+        color: var(--knot-primary-strong);
+        font-size: 12.5px;
+        font-weight: 650;
+        text-decoration: none;
+    }
+    .knot-link .material-symbols-outlined { flex: 0 0 auto; font-size: 17px; }
+    .knot-link span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .knot-menu-wrap { position: absolute; top: 11px; right: 10px; z-index: 12; }
+    .knot-menu-btn {
+        display: inline-flex;
+        width: 38px; height: 38px;
+        align-items: center; justify-content: center;
+        padding: 0; border: 0; border-radius: 12px;
+        background: transparent; color: #667085;
+        cursor: pointer;
+    }
+    .knot-menu-btn .material-symbols-outlined { font-size: 21px; }
+    .knot-menu {
+        position: absolute;
+        top: 40px; right: 0;
+        display: none;
+        width: 158px;
+        padding: 6px;
+        border: 0;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 16px 38px rgba(15, 23, 42, .18);
+    }
+    .knot-menu.open-up {
+        top: auto;
+        bottom: 40px;
+    }
+    .knot-menu.open { display: block; }
+    .knot-menu a, .knot-menu button {
+        display: flex;
+        width: 100%; min-height: 40px;
+        align-items: center; gap: 8px;
+        padding: 0 10px;
+        border: 0; border-radius: 9px;
+        background: transparent; color: #344054;
+        font: 650 12.5px/1 'Plus Jakarta Sans', sans-serif;
+        text-decoration: none; cursor: pointer;
+        box-sizing: border-box;
+    }
+    .knot-menu a:hover, .knot-menu button:hover { background: #f8fafc; }
+    .knot-menu .material-symbols-outlined { font-size: 17px; }
+    .knot-menu .danger { color: var(--knot-danger); }
+    .knot-actions, .comment-actions { display: flex; align-items: center; gap: 7px; margin-top: 12px; }
+    .knot-action {
+        display: inline-flex;
+        min-width: 44px; height: 36px;
+        align-items: center; justify-content: center; gap: 4px;
+        padding: 0 10px;
+        border: 1px solid #edf0f5;
+        border-radius: 11px;
+        background: #f8fafc;
+        box-shadow: none;
+        color: #667085;
+        font: 700 12px/1 'Plus Jakarta Sans', sans-serif;
+        text-decoration: none; cursor: pointer;
+        box-sizing: border-box;
+    }
+    .knot-action .material-symbols-outlined { font-size: 17px; }
+    .knot-action:hover,
+    .knot-action:focus-visible { border-color: #dfe5ed; background: #f8fafc; box-shadow: none; }
+    .knot-action.active { border-color: #bfdbfe; background: var(--knot-primary-soft); color: var(--knot-primary-strong); box-shadow: none; }
+    .knot-action.share { margin-left: auto; }
+
+    .knots-fab {
+        position: fixed;
+        right: max(18px, calc((100vw - 560px) / 2 + 18px));
+        bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+        z-index: 45;
+        display: flex;
+        width: 52px; height: 52px;
+        align-items: center; justify-content: center;
+        border-radius: 20px;
+        background: var(--knot-primary);
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 12px 28px rgba(37, 99, 235, .32);
+    }
+    .knots-fab:active { transform: scale(.96); }
+
+    .knot-sheet-scrim {
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        display: none;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 0;
+        background: rgba(15, 23, 42, .48);
+    }
+    .knot-sheet-scrim.open { display: flex; }
+    .knot-rules-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 4200;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        background: rgba(15, 23, 42, .58);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    .knot-rules-overlay.open { display: flex; }
+    .knot-login-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 4300;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        background: rgba(15, 23, 42, .55);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    .knot-login-overlay.open { display: flex; }
+    .knot-login-dialog {
+        position: relative;
+        width: min(100%, 390px);
+        padding: 24px 20px 20px;
+        border-radius: 28px;
+        background: #fff;
+        box-shadow: 0 30px 80px rgba(15, 23, 42, .28);
+        box-sizing: border-box;
+        text-align: center;
+        animation: knotRulesPop .22s ease both;
+    }
+    .knot-login-close { position: absolute; top: 12px; right: 12px; }
+    .knot-login-icon {
+        display: inline-flex;
+        width: 54px;
+        height: 54px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 13px;
+        border-radius: 20px;
+        background: #eef4ff;
+        color: var(--knot-primary);
+    }
+    .knot-login-icon .material-symbols-outlined { font-size: 29px; }
+    .knot-login-dialog h2 { margin: 0 28px 8px; color: #172033; font-size: 21px; font-weight: 900; letter-spacing: -.03em; }
+    .knot-login-dialog p { margin: 0 0 18px; color: #667085; font-size: 13px; font-weight: 650; line-height: 1.5; }
+    .knot-login-actions { display: grid; gap: 10px; }
+    .knot-rules-dialog {
+        width: min(100%, 420px);
+        padding: 22px;
+        border-radius: 28px;
+        background: #fff;
+        box-shadow: 0 30px 80px rgba(15, 23, 42, .28);
+        box-sizing: border-box;
+        animation: knotRulesPop .22s ease both;
+    }
+    @keyframes knotRulesPop {
+        from { opacity: 0; transform: translateY(12px) scale(.97); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .knot-rules-icon {
+        display: inline-flex;
+        width: 46px;
+        height: 46px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        background: #eef4ff;
+        color: var(--knot-primary);
+        margin-bottom: 12px;
+    }
+    .knot-rules-icon .material-symbols-outlined { font-size: 25px; }
+    .knot-rules-dialog h2 {
+        margin: 0 0 6px;
+        color: #172033;
+        font-size: 21px;
+        font-weight: 900;
+        letter-spacing: -.03em;
+    }
+    .knot-rules-dialog p {
+        margin: 0 0 13px;
+        color: #667085;
+        font-size: 13px;
+        font-weight: 650;
+        line-height: 1.5;
+    }
+    .knot-rules-dialog ul {
+        display: grid;
+        gap: 9px;
+        margin: 0 0 18px;
+        padding-left: 18px;
+        color: #344054;
+        font-size: 13px;
+        font-weight: 650;
+        line-height: 1.48;
+    }
+    .knot-rules-dialog .knot-primary-btn { width: 100%; }
+    .sticky-login-cta { padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px)); }
+    .sticky-login-cta button {
+        display: flex;
+        width: 100%;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 0;
+        border-radius: 999px;
+        background: #fff;
+        color: var(--knot-primary);
+        box-shadow: var(--knot-shadow-soft);
+        font: 800 13px/1 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+    }
+    .sticky-login-cta .material-symbols-outlined { font-size: 18px; }
+    .knot-sheet {
+        width: min(100%, 560px);
+        max-height: min(78dvh, 680px);
+        overflow-y: auto;
+        padding: 9px 18px calc(18px + env(safe-area-inset-bottom, 0px));
+        border-radius: 24px 24px 0 0;
+        background: #fff;
+        box-shadow: 0 -20px 50px rgba(15, 23, 42, .18);
+        box-sizing: border-box;
+    }
+    .sheet-handle { width: 38px; height: 4px; margin: 0 auto 10px; border-radius: 999px; background: #d0d5dd; }
+    .sheet-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .sheet-header h2 { margin: 0; font-size: 19px; font-weight: 800; }
+    .sheet-close-btn { flex-basis: 40px; width: 40px; height: 40px; }
+    .filter-group { padding: 12px 0; border-top: 0; }
+    .filter-check { display: flex; min-height: 40px; align-items: center; gap: 10px; color: #344054; font-size: 13px; cursor: pointer; }
+    .filter-check input { width: 18px; height: 18px; margin: 0; accent-color: var(--knot-primary); }
+    .campus-options { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 10px; padding: 5px 0 0 28px; }
+    .campus-options .filter-check { min-height: 34px; color: #667085; font-size: 11.5px; }
+    .sheet-actions, .knot-form-actions { display: flex; gap: 10px; margin-top: 15px; }
+    .sheet-subtitle { margin: 4px 0 0; color: #667085; font-size: 12px; line-height: 1.45; }
+    .knot-report-sheet { padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)); }
+    .report-target {
+        margin: 4px 0 12px;
+        padding: 10px 12px;
+        border-radius: 16px;
+        background: #f8fafc;
+        color: #344054;
+        font-size: 12px;
+        font-weight: 750;
+        line-height: 1.35;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .report-reasons { display: grid; gap: 8px; margin: 0; padding: 0; border: 0; }
+    .report-option {
+        display: flex;
+        min-height: 58px;
+        align-items: center;
+        gap: 11px;
+        padding: 11px 12px;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, .07);
+        color: #172033;
+        cursor: pointer;
+        transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .report-option:active { transform: scale(.99); }
+    .report-option:has(input:checked) { background: #eef4ff; box-shadow: 0 8px 24px rgba(37, 99, 235, .13); }
+    .report-option input { width: 18px; height: 18px; margin: 0; accent-color: var(--knot-primary); }
+    .report-option span { display: grid; gap: 2px; min-width: 0; }
+    .report-option strong { font-size: 13px; font-weight: 850; }
+    .report-option small { color: #667085; font-size: 11px; font-weight: 650; line-height: 1.3; }
+    .report-details-label {
+        display: flex;
+        justify-content: space-between;
+        margin: 13px 0 7px;
+        color: #344054;
+        font-size: 12px;
+        font-weight: 800;
+    }
+    .report-details-label span { color: #98a2b3; font-weight: 700; }
+    #reportDetails {
+        width: 100%;
+        min-height: 88px;
+        resize: vertical;
+        padding: 12px 13px;
+        border: 0;
+        border-radius: 18px;
+        outline: 0;
+        background: #f8fafc;
+        box-shadow: inset 0 0 0 1px #edf0f5;
+        color: #172033;
+        font: 650 13px/1.45 'Plus Jakarta Sans', sans-serif;
+        box-sizing: border-box;
+    }
+    #reportDetails:focus { box-shadow: inset 0 0 0 2px rgba(37, 99, 235, .22); }
+    .knot-primary-btn, .knot-secondary-btn, .knot-page-btn {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center; justify-content: center;
+        padding: 0 16px;
+        border: 0;
+        border-radius: 16px;
+        font: 750 13px/1 'Plus Jakarta Sans', sans-serif;
+        text-decoration: none; cursor: pointer;
+        box-sizing: border-box;
+    }
+    .knot-primary-btn { flex: 1; background: var(--knot-primary); color: #fff; }
+    .knot-primary-btn:hover { background: var(--knot-primary-strong); }
+    .danger-primary { background: #dc2626; }
+    .danger-primary:hover { background: #b91c1c; }
+    .knot-secondary-btn, .knot-page-btn { flex: 1; background: #fff; color: #475467; box-shadow: var(--knot-shadow-soft); }
+    button:disabled { opacity: .55; cursor: not-allowed; }
+
+    .knot-empty { padding: 40px 20px; text-align: center; color: var(--knot-muted); }
+    .knot-empty > .material-symbols-outlined { font-size: 34px; color: #98a2b3; }
+    .knot-empty h2 { margin: 10px 0 5px; font-size: 16px; color: #344054; }
+    .knot-empty p { margin: 0 0 16px; font-size: 12px; line-height: 1.5; }
+    .knot-empty .knot-primary-btn { width: max-content; margin: 0 auto; }
+    .knot-pagination { position: static; display: flex; justify-content: center; width: auto; margin: 14px 0 0; padding: 0; border: 0; background: none; box-shadow: none; transform: none; }
+    .knot-page-btn { flex: 0 0 auto; }
+
+    .knot-form-card, .knot-preview {
+        padding: 16px;
+        border: 0;
+        border-radius: 24px;
+        background: #fff;
+        box-shadow: var(--knot-shadow);
+    }
+    .knot-preview { display: none; margin-bottom: 12px; }
+    .knot-preview.show { display: block; }
+    .knot-field { position: relative; margin-bottom: 18px; }
+    .knot-field > label {
+        display: block;
+        margin: 0 0 7px;
+        color: #344054;
+        font-size: 12px;
+        font-weight: 750;
+    }
+    .knot-required { color: var(--knot-danger); }
+    .knot-help { color: #8a94a6; font-size: 10.5px; line-height: 1.45; font-weight: 500; }
+    .knot-field input, .knot-field textarea, .knot-field select, .knot-native-select {
+        width: 100%;
+        min-height: 48px;
+        margin: 0;
+        padding: 0 13px;
+        border: 0;
+        border-radius: 16px;
+        outline: 0;
+        background: #fff;
+        box-shadow: var(--knot-shadow-soft);
+        color: #263244;
+        font: 600 14px/1.4 'Plus Jakarta Sans', sans-serif;
+        box-sizing: border-box;
+    }
+    .knot-field textarea { min-height: 150px; padding-top: 12px; resize: vertical; }
+    .knot-field input:focus, .knot-field textarea:focus, .knot-field select:focus {
+        border-color: #7aa7fa;
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .11);
+    }
+    .knot-native-select { appearance: auto; cursor: pointer; }
+    .knot-counter { margin-top: 5px; color: #98a2b3; font-size: 10px; text-align: right; }
+    .knot-form-error { display: none; margin-bottom: 14px; padding: 11px 12px; border-radius: 11px; background: #fef2f2; color: #b42318; font-size: 12px; line-height: 1.4; }
+    .knot-form-error.show { display: block; }
+    .knot-toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 0; }
+    .knot-toggle-info { display: grid; gap: 4px; }
+    .knot-toggle-label { color: #344054; font-size: 13px; font-weight: 750; }
+    .knot-toggle-hint { color: #8a94a6; font-size: 10px; line-height: 1.45; }
+    .knot-switch { position: relative; flex: 0 0 46px; width: 46px; height: 27px; cursor: pointer; }
+    .knot-switch input { position: absolute; opacity: 0; }
+    .knot-switch-slider { position: absolute; inset: 0; border-radius: 999px; background: #d0d5dd; transition: background .2s ease; }
+    .knot-switch-slider::after { content: ''; position: absolute; top: 3px; left: 3px; width: 21px; height: 21px; border-radius: 50%; background: #fff; box-shadow: 0 2px 5px rgba(15,23,42,.2); transition: transform .2s ease; }
+    .knot-switch input:checked + .knot-switch-slider { background: var(--knot-primary); }
+    .knot-switch input:checked + .knot-switch-slider::after { transform: translateX(19px); }
+
+    .knot-discussion-card {
+        overflow: visible;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+    .knot-discussion-card > .knot-card {
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .comments-panel { margin-top: 12px; border: 0; border-radius: 24px; background: #fff; overflow: visible; box-shadow: var(--knot-shadow); }
+    .knot-discussion-card > .comments-panel {
+        margin-top: 8px;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .comments-heading { display: flex; align-items: center; gap: 8px; padding: 14px 15px; border-bottom: 0; }
+    .comments-heading > .material-symbols-outlined { color: var(--knot-primary); font-size: 19px; }
+    .comments-heading h2 { margin: 0; color: #344054; font-size: 15.5px; font-weight: 800; }
+    .comment-list { padding: 0 14px; }
+    #commentList { display: grid; gap: 6px; padding: 6px 0; background: var(--knot-bg); }
+    .comment { position: relative; padding: 14px 0; border-bottom: 0; }
+    .comment:last-child { border-bottom: 0; }
+    #commentList > .comment { margin: 0; padding: 10px 16px 14px; border: 0; border-radius: 0; background: #fff; box-shadow: none; z-index: 1; }
+    #commentList > .comment:has(.knot-menu.open),
+    #commentList > .comment.menu-open { z-index: 60; }
+    .comment .knot-author-copy { transform: translateY(-5px); }
+    .comment-body { margin: -13px 0 0 48px; color: #344054; font-size: 14px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .comment-author-line {
+        display: flex;
+        min-width: 0;
+        align-items: baseline;
+        gap: 4px;
+        line-height: 1.1;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .comment-author-line .knot-author-name { flex: 0 1 auto; }
+    .comment-time {
+        flex: 0 1 auto;
+        overflow: hidden;
+        color: #8a94a6;
+        font-size: 11.5px;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .comment-body.deleted { color: #98a2b3; font-style: italic; }
+    .comment-actions { gap: 2px; margin: 8px 0 0 44px; }
+    .comment-actions .comment-icon-action {
+        position: relative;
+        width: 32px;
+        min-width: 32px;
+        height: 32px;
+        padding: 0;
+        border-color: #edf0f5;
+        background: #f8fafc;
+        box-shadow: none;
+    }
+    .comment-actions .comment-icon-action::after { content: ''; position: absolute; inset: -4px; }
+    .comment-actions .comment-icon-action:hover,
+    .comment-actions .comment-icon-action:focus-visible { border-color: #dfe5ed; background: #f5f7fa; }
+    .comment-actions .comment-icon-action.active { border-color: #bfdbfe; background: var(--knot-primary-soft); color: var(--knot-primary-strong); box-shadow: none; }
+    .comment-actions .comment-icon-action .material-symbols-outlined { font-size: 16px; }
+    .view-replies {
+        display: inline-flex;
+        min-height: 32px;
+        align-items: center;
+        gap: 3px;
+        margin: 3px 0 0 44px;
+        padding: 0 6px;
+        border: 0;
+        border-radius: 7px;
+        background: transparent;
+        color: var(--knot-primary-strong);
+        font: 700 12px/1 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+        transition: background .18s ease;
+    }
+    .view-replies:hover, .view-replies:focus-visible { background: #f0f4fa; }
+    .view-replies .material-symbols-outlined { font-size: 15px; }
+    .comment-actions .view-replies { margin: 0 0 0 2px; }
+    .continue-thread { display: inline-flex; min-height: 34px; align-items: center; gap: 5px; margin: 8px 0 0 44px; padding: 0 8px; border-radius: 9px; background: var(--knot-primary-soft); color: var(--knot-primary-strong); font: 700 12px/1 'Plus Jakarta Sans', sans-serif; text-decoration: none; }
+    .continue-thread .material-symbols-outlined { font-size: 16px; }
+    .reply-children { display: none; margin: 10px 0 0 24px; padding-left: 12px; border-left: 2px solid #dbeafe; }
+    .reply-children.open { display: block; }
+    .thread-context { margin-bottom: 12px; padding: 0 14px; border: 0; border-radius: 22px; background: #fff; box-shadow: var(--knot-shadow); }
+
+    .sticky-comment {
+        position: fixed;
+        left: 50%;
+        bottom: env(safe-area-inset-bottom, 0px);
+        z-index: 55;
+        width: min(100%, 560px);
+        padding: 8px 12px;
+        border-top: 0;
+        background: rgba(255,255,255,.96);
+        box-shadow: 0 -8px 28px rgba(15, 23, 42, .09);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        transform: translateX(-50%);
+        box-sizing: border-box;
+    }
+    .sticky-comment-inner { display: flex; align-items: flex-end; gap: 8px; width: 100%; }
+    .sticky-comment textarea {
+        flex: 1;
+        min-height: 44px;
+        max-height: 100px;
+        margin: 0;
+        padding: 11px 13px;
+        border: 0;
+        border-radius: 22px;
+        outline: 0;
+        background: #fff;
+        box-shadow: var(--knot-shadow-soft);
+        color: var(--knot-text);
+        font: 500 13px/1.4 'Plus Jakarta Sans', sans-serif;
+        resize: none;
+        box-sizing: border-box;
+    }
+    .knot-send-btn { display: inline-flex; flex: 0 0 44px; width: 44px; height: 44px; align-items: center; justify-content: center; padding: 0; border: 0; border-radius: 50%; background: var(--knot-primary); color: #fff; box-shadow: 0 8px 20px rgba(37, 99, 235, .28); cursor: pointer; }
+    .knot-send-btn .material-symbols-outlined { font-size: 19px; }
+    .replying-to { display: none; align-items: center; justify-content: space-between; gap: 8px; padding: 0 4px 7px; color: #667085; font-size: 10.5px; }
+    .replying-to.show { display: flex; }
+    .replying-to button { width: 32px; height: 32px; flex-basis: 32px; border: 0; background: transparent; }
+    .knot-toast { position: fixed; left: 50%; bottom: 150px; z-index: 5000; max-width: calc(100% - 32px); padding: 10px 14px; border-radius: 12px; background: #172033; color: #fff; font-size: 12px; font-weight: 650; opacity: 0; pointer-events: none; transform: translate(-50%, 8px); transition: opacity .2s ease, transform .2s ease; }
+    .knot-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    .knot-composer-shell {
+        width: 100%;
+        min-height: 100dvh;
+        margin-bottom: -112px;
+        background: #fff;
+    }
+    .knot-composer { position: relative; min-height: 100dvh; padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); box-sizing: border-box; }
+    .knot-composer-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr) minmax(0, 1fr);
+        align-items: center;
+        gap: 8px;
+        min-height: 64px;
+        padding: 10px 12px;
+        border-bottom: 0;
+        background: rgba(255,255,255,.97);
+        box-shadow: 0 5px 20px rgba(15, 23, 42, .07);
+        box-sizing: border-box;
+    }
+    .knot-composer-back {
+        display: inline-flex;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        border-radius: 17px;
+        background: #fff;
+        box-shadow: var(--knot-shadow-soft);
+        color: #344054;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+    .knot-composer-back .material-symbols-outlined { font-size: 20px; }
+    .knot-composer-select {
+        display: inline-flex;
+        width: 100%;
+        min-width: 0;
+        height: 44px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+        margin: 0;
+        padding: 0 9px 0 11px;
+        border: 0;
+        border-radius: 16px;
+        outline: 0;
+        background: #fff;
+        box-shadow: var(--knot-shadow-soft);
+        color: #344054;
+        font: 700 12px/1 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+    .knot-composer-select > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .knot-composer-select .material-symbols-outlined { flex: 0 0 auto; font-size: 17px; transition: transform .18s ease; }
+    .knot-custom-select { position: relative; min-width: 0; }
+    .knot-custom-select.open .knot-composer-select {
+        background: var(--knot-primary-soft);
+        color: var(--knot-primary-strong);
+    }
+    .knot-custom-select.open .knot-composer-select .material-symbols-outlined { transform: rotate(180deg); }
+    .knot-custom-select.disabled .knot-composer-select { color: #98a2b3; opacity: .72; cursor: default; }
+    .knot-select-menu {
+        position: absolute;
+        top: calc(100% + 7px);
+        left: 0;
+        right: 0;
+        z-index: 95;
+        display: none;
+        max-height: 250px;
+        overflow-y: auto;
+        padding: 6px;
+        border: 0;
+        border-radius: 17px;
+        background: #fff;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, .18);
+        box-sizing: border-box;
+    }
+    .knot-custom-select.open .knot-select-menu { display: grid; gap: 2px; }
+    .knot-select-menu button {
+        min-height: 38px;
+        padding: 0 9px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: #344054;
+        font: 750 12px/1 'Plus Jakarta Sans', sans-serif;
+        text-align: left;
+        cursor: pointer;
+    }
+    .knot-select-menu button:hover,
+    .knot-select-menu button[aria-selected="true"] { background: var(--knot-primary-soft); color: var(--knot-primary-strong); }
+    .knot-select-menu button[hidden] { display: none; }
+    .knot-composer-error { margin: 10px 14px 0; }
+    .knot-composer-main { min-height: calc(100dvh - 136px); padding: 6px 18px 28px; background: #fff; box-sizing: border-box; }
+    .knot-composer-title {
+        width: 100%;
+        min-height: 62px;
+        margin: 0;
+        padding: 15px 0 12px;
+        border: 0;
+        border-radius: 0;
+        outline: 0;
+        background: transparent;
+        color: var(--knot-text);
+        font: 800 24px/1.3 'Plus Jakarta Sans', sans-serif;
+        letter-spacing: -.025em;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        box-sizing: border-box;
+    }
+    .knot-composer-title::placeholder { color: #98a2b3; }
+    .knot-composer-divider { height: 0; background: transparent; }
+    .knot-rich-editor {
+        min-height: calc(100dvh - 225px);
+        padding: 16px 0 28px;
+        outline: 0;
+        color: #344054;
+        font: 500 15px/1.65 'Plus Jakarta Sans', sans-serif;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        white-space: normal;
+    }
+    .knot-rich-editor:empty::before { content: attr(data-placeholder); color: #98a2b3; pointer-events: none; }
+    .knot-rich-editor p, .knot-rich-content p { margin: 0 0 10px; }
+    .knot-rich-editor h2, .knot-rich-content h2 { margin: 14px 0 8px; font-size: 1.28em; line-height: 1.35; }
+    .knot-rich-editor .knot-inline-heading, .knot-rich-content .knot-inline-heading { font-size: 1.16em; font-weight: 800; line-height: 1.35; }
+    .knot-rich-editor ul, .knot-rich-editor ol, .knot-rich-content ul, .knot-rich-content ol { margin: 8px 0; padding-left: 24px; }
+    .knot-rich-editor a, .knot-rich-content a { color: var(--knot-primary-strong); text-decoration: underline; overflow-wrap: anywhere; }
+    .knot-rich-editor img, .knot-rich-content img {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        max-height: 520px;
+        margin: 12px 0;
+        border-radius: 18px;
+        object-fit: contain;
+        box-shadow: var(--knot-shadow-soft);
+        cursor: zoom-in;
+    }
+    .knot-rich-content { display: block; white-space: normal; }
+    .knot-rich-content,
+    .knot-rich-content * {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+    .knot-rich-content br + br + br,
+    .knot-rich-content p:empty + p:empty + p:empty { display: none; }
+    .knot-card:not(.knot-card-detail) .knot-rich-content { max-height: 6.4em; overflow: hidden; }
+    .knot-card:not(.knot-card-detail) .knot-rich-content img { display: none; }
+    .knot-card-detail .knot-rich-content { max-height: none; overflow: visible; }
+    .knot-selection-tools {
+        position: absolute;
+        z-index: 80;
+        display: flex;
+        gap: 2px;
+        padding: 4px;
+        border: 0;
+        border-radius: 15px;
+        background: #172033;
+        box-shadow: 0 8px 24px rgba(15,23,42,.2);
+    }
+    .knot-selection-tools[hidden] { display: none; }
+    .knot-selection-tools button {
+        display: inline-flex;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: #fff;
+        font: 700 14px/1 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+    }
+    .knot-selection-tools button:hover, .knot-selection-tools button:focus-visible { background: rgba(255,255,255,.14); }
+    .knot-selection-tools .material-symbols-outlined { font-size: 18px; }
+    .knot-composer-footer {
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        z-index: 70;
+        display: flex;
+        width: min(100%, 560px);
+        min-height: 64px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+        border-top: 0;
+        background: rgba(255,255,255,.97);
+        box-shadow: 0 -8px 28px rgba(15, 23, 42, .09);
+        box-sizing: border-box;
+        transform: translateX(-50%);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+    .knot-composer-attachments { display: flex; min-width: 0; align-items: center; gap: 4px; }
+    .knot-composer-tool {
+        display: inline-flex;
+        min-width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 0 8px;
+        border: 0;
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: var(--knot-shadow-soft);
+        color: #475467;
+        font: 700 11px/1 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+    }
+    .knot-composer-tool:hover, .knot-composer-tool:focus-visible { background: #f2f4f7; }
+    .knot-composer-tool .material-symbols-outlined { font-size: 19px; }
+    .knot-composer-tool:disabled { opacity: .5; cursor: wait; }
+    .knot-upload-status { max-width: 90px; overflow: hidden; color: #667085; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+    .knot-publish-actions { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 8px; }
+    .knot-anon-toggle {
+        display: inline-flex;
+        height: 42px;
+        align-items: center;
+        gap: 7px;
+        min-width: 112px;
+        justify-content: center;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: var(--knot-shadow-soft);
+        color: #475467;
+        font: 800 11px/1 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+        user-select: none;
+    }
+    .knot-mini-switch {
+        position: relative;
+        width: 32px;
+        height: 19px;
+        border-radius: 999px;
+        background: #d0d5dd;
+        transition: background .18s ease;
+    }
+    .knot-mini-switch::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 4px rgba(15, 23, 42, .22);
+        transition: transform .18s ease;
+    }
+    .knot-anon-toggle.is-anon { color: var(--knot-primary-strong); }
+    .knot-anon-toggle.is-anon .knot-mini-switch { background: var(--knot-primary); }
+    .knot-anon-toggle.is-anon .knot-mini-switch::after { transform: translateX(13px); }
+    .knot-composer-publish {
+        flex: 0 0 auto;
+        min-width: 68px;
+        height: 42px;
+        padding: 0 16px;
+        border: 0;
+        border-radius: 16px;
+        background: var(--knot-primary);
+        color: #fff;
+        font: 800 12px/1 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+    }
+    .knot-composer-publish:disabled { opacity: .58; cursor: wait; }
+
+    .knot-link-dialog {
+        position: fixed;
+        inset: 0;
+        z-index: 9000;
+        display: none;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 16px;
+        background: rgba(15, 23, 42, .44);
+        box-sizing: border-box;
+    }
+    .knot-link-dialog.open { display: flex; }
+    .knot-link-card {
+        width: min(100%, 520px);
+        padding: 16px;
+        border-radius: 24px;
+        background: #fff;
+        box-shadow: 0 24px 64px rgba(15, 23, 42, .22);
+        box-sizing: border-box;
+    }
+    .knot-link-card h2 { margin: 0 0 10px; color: var(--knot-text); font-size: 17px; font-weight: 850; }
+    .knot-link-card input {
+        width: 100%;
+        height: 46px;
+        padding: 0 12px;
+        border: 0;
+        border-radius: 15px;
+        outline: 0;
+        background: #f8fafc;
+        color: var(--knot-text);
+        font: 650 13px/1 'Plus Jakarta Sans', sans-serif;
+        box-sizing: border-box;
+    }
+    .knot-link-card input:focus { box-shadow: inset 0 0 0 1px #bfdbfe; }
+    .knot-link-actions { display: flex; gap: 9px; margin-top: 12px; }
+    .knot-link-actions button {
+        flex: 1;
+        height: 42px;
+        border: 0;
+        border-radius: 15px;
+        font: 800 12px/1 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+    }
+    .knot-link-cancel { background: #f2f4f7; color: #475467; }
+    .knot-link-apply { background: var(--knot-primary); color: #fff; }
+
+    .knot-image-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(15, 23, 42, .62);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        opacity: 0;
+        visibility: hidden;
+        cursor: zoom-out;
+        transition: opacity .2s ease, visibility .2s ease;
+        box-sizing: border-box;
+    }
+    .knot-image-lightbox.open { opacity: 1; visibility: visible; }
+    .knot-image-lightbox img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: min(92vw, 720px);
+        max-height: 86dvh;
+        border-radius: 24px;
+        object-fit: contain;
+        box-shadow: 0 28px 80px rgba(0, 0, 0, .36);
+        transform: scale(.96);
+        transition: transform .22s ease;
+    }
+    .knot-image-lightbox.open img { transform: scale(1); }
+
+    :is(.knots-shell, .knots-detail-shell, .knot-composer-shell) button:focus-visible,
+    :is(.knots-shell, .knots-detail-shell, .knot-composer-shell) a:focus-visible,
+    :is(.knots-shell, .knots-detail-shell, .knot-composer-shell) summary:focus-visible,
+    :is(.knots-shell, .knots-detail-shell, .knot-composer-shell) input:focus-visible,
+    :is(.knots-shell, .knots-detail-shell, .knot-composer-shell) textarea:focus-visible,
+    :is(.knots-shell, .knots-detail-shell, .knot-composer-shell) select:focus-visible {
+        outline: 2px solid rgba(37, 99, 235, .45);
+        outline-offset: 2px;
+    }
+    .knot-rich-editor:focus,
+    .knot-rich-editor:focus-visible { outline: 0; }
+
+    @media (max-width: 380px) {
+        .knots-toolbar { gap: 6px; padding-inline: 10px; }
+        .knots-compact-btn { padding-inline: 8px; font-size: 11px; }
+        .knots-filter-btn { min-width: 52px; }
+        .knots-header { padding-inline: 12px; }
+        .knots-header-badge { display: none; }
+        .knots-header-sub { max-width: 260px; font-size: 10.5px; }
+        .campus-options { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 720px) {
+        .container { border: 0; box-shadow: 0 24px 70px rgba(15,23,42,.08); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+</style>
+
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "KnotSpot",
+      "url": "https://knotspot.online/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://knotspot.online/roomfinder/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "KnotSpot",
+      "url": "https://knotspot.online/",
+      "logo": "https://knotspot.online/static/favicon.png",
+      "sameAs": [
+        "https://www.instagram.com/knotspott/"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Knots campus discussion threads", "description": "Public campus discussion threads on KnotSpot for student questions, advice, and college life.", "url": "https://www.knotspot.online/knots/", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://www.knotspot.online/knots/29/i-booked-my-hostel-in-ja-block-2/", "name": "I booked my hostel in ja block 2", "description": "Please say is it good or too bad... I can't find any other hostel to book so I booked it. Some people are saying it's bad is it really that bad??"}, {"@type": "ListItem", "position": 2, "url": "https://www.knotspot.online/knots/27/need-to-make-connections/", "name": "Need to make connections.", "description": "Well I am joining DSU krt this year and thought that knowing a few people in advance will be of great aid. So if anyone wanna connect, feel free to drop a message."}, {"@type": "ListItem", "position": 3, "url": "https://www.knotspot.online/knots/26/question/", "name": "Question", "description": "Do les and bi exist in DSU ???(A bi here)"}, {"@type": "ListItem", "position": 4, "url": "https://www.knotspot.online/knots/24/querry-about-the-reporting-date/", "name": "querry about the reporting date", "description": "yeah so ill be joining srm ap and im so confused😭like when do i actually have to report to the campus i need to book my tickets for travel but everyone is giving different answers and its so unclear just need a little help from the seniors plsss 🙏"}, {"@type": "ListItem", "position": 5, "url": "https://www.knotspot.online/knots/23/friends/", "name": "Friends", "description": "Hi guys I'm from vit ap anyone from vitap ?"}, {"@type": "ListItem", "position": 6, "url": "https://www.knotspot.online/knots/22/any-girls-from-kakinada/", "name": "Any girls from kakinada?", "description": "Any girls from Kakinada lets connect…."}, {"@type": "ListItem", "position": 7, "url": "https://www.knotspot.online/knots/21/need-to-make-friends/", "name": "Need to make friends !!", "description": "Hey hi people, I'm mouri dass and I'm from tamilnadu and joining DSU KTR as a cse ai ML student. I've never been out of family and friends like I've spent all my time same school from kindergarten and been a day scholar. Now everything is changing by leaving e"}, {"@type": "ListItem", "position": 8, "url": "https://www.knotspot.online/knots/20/srm-ap/", "name": "DSU AP", "description": "When will the online enrollment for DSU ap freshers will start and the online enrollment needs to be done through their website?"}, {"@type": "ListItem", "position": 9, "url": "https://www.knotspot.online/knots/18/2nd-year-cse-class-room-allocation/", "name": "2nd year Cse class room allocation", "description": "6th floor ☠️"}, {"@type": "ListItem", "position": 10, "url": "https://www.knotspot.online/knots/17/about-freshers/", "name": "About freshers", "description": "Guyss any one from bba freshers?"}, {"@type": "ListItem", "position": 11, "url": "https://www.knotspot.online/knots/16/about-orientation/", "name": "About orientation", "description": "Is it must to attend orientation class ? If yes thn should I attend all classes? Will they take attendance?"}, {"@type": "ListItem", "position": 12, "url": "https://www.knotspot.online/knots/15/anyone-from-hyderabad/", "name": "Anyone from Hyderabad?", "description": "Anyone frm hyderbad here? Let's connect"}]}</script>
+    
+    <script src="/static/js/app-select.js" defer></script>
+
+</head>
+<body>
+    
+
+    <div class="container">
+        
+        
+<div class="knots-shell">
+    <header class="knots-header">
+        <div class="knots-header-main">
+            <div class="knots-header-icon" aria-hidden="true">
+                <span class="material-symbols-outlined">hub</span>
+            </div>
+            <div>
+                <h1>Knots</h1>
+                <p class="knots-header-sub">Reddit-style campus threads for questions, advice and discussions.</p>
+            </div>
+        </div>
+    </header>
+    <div class="knots-body">
+        <form id="knotFilterForm" method="get" style="padding:0;">
+
+            <input type="hidden" name="filters" value="1">
+            <input type="hidden" name="sort" value="newest">
+            <div class="knots-toolbar">
+                <div class="knots-search-wrap">
+                    <span class="material-symbols-outlined">search</span>
+                    <label for="knotSearch" class="sr-only">Search Knots</label>
+                    <input id="knotSearch" type="search" name="q" value="" placeholder="Search Knots" autocomplete="off">
+                    
+                </div>
+                <details class="knots-sort-menu">
+                    <summary class="knots-compact-btn" aria-label="Sort Knots">Sort<span class="material-symbols-outlined">expand_more</span></summary>
+                    <div class="knots-sort-dropdown" role="menu" aria-label="Sort Knots">
+                        
+                        <button type="button" class="knots-sort-btn active" data-sort="newest" role="menuitemradio" aria-checked="true">Newest<span class="material-symbols-outlined">check</span></button>
+                        
+                        <button type="button" class="knots-sort-btn " data-sort="hot" role="menuitemradio" aria-checked="false">Hot</button>
+                        
+                        <button type="button" class="knots-sort-btn " data-sort="top" role="menuitemradio" aria-checked="false">Top</button>
+                        
+                        <button type="button" class="knots-sort-btn " data-sort="oldest" role="menuitemradio" aria-checked="false">Oldest</button>
+                        
+                    </div>
+                </details>
+                <button class="knots-filter-btn knots-compact-btn" type="button" data-action="open-filters" aria-label="Filter Knots">
+                    <span>Filter</span>
+                    
+                </button>
+            </div>
+            
+            <div class="knot-sheet-scrim" id="filterSheet" aria-hidden="true">
+                <div class="knot-sheet" role="dialog" aria-modal="true" aria-labelledby="filterTitle">
+                    <div class="sheet-handle"></div>
+                    <div class="sheet-header"><h2 id="filterTitle">Filter Knots</h2><button class="sheet-close-btn" type="button" data-action="close-filters" aria-label="Close filters"><span class="material-symbols-outlined">close</span></button></div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-check"><input type="checkbox" name="colleges" value="DSU"  data-college="DSU"><strong>DSU</strong></label>
+                        <div class="campus-options" data-campus-group="DSU" hidden>
+                            <label class="filter-check"><input type="checkbox" name="campuses" value="KTR" >DSU KS Layout Campus (KTR)</label><label class="filter-check"><input type="checkbox" name="campuses" value="RMP" >DSU Harohalli (Kanakapura) Campus (RMP)</label><label class="filter-check"><input type="checkbox" name="campuses" value="VDP" >DSU Vadapalani (VDP)</label><label class="filter-check"><input type="checkbox" name="campuses" value="ESW" >DSU Eswari (ESW)</label><label class="filter-check"><input type="checkbox" name="campuses" value="AP" >DSU Amaravati (AP)</label><label class="filter-check"><input type="checkbox" name="campuses" value="NCR" >DSU Delhi NCR</label><label class="filter-check"><input type="checkbox" name="campuses" value="SPT" >DSU Sonepat (SPT)</label><label class="filter-check"><input type="checkbox" name="campuses" value="SKM" >DSU Sikkim (SKM)</label><label class="filter-check"><input type="checkbox" name="campuses" value="TCY" >DSU Tiruchirappalli (TCY)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-check"><input type="checkbox" name="colleges" value="Amrita"  data-college="Amrita"><strong>Amrita</strong></label>
+                        <div class="campus-options" data-campus-group="Amrita" hidden>
+                            <label class="filter-check"><input type="checkbox" name="campuses" value="ACB" >Amrita Coimbatore (ACB)</label><label class="filter-check"><input type="checkbox" name="campuses" value="AKO" >Amrita Kochi (AKO)</label><label class="filter-check"><input type="checkbox" name="campuses" value="AAP" >Amrita Amritapuri (AAP)</label><label class="filter-check"><input type="checkbox" name="campuses" value="ABL" >Amrita Bengaluru (ABL)</label><label class="filter-check"><input type="checkbox" name="campuses" value="AMY" >Amrita Mysuru (AMY)</label><label class="filter-check"><input type="checkbox" name="campuses" value="ACH" >Amrita Bangalore (ACH)</label><label class="filter-check"><input type="checkbox" name="campuses" value="AAM" >Amrita Amaravati (AAM)</label><label class="filter-check"><input type="checkbox" name="campuses" value="AFD" >Amrita Faridabad (AFD)</label><label class="filter-check"><input type="checkbox" name="campuses" value="ANG" >Amrita Nagercoil (ANG)</label><label class="filter-check"><input type="checkbox" name="campuses" value="AHD" >Amrita Haridwar (AHD)</label><label class="filter-check"><input type="checkbox" name="campuses" value="AON" >Amrita Online (AON)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-check"><input type="checkbox" name="colleges" value="VIT"  data-college="VIT"><strong>VIT</strong></label>
+                        <div class="campus-options" data-campus-group="VIT" hidden>
+                            <label class="filter-check"><input type="checkbox" name="campuses" value="VLR" >VIT Vellore (VLR)</label><label class="filter-check"><input type="checkbox" name="campuses" value="VCH" >VIT Bangalore (VCH)</label><label class="filter-check"><input type="checkbox" name="campuses" value="VBP" >VIT Bhopal (VBP)</label><label class="filter-check"><input type="checkbox" name="campuses" value="VAP" >VIT AP Amaravati (VAP)</label><label class="filter-check"><input type="checkbox" name="campuses" value="VBL" >VIT Bangalore (VBL)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="sheet-actions"><button class="knot-secondary-btn" type="button" data-action="clear-filters">Clear all</button><button class="knot-primary-btn" type="submit">Apply filters</button></div>
+                </div>
+            </div>
+        </form>
+        <div class="knots-body-inner">
+            <section class="knot-feed" aria-live="polite">
+                <article class="knot-card " data-post-id="29" data-slug="i-booked-my-hostel-in-ja-block-2">
+    <a class="knot-card-link" href="/knots/29/i-booked-my-hostel-in-ja-block-2/" >
+        <div class="knot-author">
+            <img class="knot-avatar knot-profile-click" src="https://res.cloudinary.com/dtqeqyym4/image/upload/f_webp,q_40,w_300/v1783953063/srm_match/profile_pics/fpjwnhvbffxqewydi3v1.webp" alt="Mouri Dass" width="38" height="38" loading="lazy" data-profile-url="/profile/1157/" role="link" tabindex="0">
+            <div class="knot-author-copy">
+                <div class="knot-author-name knot-profile-click" data-profile-url="/profile/1157/" role="link" tabindex="0">Mouri Dass</div>
+                
+                <div class="knot-meta">14 hours, 12 minutes ago</div>
+            </div>
+            <div class="knot-chips-row">
+                
+                <span class="knot-campus-chip">DSU KTR</span>
+            </div>
+        </div>
+        <h2>I booked my hostel in ja block 2</h2>
+        
+        <p class="knot-content knot-list-excerpt">Please say is it good or too bad... I can&#x27;t find any other hostel to book so I booked it. Some people are saying it&#x27;s bad is it really that bad??</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>1</span></button>
+        <a class="knot-action" href="/knots/29/i-booked-my-hostel-in-ja-block-2/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>0</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                <article class="knot-card " data-post-id="27" data-slug="need-to-make-connections">
+    <a class="knot-card-link" href="/knots/27/need-to-make-connections/" >
+        <div class="knot-author">
+            <img class="knot-avatar knot-profile-click" src="https://ui-avatars.com/api/?name=Devansh+Pant&amp;background=6366f1&amp;color=fff&amp;size=80" alt="Devansh Pant" width="38" height="38" loading="lazy" data-profile-url="/profile/1573/" role="link" tabindex="0">
+            <div class="knot-author-copy">
+                <div class="knot-author-name knot-profile-click" data-profile-url="/profile/1573/" role="link" tabindex="0">Devansh Pant</div>
+                
+                <div class="knot-meta">1 day, 2 hours ago</div>
+            </div>
+            <div class="knot-chips-row">
+                
+                <span class="knot-campus-chip">DSU KTR</span>
+            </div>
+        </div>
+        <h2>Need to make connections.</h2>
+        
+        <p class="knot-content knot-list-excerpt">Well I am joining DSU krt this year and thought that knowing a few people in advance will be of great aid. So if anyone wanna connect, feel free to drop a message.</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>1</span></button>
+        <a class="knot-action" href="/knots/27/need-to-make-connections/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>0</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                <article class="knot-card " data-post-id="26" data-slug="question">
+    <a class="knot-card-link" href="/knots/26/question/" >
+        <div class="knot-author">
+            <img class="knot-avatar" src="https://ui-avatars.com/api/?name=K&amp;background=004ac6&amp;color=fff&amp;size=128" alt="Anonymous" width="38" height="38" loading="lazy">
+            <div class="knot-author-copy">
+                <div class="knot-author-name">Anonymous</div>
+                
+                <div class="knot-meta">1 day, 6 hours ago · edited</div>
+            </div>
+            <div class="knot-chips-row">
+                
+                <span class="knot-campus-chip">DSU KTR</span>
+            </div>
+        </div>
+        <h2>Question</h2>
+        
+        <p class="knot-content knot-list-excerpt">Do les and bi exist in DSU ???(A bi here)</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>1</span></button>
+        <a class="knot-action" href="/knots/26/question/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>0</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                <article class="knot-card " data-post-id="24" data-slug="querry-about-the-reporting-date">
+    <a class="knot-card-link" href="/knots/24/querry-about-the-reporting-date/" >
+        <div class="knot-author">
+            <img class="knot-avatar knot-profile-click" src="https://ui-avatars.com/api/?name=Ishaan+Negi&amp;background=6366f1&amp;color=fff&amp;size=80" alt="Ishaan Negi" width="38" height="38" loading="lazy" data-profile-url="/profile/1301/" role="link" tabindex="0">
+            <div class="knot-author-copy">
+                <div class="knot-author-name knot-profile-click" data-profile-url="/profile/1301/" role="link" tabindex="0">Ishaan Negi</div>
+                
+                <div class="knot-meta">2 days, 1 hour ago</div>
+            </div>
+            <div class="knot-chips-row">
+                
+                <span class="knot-campus-chip">DSU AP</span>
+            </div>
+        </div>
+        <h2>querry about the reporting date</h2>
+        
+        <p class="knot-content knot-list-excerpt">yeah so ill be joining srm ap and im so confused😭like when do i actually have to report to the campus i need to book my tickets for travel but everyone is giving different answers and its so unclear just need a little help from the seniors plsss 🙏</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>2</span></button>
+        <a class="knot-action" href="/knots/24/querry-about-the-reporting-date/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>3</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                <article class="knot-card " data-post-id="23" data-slug="friends">
+    <a class="knot-card-link" href="/knots/23/friends/" >
+        <div class="knot-author">
+            <img class="knot-avatar" src="https://ui-avatars.com/api/?name=K&amp;background=004ac6&amp;color=fff&amp;size=128" alt="Anonymous" width="38" height="38" loading="lazy">
+            <div class="knot-author-copy">
+                <div class="knot-author-name">Anonymous</div>
+                
+                <div class="knot-meta">2 days, 4 hours ago · edited</div>
+            </div>
+            <div class="knot-chips-row">
+                
+                <span class="knot-campus-chip">VIT VAP</span>
+            </div>
+        </div>
+        <h2>Friends</h2>
+        
+        <p class="knot-content knot-list-excerpt">Hi guys I&#x27;m from vit ap anyone from vitap ?</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>1</span></button>
+        <a class="knot-action" href="/knots/23/friends/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>0</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                <article class="knot-card " data-post-id="22" data-slug="any-girls-from-kakinada">
+    <a class="knot-card-link" href="/knots/22/any-girls-from-kakinada/" >
+        <div class="knot-author">
+            <img class="knot-avatar" src="https://ui-avatars.com/api/?name=K&amp;background=004ac6&amp;color=fff&amp;size=128" alt="Anonymous" width="38" height="38" loading="lazy">
+            <div class="knot-author-copy">
+                <div class="knot-author-name">Anonymous</div>
+                
+                <div class="knot-meta">2 days, 12 hours ago</div>
+            </div>
+            <div class="knot-chips-row">
+                
+                <span class="knot-campus-chip">DSU KTR</span>
+            </div>
+        </div>
+        <h2>Any girls from kakinada?</h2>
+        
+        <p class="knot-content knot-list-excerpt">Any girls from Kakinada lets connect….</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>0</span></button>
+        <a class="knot-action" href="/knots/22/any-girls-from-kakinada/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>0</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                <article class="knot-card " data-post-id="21" data-slug="need-to-make-friends">
+    <a class="knot-card-link" href="/knots/21/need-to-make-friends/" >
+        <div class="knot-author">
+            <img class="knot-avatar knot-profile-click" src="https://res.cloudinary.com/dtqeqyym4/image/upload/f_webp,q_40,w_300/v1783953063/srm_match/profile_pics/fpjwnhvbffxqewydi3v1.webp" alt="Mouri Dass" width="38" height="38" loading="lazy" data-profile-url="/profile/1157/" role="link" tabindex="0">
+            <div class="knot-author-copy">
+                <div class="knot-author-name knot-profile-click" data-profile-url="/profile/1157/" role="link" tabindex="0">Mouri Dass</div>
+                
+                <div class="knot-meta">2 days, 14 hours ago · edited</div>
+            </div>
+            <div class="knot-chips-row">
+                
+                <span class="knot-campus-chip">DSU KTR</span>
+            </div>
+        </div>
+        <h2>Need to make friends !!</h2>
+        
+        <p class="knot-content knot-list-excerpt">Hey hi people, I&#x27;m mouri dass and I&#x27;m from tamilnadu and joining DSU KTR as a cse ai ML student. I&#x27;ve never been out of family and friends like I&#x27;ve spent all my time same school from kindergarten and been a day scholar. Now everything is changing by leaving …</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>3</span></button>
+        <a class="knot-action" href="/knots/21/need-to-make-friends/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>0</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                <article class="knot-card " data-post-id="20" data-slug="srm-ap">
+    <a class="knot-card-link" href="/knots/20/srm-ap/" >
+        <div class="knot-author">
+            <img class="knot-avatar" src="https://ui-avatars.com/api/?name=K&amp;background=004ac6&amp;color=fff&amp;size=128" alt="Anonymous" width="38" height="38" loading="lazy">
+            <div class="knot-author-copy">
+                <div class="knot-author-name">Anonymous</div>
+                
+                <div class="knot-meta">3 days, 21 hours ago</div>
+            </div>
+            <div class="knot-chips-row">
+                
+                <span class="knot-campus-chip">DSU AP</span>
+            </div>
+        </div>
+        <h2>DSU AP</h2>
+        
+        <p class="knot-content knot-list-excerpt">When will the online enrollment for DSU ap freshers will start and the online enrollment needs to be done through their website?</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>1</span></button>
+        <a class="knot-action" href="/knots/20/srm-ap/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>0</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                <article class="knot-card " data-post-id="18" data-slug="2nd-year-cse-class-room-allocation">
+    <a class="knot-card-link" href="/knots/18/2nd-year-cse-class-room-allocation/" >
+        <div class="knot-author">
+            <img class="knot-avatar" src="https://ui-avatars.com/api/?name=K&amp;background=004ac6&amp;color=fff&amp;size=128" alt="Anonymous" width="38" height="38" loading="lazy">
+            <div class="knot-author-copy">
+                <div class="knot-author-name">Anonymous</div>
+                
+                <div class="knot-meta">3 days, 22 hours ago</div>
+            </div>
+            <div class="knot-chips-row">
+                
+                <span class="knot-campus-chip">DSU RMP</span>
+            </div>
+        </div>
+        <h2>2nd year Cse class room allocation</h2>
+        
+        <p class="knot-content knot-list-excerpt">6th floor ☠️</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>1</span></button>
+        <a class="knot-action" href="/knots/18/2nd-year-cse-class-room-allocation/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>1</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                <article class="knot-card " data-post-id="17" data-slug="about-freshers">
+    <a class="knot-card-link" href="/knots/17/about-freshers/" >
+        <div class="knot-author">
+            <img class="knot-avatar knot-profile-click" src="https://res.cloudinary.com/dtqeqyym4/image/upload/f_webp,q_40,w_300/v1781370918/srm_match/profile_pics/txjgkyrt9asr7wzu0gnw.jpg" alt="Rohan V" width="38" height="38" loading="lazy" data-profile-url="/profile/841/" role="link" tabindex="0">
+            <div class="knot-author-copy">
+                <div class="knot-author-name knot-profile-click" data-profile-url="/profile/841/" role="link" tabindex="0">Rohan V</div>
+                
+                <div class="knot-meta">3 days, 23 hours ago · edited</div>
+            </div>
+            <div class="knot-chips-row">
+                
+                <span class="knot-campus-chip">DSU KTR</span>
+            </div>
+        </div>
+        <h2>About freshers</h2>
+        
+        <p class="knot-content knot-list-excerpt">Guyss any one from bba freshers?</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>1</span></button>
+        <a class="knot-action" href="/knots/17/about-freshers/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>0</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                <article class="knot-card " data-post-id="16" data-slug="about-orientation">
+    <a class="knot-card-link" href="/knots/16/about-orientation/" >
+        <div class="knot-author">
+            <img class="knot-avatar" src="https://ui-avatars.com/api/?name=K&amp;background=004ac6&amp;color=fff&amp;size=128" alt="Anonymous" width="38" height="38" loading="lazy">
+            <div class="knot-author-copy">
+                <div class="knot-author-name">Anonymous</div>
+                
+                <div class="knot-meta">4 days ago</div>
+            </div>
+            <div class="knot-chips-row">
+                
+                <span class="knot-campus-chip">DSU RMP</span>
+            </div>
+        </div>
+        <h2>About orientation</h2>
+        
+        <p class="knot-content knot-list-excerpt">Is it must to attend orientation class ? If yes thn should I attend all classes? Will they take attendance?</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>3</span></button>
+        <a class="knot-action" href="/knots/16/about-orientation/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>1</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                <article class="knot-card " data-post-id="15" data-slug="anyone-from-hyderabad">
+    <a class="knot-card-link" href="/knots/15/anyone-from-hyderabad/" >
+        <div class="knot-author">
+            <img class="knot-avatar" src="https://ui-avatars.com/api/?name=K&amp;background=004ac6&amp;color=fff&amp;size=128" alt="Anonymous" width="38" height="38" loading="lazy">
+            <div class="knot-author-copy">
+                <div class="knot-author-name">Anonymous</div>
+                
+                <div class="knot-meta">4 days ago</div>
+            </div>
+            
+        </div>
+        <h2>Anyone from Hyderabad?</h2>
+        
+        <p class="knot-content knot-list-excerpt">Anyone frm hyderbad here? Let&#x27;s connect</p>
+        
+    </a>
+    
+    <div class="knot-menu-wrap">
+        <button class="knot-menu-btn" type="button" data-action="menu" aria-label="More actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button>
+        <div class="knot-menu" role="menu">
+            <button type="button" data-action="copy"><span class="material-symbols-outlined">content_copy</span>Copy link</button>
+            <button type="button" data-action="copy-post-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>
+            
+            <button type="button" class="danger" data-action="report-post"><span class="material-symbols-outlined">flag</span>Report</button>
+            
+        </div>
+    </div>
+    <div class="knot-actions">
+        <button type="button" class="knot-action " data-action="vote" aria-pressed="false"><span class="material-symbols-outlined">star</span><span data-count>4</span></button>
+        <a class="knot-action" href="/knots/15/anyone-from-hyderabad/#comments"><span class="material-symbols-outlined">chat_bubble</span><span>6</span></a>
+        <button type="button" class="knot-action share" data-action="share"><span class="material-symbols-outlined">share</span><span>Share</span></button>
+    </div>
+</article>
+
+                
+            </section>
+            <nav class="knot-pagination" aria-label="Feed pages"><a class="knot-page-btn" href="?page=2&sort=newest&q=&filters=1">Load more</a></nav>
+        </div>
+    </div>
+    <a class="knots-fab" href="#" aria-label="Create Knot" data-action="require-login" data-login-reason="Create a Knot">
+        <span class="material-symbols-outlined">edit</span>
+    </a>
+</div>
+<div class="knot-rules-overlay" id="knotRulesDialog" aria-hidden="true">
+    <div class="knot-rules-dialog" role="dialog" aria-modal="true" aria-labelledby="knotRulesTitle" aria-describedby="knotRulesText">
+        <div class="knot-rules-icon" aria-hidden="true"><span class="material-symbols-outlined">verified_user</span></div>
+        <h2 id="knotRulesTitle">Knots community rules</h2>
+        <p id="knotRulesText">Knots are for helpful campus discussions. Keep it respectful and safe.</p>
+        <ul>
+            <li>No vulgar words, NSFW content, harassment or character defamation.</li>
+            <li>No spam, self-promotion or malicious links.</li>
+            <li>If you want to promote something, contact admin by raising a ticket in <strong>More → Feedback</strong>.</li>
+        </ul>
+        <button class="knot-primary-btn" type="button" data-action="agree-rules">I agree</button>
+    </div>
+</div>
+
+<div class="knot-login-overlay" id="knotLoginPrompt" aria-hidden="true">
+    <div class="knot-login-dialog" role="dialog" aria-modal="true" aria-labelledby="knotLoginTitle" aria-describedby="knotLoginText">
+        <button class="sheet-close-btn knot-login-close" type="button" data-action="close-login-prompt" aria-label="Close login prompt"><span class="material-symbols-outlined">close</span></button>
+        <div class="knot-login-icon" aria-hidden="true"><span class="material-symbols-outlined">hub</span></div>
+        <h2 id="knotLoginTitle">Log in to join Knots</h2>
+        <p id="knotLoginText">You can read Knots publicly. Create posts, star threads, comment, and reply after logging in.</p>
+        <div class="knot-login-actions">
+            <a class="knot-primary-btn" id="knotLoginLink" href="/login/?next=/knots/">Log in</a>
+            <button class="knot-secondary-btn" type="button" data-action="close-login-prompt">Keep reading</button>
+        </div>
+    </div>
+</div>
+
+<div class="knot-sheet-scrim" id="reportSheet" aria-hidden="true">
+    <div class="knot-sheet knot-report-sheet" role="dialog" aria-modal="true" aria-labelledby="reportTitle" aria-describedby="reportHelp">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+            <div>
+                <h2 id="reportTitle">Report Knot</h2>
+                <p id="reportHelp" class="sheet-subtitle">Pick a reason and add anything the moderation team should know.</p>
+            </div>
+            <button class="sheet-close-btn" type="button" data-action="close-report" aria-label="Close report menu"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <form id="knotReportForm">
+            <input type="hidden" id="reportPostId" name="post_id">
+            <div class="report-target" id="reportTarget">Reporting this Knot</div>
+            <fieldset class="report-reasons">
+                <legend class="sr-only">Report reason</legend>
+                <label class="report-option"><input type="radio" name="reason" value="spam" checked><span><strong>Spam</strong><small>Promotions, scams, repeated junk.</small></span></label>
+                <label class="report-option"><input type="radio" name="reason" value="harassment"><span><strong>Harassment</strong><small>Bullying, hate, abuse or targeted attacks.</small></span></label>
+                <label class="report-option"><input type="radio" name="reason" value="unsafe"><span><strong>Unsafe or harmful</strong><small>Threats, self-harm, illegal or dangerous content.</small></span></label>
+                <label class="report-option"><input type="radio" name="reason" value="misinformation"><span><strong>Misinformation</strong><small>False or misleading campus information.</small></span></label>
+                <label class="report-option"><input type="radio" name="reason" value="other"><span><strong>Other</strong><small>Something else moderators should review.</small></span></label>
+            </fieldset>
+            <label class="report-details-label" for="reportDetails">Custom reason <span>(optional)</span></label>
+            <textarea id="reportDetails" name="details" maxlength="500" rows="3" placeholder="Write more details here..."></textarea>
+            <div class="sheet-actions">
+                <button class="knot-secondary-btn" type="button" data-action="close-report">Cancel</button>
+                <button class="knot-primary-btn danger-primary" type="submit">Send report</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="knot-toast" id="knotToast" role="status" aria-live="polite"></div>
+<script>
+(function () {
+    'use strict';
+    var csrf = (document.cookie.match(/(?:^|; )csrftoken=([^;]+)/) || [])[1] || '';
+    var viewerAuthenticated = false;
+    var toastTimer;
+    var replyParent = null;
+    var reportPostId = null;
+    var knotRulesStorageKey = 'knotspot.knots.rulesAccepted.v1';
+    var bodyOverflowBeforeSheet = '';
+    var bodyOverflowBeforeLightbox = '';
+    var commentForm = document.getElementById('commentForm');
+    if (commentForm && commentForm.dataset.defaultParent) replyParent = commentForm.dataset.defaultParent;
+
+    function toast(message) {
+        var el = document.getElementById('knotToast');
+        if (!el) return;
+        el.textContent = message;
+        el.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { el.classList.remove('show'); }, 3200);
+    }
+    function request(url, options) {
+        options = options || {};
+        options.headers = Object.assign({'X-CSRFToken': csrf, 'Content-Type': 'application/json'}, options.headers || {});
+        return fetch(url, options).then(function (response) {
+            return response.json().catch(function () { return {error:'Something went wrong.'}; }).then(function (data) {
+                if (!response.ok || data.success === false) throw new Error(data.error || 'Something went wrong.');
+                return data;
+            });
+        });
+    }
+    function escapeHtml(value) {
+        return String(value == null ? '' : value).replace(/[&<>'"]/g, function (char) {
+            return {'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char];
+        });
+    }
+    function normalizePlainInput(value) {
+        return String(value || '')
+            .replace(/\r\n?/g, '\n')
+            .replace(/[ \t\f\v]+/g, ' ')
+            .replace(/ *\n */g, '\n')
+            .replace(/\n{3,}/g, '\n\n')
+            .trim();
+    }
+    function relativeTime(iso) {
+        var seconds = Math.max(1, Math.floor((Date.now() - new Date(iso).getTime()) / 1000));
+        if (seconds < 60) return 'just now';
+        var minutes = Math.floor(seconds / 60);
+        if (minutes < 60) return minutes + 'm ago';
+        var hours = Math.floor(minutes / 60), remainingMinutes = minutes % 60;
+        if (hours < 24) return hours + 'h' + (remainingMinutes ? ' ' + remainingMinutes + 'm' : '') + ' ago';
+        var days = Math.floor(hours / 24), remainingHours = hours % 24;
+        return days + 'd' + (remainingHours ? ' ' + remainingHours + 'h' : '') + ' ago';
+    }
+    function closeMenus(except) {
+        document.querySelectorAll('.knot-menu.open').forEach(function (menu) {
+            if (menu !== except) {
+                menu.classList.remove('open');
+                menu.classList.remove('open-up');
+                var commentItem = menu.closest('.comment');
+                if (commentItem) commentItem.classList.remove('menu-open');
+                var button = menu.parentElement.querySelector('[data-action="menu"]');
+                if (button) button.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+    function placeMenu(menu, button) {
+        menu.classList.remove('open-up');
+        var sticky = document.querySelector('.sticky-comment');
+        var stickyTop = sticky ? sticky.getBoundingClientRect().top : window.innerHeight;
+        var buttonRect = button.getBoundingClientRect();
+        var menuHeight = Math.max(menu.offsetHeight || 0, menu.scrollHeight || 0, 120);
+        var safeBottom = Math.min(window.innerHeight, stickyTop) - 12;
+        if (buttonRect.bottom + menuHeight + 8 > safeBottom && buttonRect.top > menuHeight + 8) {
+            menu.classList.add('open-up');
+        }
+    }
+    function closeReportSheet() {
+        var sheet = document.getElementById('reportSheet');
+        if (!sheet || !sheet.classList.contains('open')) return;
+        sheet.classList.remove('open');
+        sheet.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = bodyOverflowBeforeSheet;
+        reportPostId = null;
+    }
+    function closeLoginPrompt() {
+        var prompt = document.getElementById('knotLoginPrompt');
+        if (!prompt || !prompt.classList.contains('open')) return;
+        prompt.classList.remove('open');
+        prompt.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = bodyOverflowBeforeSheet;
+    }
+    function openLoginPrompt(reason) {
+        var prompt = document.getElementById('knotLoginPrompt');
+        if (!prompt) {
+            window.location.href = '/login/?next=' + encodeURIComponent(location.pathname + location.search);
+            return;
+        }
+        var text = document.getElementById('knotLoginText');
+        var link = document.getElementById('knotLoginLink');
+        if (text) text.textContent = (reason || 'Join Knots') + ' after logging in. You can keep reading public Knots without an account.';
+        if (link) link.href = '/login/?next=' + encodeURIComponent(location.pathname + location.search);
+        bodyOverflowBeforeSheet = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        prompt.classList.add('open');
+        prompt.setAttribute('aria-hidden', 'false');
+        if (link) link.focus({preventScroll:true});
+    }
+    function openRulesDialog() {
+        var dialog = document.getElementById('knotRulesDialog');
+        if (!dialog) return;
+        var accepted = false;
+        try { accepted = localStorage.getItem(knotRulesStorageKey) === '1'; } catch (ignore) {}
+        if (accepted) return;
+        bodyOverflowBeforeSheet = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        dialog.classList.add('open');
+        dialog.setAttribute('aria-hidden', 'false');
+        var button = dialog.querySelector('[data-action="agree-rules"]');
+        if (button) button.focus({preventScroll:true});
+    }
+    function acceptRulesDialog() {
+        var dialog = document.getElementById('knotRulesDialog');
+        try { localStorage.setItem(knotRulesStorageKey, '1'); } catch (ignore) {}
+        if (dialog) {
+            dialog.classList.remove('open');
+            dialog.setAttribute('aria-hidden', 'true');
+        }
+        document.body.style.overflow = bodyOverflowBeforeSheet;
+    }
+    function openReportSheet(card) {
+        var sheet = document.getElementById('reportSheet');
+        var form = document.getElementById('knotReportForm');
+        if (!sheet || !form || !card) return;
+        reportPostId = card.dataset.postId;
+        var postInput = document.getElementById('reportPostId');
+        var target = document.getElementById('reportTarget');
+        var details = document.getElementById('reportDetails');
+        var checked = form.querySelector('input[name="reason"][value="spam"]');
+        if (postInput) postInput.value = reportPostId || '';
+        if (target) target.textContent = 'Reporting: ' + normalizeCopyText((card.querySelector('h2') || {}).textContent || 'this Knot');
+        if (details) details.value = '';
+        if (checked) checked.checked = true;
+        bodyOverflowBeforeSheet = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        sheet.classList.add('open');
+        sheet.setAttribute('aria-hidden', 'false');
+        var firstReason = form.querySelector('input[name="reason"]');
+        if (firstReason) firstReason.focus({preventScroll:true});
+    }
+    function closeImageLightbox() {
+        var lightbox = document.getElementById('knotImageLightbox');
+        if (!lightbox || !lightbox.classList.contains('open')) return;
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = bodyOverflowBeforeLightbox;
+    }
+    function openImageLightbox(sourceImage) {
+        var lightbox = document.getElementById('knotImageLightbox');
+        if (!lightbox) {
+            lightbox = document.createElement('div');
+            lightbox.id = 'knotImageLightbox';
+            lightbox.className = 'knot-image-lightbox';
+            lightbox.setAttribute('role', 'dialog');
+            lightbox.setAttribute('aria-modal', 'true');
+            lightbox.setAttribute('aria-label', 'Expanded Knot image');
+            lightbox.setAttribute('aria-hidden', 'true');
+            lightbox.tabIndex = -1;
+            lightbox.innerHTML = '<img alt="">';
+            lightbox.addEventListener('click', closeImageLightbox);
+            document.body.appendChild(lightbox);
+        }
+        var expandedImage = lightbox.querySelector('img');
+        expandedImage.src = sourceImage.currentSrc || sourceImage.src;
+        expandedImage.alt = sourceImage.alt || 'Expanded Knot image';
+        bodyOverflowBeforeLightbox = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        lightbox.focus({preventScroll:true});
+    }
+    function postUrl(card) { var slug = card.dataset.slug ? card.dataset.slug + '/' : ''; return location.origin + '/knots/' + card.dataset.postId + '/' + slug; }
+    function normalizeCopyText(value) {
+        return normalizePlainInput(String(value || '').replace(/\u00a0/g, ' '));
+    }
+    function postCopyText(card) {
+        var title = normalizeCopyText((card.querySelector('h2') || {}).textContent || '');
+        var content = normalizeCopyText((card.querySelector('.knot-content') || {}).textContent || '');
+        return [title, content].filter(Boolean).join('\n\n');
+    }
+    function commentCopyText(comment) {
+        return normalizeCopyText((comment.querySelector('[data-comment-body]') || {}).textContent || '');
+    }
+    function copyText(text, success) {
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(function(){ toast(success); });
+        else { var input=document.createElement('textarea'); input.value=text; document.body.appendChild(input); input.select(); document.execCommand('copy'); input.remove(); toast(success); }
+    }
+    function optimisticToggle(button) {
+        var count = button.querySelector('[data-count]');
+        var wasActive = button.classList.contains('active');
+        button.classList.toggle('active', !wasActive);
+        button.setAttribute('aria-pressed', String(!wasActive));
+        if (count) count.textContent = Math.max(0, Number(count.textContent || 0) + (wasActive ? -1 : 1));
+        return function () {
+            button.classList.toggle('active', wasActive);
+            button.setAttribute('aria-pressed', String(wasActive));
+            if (count) count.textContent = Math.max(0, Number(count.textContent || 0) + (wasActive ? 1 : -1));
+        };
+    }
+    function commentHtml(item, depth) {
+        var copy = item.is_deleted ? '' : '<button type="button" data-action="copy-comment-text"><span class="material-symbols-outlined">content_paste</span>Copy text</button>';
+        var adminDelete = item.can_admin_delete ? '<button type="button" class="danger" data-action="admin-delete-comment"><span class="material-symbols-outlined">delete_forever</span>Admin delete</button>' : '';
+        var manage = item.can_manage ? '<button type="button" data-action="edit-comment"><span class="material-symbols-outlined">edit</span>Edit</button><button type="button" class="danger" data-action="delete-comment"><span class="material-symbols-outlined">delete</span>Delete</button>' : (item.can_report ? '<button type="button" class="danger" data-action="report-comment"><span class="material-symbols-outlined">flag</span>Report</button>' : '');
+        var actions = item.is_deleted ? '' : '<button class="knot-action comment-icon-action '+(item.liked?'active':'')+'" type="button" data-action="like-comment" aria-label="Like comment ('+item.like_count+' likes)" aria-pressed="'+String(item.liked)+'"><span class="material-symbols-outlined">favorite</span><span class="sr-only" data-count>'+item.like_count+'</span></button><button class="knot-action comment-icon-action" type="button" data-action="reply" data-author="'+escapeHtml(item.name)+'" aria-label="Reply to '+escapeHtml(item.name)+'"><span class="material-symbols-outlined">reply</span></button>';
+        var profileUrl = item.profile_url || ('/profile/'+item.user_id+'/');
+        var replies = '';
+        if (item.reply_count) {
+            replies = depth >= 3
+                ? '<a class="continue-thread" href="/knots/replies/'+item.id+'/"><span class="material-symbols-outlined">subdirectory_arrow_right</span>Continue thread ('+item.reply_count+')</a>'
+                : '<button class="view-replies" type="button" data-action="replies" aria-expanded="false"><span class="material-symbols-outlined">expand_more</span><span>View '+item.reply_count+' repl'+(item.reply_count===1?'y':'ies')+'</span></button>';
+        }
+        return '<article class="comment" id="comment-'+item.id+'" data-comment-id="'+item.id+'" data-post-id="'+item.post_id+'" data-profile-url="'+escapeHtml(profileUrl)+'">'+
+            '<div class="knot-author"><img class="knot-avatar" src="'+escapeHtml(item.avatar)+'" alt="'+escapeHtml(item.name)+'" width="34" height="34" loading="lazy"><div class="knot-author-copy"><div class="comment-author-line"><span class="knot-author-name">'+escapeHtml(item.name)+'</span><span class="comment-time">· '+relativeTime(item.created_at)+(item.updated?' · edited':'')+'</span></div></div></div>'+
+            '<div class="knot-menu-wrap"><button class="knot-menu-btn" type="button" data-action="menu" aria-label="Comment actions" aria-expanded="false"><span class="material-symbols-outlined">more_horiz</span></button><div class="knot-menu" role="menu">'+copy+manage+adminDelete+'</div></div>'+
+            '<p class="comment-body '+(item.is_deleted?'deleted':'')+'" data-comment-body>'+escapeHtml(item.content)+'</p><div class="comment-actions">'+actions+replies+'</div><div class="reply-children" data-reply-children></div></article>';
+    }
+    function savePreferenceFromForm(form) {
+        if (!form) return;
+        var data = new FormData(form);
+        var sortEl = form.querySelector('[name="sort"]');
+        var prefs = {sort:sortEl ? sortEl.value : 'newest', colleges:data.getAll('colleges'), campuses:data.getAll('campuses')};
+        try { localStorage.setItem('knotPreferences', JSON.stringify(prefs)); } catch (ignore) {}
+        request('/api/knots/preferences/', {method:'POST', body:JSON.stringify(prefs)}).catch(function () {});
+    }
+
+    document.addEventListener('click', function (event) {
+        var profileTarget = event.target.closest('[data-profile-url]:not(.comment)');
+        if (profileTarget) {
+            event.preventDefault();
+            event.stopPropagation();
+            location.href = profileTarget.dataset.profileUrl;
+            return;
+        }
+        var generatedCommentProfileTarget = event.target.closest('.comment[data-profile-url] .knot-avatar, .comment[data-profile-url] .knot-author-name');
+        if (generatedCommentProfileTarget) {
+            var generatedComment = generatedCommentProfileTarget.closest('.comment[data-profile-url]');
+            if (generatedComment) {
+                event.preventDefault();
+                event.stopPropagation();
+                location.href = generatedComment.dataset.profileUrl;
+                return;
+            }
+        }
+        var richImage = event.target.closest('.knot-rich-content img');
+        if (richImage) {
+            event.preventDefault();
+            event.stopPropagation();
+            closeMenus();
+            openImageLightbox(richImage);
+            return;
+        }
+        var actionEl = event.target.closest('[data-action]');
+        if (!actionEl) { closeMenus(); return; }
+        var action = actionEl.dataset.action;
+        var card = actionEl.closest('[data-post-id]');
+        var comment = actionEl.closest('[data-comment-id]');
+
+        if (action === 'close-login-prompt') {
+            event.preventDefault();
+            closeLoginPrompt();
+            return;
+        }
+        if (action === 'require-login') {
+            event.preventDefault();
+            closeMenus();
+            openLoginPrompt(actionEl.dataset.loginReason || actionEl.textContent.trim() || 'Use this Knots feature');
+            return;
+        }
+        if (!viewerAuthenticated && ['vote','like-comment','reply','report-post','report-comment'].indexOf(action) !== -1) {
+            event.preventDefault();
+            closeMenus();
+            openLoginPrompt(actionEl.dataset.loginReason || (action === 'vote' ? 'Star this Knot' : action === 'reply' ? 'Reply on Knots' : action === 'like-comment' ? 'Like this comment' : 'Report this content'));
+            return;
+        }
+        if (action === 'close-report') {
+            event.preventDefault();
+            closeReportSheet();
+            return;
+        }
+        if (action === 'agree-rules') {
+            event.preventDefault();
+            acceptRulesDialog();
+            return;
+        }
+        if (action === 'menu') {
+            event.preventDefault(); event.stopPropagation();
+            var menu = actionEl.parentElement.querySelector('.knot-menu');
+            var open = !menu.classList.contains('open');
+            closeMenus(menu);
+            menu.classList.toggle('open', open);
+            var commentItem = menu.closest('.comment');
+            if (commentItem) commentItem.classList.toggle('menu-open', open);
+            if (open) placeMenu(menu, actionEl);
+            else menu.classList.remove('open-up');
+            actionEl.setAttribute('aria-expanded', String(open)); return;
+        }
+        if (action === 'copy') { event.preventDefault(); copyText(postUrl(card), 'Knot link copied'); closeMenus(); return; }
+        if (action === 'copy-post-text') {
+            event.preventDefault();
+            copyText(postCopyText(card), 'Knot text copied');
+            closeMenus();
+            return;
+        }
+        if (action === 'share') {
+            event.preventDefault(); var url=postUrl(card); var title=(card.querySelector('h2')||{}).textContent||'Knot';
+            if (navigator.share) navigator.share({title:title, url:url}).catch(function(){}); else copyText(url, 'Knot link copied'); return;
+        }
+        if (action === 'vote') {
+            event.preventDefault(); var undo=optimisticToggle(actionEl);
+            request('/api/knots/'+card.dataset.postId+'/vote/', {method:'POST',body:'{}'}).then(function(res){ actionEl.querySelector('[data-count]').textContent=res.data.count; }).catch(function(err){ undo(); toast(err.message); }); return;
+        }
+        if (action === 'delete-post') {
+            event.preventDefault(); closeMenus(); if (!confirm('Delete this Knot and all of its comments? This cannot be undone.')) return;
+            actionEl.disabled=true;             request('/api/knots/'+card.dataset.postId+'/delete/', {method:'POST',body:'{}'}).then(function(){ if(location.pathname.match(/^\/knots\/\d+\/(?:[^/]+\/)?$/)) location.href='/knots/'; else card.remove(); toast('Knot deleted'); }).catch(function(err){ actionEl.disabled=false; toast(err.message); }); return;
+        }
+        if (action === 'report-post') {
+            event.preventDefault();
+            closeMenus();
+            openReportSheet(card);
+            return;
+        }
+        if (action === 'like-comment') {
+            event.preventDefault(); var undoLike=optimisticToggle(actionEl);
+            request('/api/knots/comments/'+comment.dataset.commentId+'/like/', {method:'POST',body:'{}'}).then(function(res){actionEl.querySelector('[data-count]').textContent=res.data.count;actionEl.setAttribute('aria-label','Like comment ('+res.data.count+' likes)');}).catch(function(err){undoLike();toast(err.message);}); return;
+        }
+        if (action === 'reply') {
+            event.preventDefault(); replyParent=comment.dataset.commentId; var box=document.getElementById('replyingTo'); var name=document.getElementById('replyingName'); if(box) box.classList.add('show'); if(name) name.textContent=actionEl.dataset.author; var input=document.getElementById('commentInput'); if(input){input.focus();input.scrollIntoView({block:'center'});} return;
+        }
+        if (action === 'copy-comment-text') {
+            event.preventDefault();
+            copyText(commentCopyText(comment), 'Comment text copied');
+            closeMenus();
+            return;
+        }
+        if (action === 'cancel-reply') {
+            replyParent=commentForm && commentForm.dataset.defaultParent || null; var replyBox=document.getElementById('replyingTo'); if(replyBox && !replyParent) replyBox.classList.remove('show'); var input2=document.getElementById('commentInput'); if(input2) input2.focus(); return;
+        }
+        if (action === 'edit-comment') {
+            event.preventDefault(); closeMenus(); var body=comment.querySelector('[data-comment-body]'); var revised=prompt('Edit comment', body.textContent.trim()); if(revised===null) return; revised=normalizePlainInput(revised); if(!revised){toast('Comment cannot be empty');return;} if(revised.length>1200){toast('Comment must be 1200 characters or fewer');return;}
+            actionEl.disabled=true; request('/api/knots/comments/'+comment.dataset.commentId+'/edit/', {method:'POST',body:JSON.stringify({content:revised})}).then(function(res){body.textContent=res.data.content;toast('Comment updated');}).catch(function(err){toast(err.message);}).finally(function(){actionEl.disabled=false;}); return;
+        }
+        if (action === 'delete-comment') {
+            event.preventDefault(); closeMenus(); if(!confirm('Delete this comment?')) return; actionEl.disabled=true;
+            request('/api/knots/comments/'+comment.dataset.commentId+'/delete/', {method:'POST',body:'{}'}).then(function(res){if(res.data.soft_deleted){var b=comment.querySelector('[data-comment-body]');b.textContent='Comment deleted';b.classList.add('deleted');comment.querySelector('.comment-actions').innerHTML='';comment.querySelector('.knot-menu').innerHTML='';}else comment.remove();toast('Comment deleted');}).catch(function(err){actionEl.disabled=false;toast(err.message);}); return;
+        }
+        if (action === 'admin-delete-comment') {
+            event.preventDefault(); closeMenus(); if(!confirm('Admin delete this comment and all of its replies forever?')) return; actionEl.disabled=true;
+            request('/api/knots/comments/'+comment.dataset.commentId+'/delete/', {method:'POST',body:JSON.stringify({force:true})}).then(function(){comment.remove();toast('Comment thread deleted');}).catch(function(err){actionEl.disabled=false;toast(err.message);}); return;
+        }
+        if (action === 'report-comment') {
+            event.preventDefault(); closeMenus(); if(!confirm('Report this comment to the moderation team?')) return;
+            request('/api/knots/comments/'+comment.dataset.commentId+'/report/', {method:'POST',body:JSON.stringify({reason:'other'})}).then(function(){toast('Report sent to the moderation team');}).catch(function(err){toast(err.message);}); return;
+        }
+        if (action === 'replies') {
+            event.preventDefault(); var target=comment.querySelector(':scope > [data-reply-children]'); var expanded=actionEl.getAttribute('aria-expanded')==='true';
+            if(expanded){target.classList.remove('open');actionEl.setAttribute('aria-expanded','false');actionEl.querySelector('span:last-child').textContent='View replies';return;}
+            target.classList.add('open');actionEl.setAttribute('aria-expanded','true');actionEl.querySelector('span:last-child').textContent='Hide replies';
+            if(target.dataset.loaded) return; target.innerHTML='<div class="knot-meta" style="padding:12px">Loading replies…</div>';
+            var depth=1, ancestor=comment.parentElement; while(ancestor){if(ancestor.matches&&ancestor.matches('.reply-children'))depth++;ancestor=ancestor.parentElement;}
+            request('/api/knots/comments/'+comment.dataset.commentId+'/replies/').then(function(res){target.innerHTML=res.data.map(function(item){return commentHtml(item,depth);}).join('');target.dataset.loaded='1';}).catch(function(err){target.innerHTML='<button class="knot-secondary-btn" type="button">Retry loading replies</button>';toast(err.message);}); return;
+        }
+        if(action === 'open-filters'){var sheet=document.getElementById('filterSheet');sheet.classList.add('open');sheet.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';return;}
+        if(action === 'close-filters'){var sh=document.getElementById('filterSheet');sh.classList.remove('open');sh.setAttribute('aria-hidden','true');document.body.style.overflow='';return;}
+        if(action === 'clear-filters'){var form=document.getElementById('knotFilterForm');form.querySelectorAll('input[type=checkbox]').forEach(function(i){i.checked=false;});savePreferenceFromForm(form);form.submit();return;}
+        if(action === 'clear-search'){var search=document.getElementById('knotSearch');search.value='';search.form.submit();return;}
+        if(action === 'preview') {
+            var preview=document.getElementById('knotPreview'), title=document.getElementById('knotTitle').value.trim(), content=document.getElementById('knotContent').value.trim(), link=document.getElementById('knotLink').value.trim(), cat=document.getElementById('knotCategory');
+            if(!title||!content){showFormError('Add a title and details before previewing.');return;} document.getElementById('previewTitle').textContent=title;document.getElementById('previewContent').textContent=content;var pc=document.getElementById('previewCategory');pc.textContent=cat.options[cat.selectedIndex].text;pc.style.display=cat.value?'inline-flex':'none';var pl=document.getElementById('previewLink');pl.style.display=link?'flex':'none';pl.querySelector('span:last-child').textContent=link;preview.classList.add('show');preview.scrollIntoView({behavior:'smooth',block:'start'});return;
+        }
+    });
+    document.addEventListener('keydown', function (event) {
+        var profileTarget = event.target.closest('[data-profile-url]:not(.comment)');
+        if (profileTarget && (event.key === 'Enter' || event.key === ' ')) {
+            event.preventDefault();
+            location.href = profileTarget.dataset.profileUrl;
+            return;
+        }
+        if (event.key === 'Escape') {
+            closeImageLightbox();
+            closeReportSheet();
+            closeLoginPrompt();
+        }
+    });
+
+    var filterSheet=document.getElementById('filterSheet'); if(filterSheet) filterSheet.addEventListener('click',function(e){if(e.target===filterSheet){filterSheet.classList.remove('open');filterSheet.setAttribute('aria-hidden','true');document.body.style.overflow='';}});
+    var reportSheet=document.getElementById('reportSheet'); if(reportSheet) reportSheet.addEventListener('click',function(e){if(e.target===reportSheet)closeReportSheet();});
+    var loginPrompt=document.getElementById('knotLoginPrompt'); if(loginPrompt) loginPrompt.addEventListener('click',function(e){if(e.target===loginPrompt)closeLoginPrompt();});
+    var reportForm=document.getElementById('knotReportForm'); if(reportForm) reportForm.addEventListener('submit',function(event){event.preventDefault();var selected=reportForm.querySelector('input[name="reason"]:checked');var details=document.getElementById('reportDetails');var button=reportForm.querySelector('button[type="submit"]');var postId=(document.getElementById('reportPostId')||{}).value||reportPostId;if(!postId){toast('Could not find this Knot');return;}if(button)button.disabled=true;request('/api/knots/'+postId+'/report/',{method:'POST',body:JSON.stringify({reason:selected?selected.value:'other',details:normalizePlainInput(details?details.value:'')})}).then(function(){closeReportSheet();toast('Report sent to the moderation team');}).catch(function(err){toast(err.message);}).finally(function(){if(button)button.disabled=false;});});
+    openRulesDialog();
+    document.querySelectorAll('[data-college]').forEach(function(input){input.addEventListener('change',function(){var group=document.querySelector('[data-campus-group="'+CSS.escape(input.value)+'"]');if(group)group.hidden=!input.checked;savePreferenceFromForm(input.form);});});
+    document.querySelectorAll('input[name="campuses"]').forEach(function(input){input.addEventListener('change',function(){savePreferenceFromForm(input.form);});});
+    document.querySelectorAll('[data-remove-filter]').forEach(function(button){button.addEventListener('click',function(){var selector='input[name="'+button.dataset.removeFilter+'"][value="'+CSS.escape(button.dataset.value)+'"]';var input=document.querySelector(selector);if(input)input.checked=false;savePreferenceFromForm(document.getElementById('knotFilterForm'));document.getElementById('knotFilterForm').submit();});});
+    var search=document.getElementById('knotSearch'); if(search){var searchTimer;search.addEventListener('input',function(){clearTimeout(searchTimer);searchTimer=setTimeout(function(){search.form.submit();},450);});}
+
+    // Segmented sort buttons
+    document.querySelectorAll('.knots-sort-btn').forEach(function(btn){
+        btn.addEventListener('click',function(){
+            var form=document.getElementById('knotFilterForm');
+            if(!form) return;
+            var hidden=form.querySelector('input[name="sort"]');
+            if(!hidden){hidden=document.createElement('input');hidden.type='hidden';hidden.name='sort';form.appendChild(hidden);}
+            hidden.value=btn.dataset.sort;
+            document.querySelectorAll('.knots-sort-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-checked','false');});
+            btn.classList.add('active');
+            btn.setAttribute('aria-checked','true');
+            var menu=btn.closest('details'); if(menu) menu.removeAttribute('open');
+            savePreferenceFromForm(form);
+            form.submit();
+        });
+    });
+
+    document.querySelectorAll('.knot-card-link').forEach(function(link){link.addEventListener('click',function(){if(!link.closest('.knot-card-detail'))try{sessionStorage.setItem('knotsScrollY',String(scrollY));}catch(ignore){}});});
+    if(location.pathname==='/knots/' && !location.search.includes('page=')){try{var saved=sessionStorage.getItem('knotsScrollY');if(saved){requestAnimationFrame(function(){scrollTo(0,Number(saved));});sessionStorage.removeItem('knotsScrollY');}}catch(ignore){}}
+
+    if(commentForm){
+        var commentInput=document.getElementById('commentInput'); commentInput.addEventListener('input',function(){commentInput.style.removeProperty('height');commentInput.style.height=Math.min(100,commentInput.scrollHeight)+'px';});
+        commentForm.addEventListener('submit',function(event){event.preventDefault();var content=normalizePlainInput(commentInput.value);if(!content){toast('Write a comment first');return;}if(content.length>1200){toast('Comment must be 1200 characters or fewer');return;}var button=commentForm.querySelector('.knot-send-btn');if(button)button.disabled=true;
+            request('/api/knots/'+commentForm.dataset.postId+'/comments/',{method:'POST',body:JSON.stringify({content:content,parent_id:replyParent})}).then(function(res){commentInput.value='';commentInput.style.height='';var html=commentHtml(res.data,replyParent?1:0);if(replyParent){var parent=document.querySelector('[data-comment-id="'+CSS.escape(String(replyParent))+'"]');var children=parent && parent.querySelector(':scope > [data-reply-children]');var repliesButton=parent && parent.querySelector(':scope > .comment-actions > .view-replies');if(children&&children.dataset.loaded){children.insertAdjacentHTML('beforeend',html);}if(repliesButton){var label=repliesButton.querySelector('span:last-child');var match=(label.textContent||'').match(/\d+/);var count=(match?Number(match[0]):0)+1;label.textContent='View '+count+' repl'+(count===1?'y':'ies');repliesButton.setAttribute('aria-expanded',String(children&&children.classList.contains('open')));}else if(parent){var actionRow=parent.querySelector(':scope > .comment-actions');if(actionRow)actionRow.insertAdjacentHTML('beforeend','<button class="view-replies" type="button" data-action="replies" aria-expanded="false"><span class="material-symbols-outlined">expand_more</span><span>View 1 reply</span></button>');}}else{var list=document.getElementById('commentList');var empty=document.getElementById('commentsEmpty');if(empty)empty.remove();if(list)list.insertAdjacentHTML('beforeend',html);}replyParent=commentForm.dataset.defaultParent||null;var replying=document.getElementById('replyingTo');if(replying&&!replyParent)replying.classList.remove('show');toast('Comment posted');}).catch(function(err){toast(err.message);}).finally(function(){if(button)button.disabled=false;});
+        });
+    }
+
+    function showFormError(message){var el=document.getElementById('formError');if(!el)return;el.textContent=message;el.classList.add('show');el.scrollIntoView({block:'center'});}
+    var knotForm=null; if(knotForm){
+        var titleInput=document.getElementById('knotTitle'),contentInput=document.getElementById('knotContent'),collegeInput=document.getElementById('knotCollege'),campusInput=document.getElementById('knotCampus'),anonInput=document.getElementById('knotAnonymous');function updateCounts(){document.getElementById('titleCount').textContent=titleInput.value.length;document.getElementById('contentCount').textContent=contentInput.value.length;}titleInput.addEventListener('input',updateCounts);contentInput.addEventListener('input',updateCounts);updateCounts();
+        knotForm.addEventListener('submit',function(event){event.preventDefault();var error=document.getElementById('formError');error.classList.remove('show');var payload={title:titleInput.value.trim(),content:contentInput.value.trim(),link:document.getElementById('knotLink').value.trim(),category:document.getElementById('knotCategory').value,college:collegeInput?collegeInput.value:'',campus:campusInput?campusInput.value:'',is_anonymous:anonInput?anonInput.checked:false};if(!payload.title||!payload.content){showFormError('Title and details are required.');return;}var button=document.getElementById('publishBtn');var original=button.textContent;button.disabled=true;button.textContent=knotForm.dataset.postId?'Saving…':'Publishing…';
+            request(location.pathname,{method:'POST',body:JSON.stringify(payload)}).then(function(res){try{localStorage.removeItem('knotDraft');}catch(ignore){}location.href=res.data.url;}).catch(function(err){showFormError(err.message);button.disabled=false;button.textContent=original;});
+        });
+        if(!knotForm.dataset.postId){var draftTimer;[titleInput,contentInput,document.getElementById('knotLink'),document.getElementById('knotCategory'),collegeInput,campusInput,anonInput].forEach(function(input){if(!input)return;input.addEventListener('input',function(){clearTimeout(draftTimer);draftTimer=setTimeout(function(){try{localStorage.setItem('knotDraft',JSON.stringify({title:titleInput.value,content:contentInput.value,link:document.getElementById('knotLink').value,category:document.getElementById('knotCategory').value,college:collegeInput?collegeInput.value:'',campus:campusInput?campusInput.value:'',is_anonymous:anonInput?anonInput.checked:false}));}catch(ignore){}},250);});});if(!titleInput.value&&!contentInput.value){try{var draft=JSON.parse(localStorage.getItem('knotDraft')||'null');if(draft){titleInput.value=draft.title||'';contentInput.value=draft.content||'';document.getElementById('knotLink').value=draft.link||'';document.getElementById('knotCategory').value=draft.category||'';if(collegeInput&&draft.college)collegeInput.value=draft.college;if(campusInput&&draft.campus)campusInput.value=draft.campus;if(anonInput&&draft.is_anonymous)anonInput.checked=draft.is_anonymous;updateCounts();}}catch(ignore){}}}
+    }
+})();
+</script>
+
+
+    </div>
+
+    
+    <!-- Mini PWA Install Prompt -->
+    <div id="pwa-mini-prompt" style="display:none; position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#ffffff; padding:6px 12px 6px 6px; border-radius:100px; box-shadow:0 8px 25px rgba(0,0,0,0.15); z-index:10001; border:1px solid #e2e8f0; animation:fadeUp 0.4s ease; font-family:'Plus Jakarta Sans',sans-serif; align-items:center; gap:10px;">
+        <div onclick="triggerPwaInstall()" style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+            <div style="width:28px; height:28px; border-radius:50%; background:#2563eb; display:flex; align-items:center; justify-content:center; color:#fff;">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            </div>
+            <div style="font-size:13px; font-weight:700; color:#0f172a; white-space:nowrap; padding-right:4px;">Install App</div>
+        </div>
+        <div style="width:1px; height:16px; background:#e2e8f0;"></div>
+        <button onclick="dismissPwaPrompt()" style="background:none; border:none; cursor:pointer; color:#94a3b8; display:flex; align-items:center; justify-content:center; padding:2px;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+    </div>
+    
+
+    <!-- Pusher & Notifications -->
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script>
+        const PUSHER_KEY = "12f6e6b1a3944715d1f7";
+        const PUSHER_CLUSTER = "ap2";
+        const USER_ID = "None";
+
+        // Fingerprinting Logic for Anonymous Actions
+        function getFingerprint() {
+            let fp = localStorage.getItem('device_fingerprint');
+            if (!fp) {
+                fp = 'fp_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now().toString(36);
+                localStorage.setItem('device_fingerprint', fp);
+            }
+            return fp;
+        }
+
+        if (PUSHER_KEY && USER_ID) {
+            window.pusher = new Pusher(PUSHER_KEY, { cluster: PUSHER_CLUSTER });
+            const pusher = window.pusher;
+            const userChannel = pusher.subscribe(`chat_${USER_ID}`);
+            
+            userChannel.bind('message_deleted', (data) => {
+                const msgRow = document.querySelector(`.message-row[data-id="${data.id}"]`);
+                if (msgRow) {
+                    msgRow.style.transition = 'all 0.3s ease';
+                    msgRow.style.opacity = '0';
+                    msgRow.style.transform = 'scale(0.9)';
+                    setTimeout(() => msgRow.remove(), 300);
+                }
+            });
+
+            userChannel.bind('new_message', (data) => {
+                // If not in the specific chat, show chat indicator
+                if (!window.location.pathname.includes(`/chat/${data.sender_id}/`)) {
+                    const chatBadge = document.getElementById('chat-badge');
+                    if (chatBadge) {
+                        chatBadge.style.display = 'block';
+                    }
+                    showGlobalToast(`New message from ${data.sender_name || 'someone'}`, `/chat/${data.sender_id}/`);
+                } else {
+                    // We are in the chat, so ensure the badge is hidden
+                    const chatBadge = document.getElementById('chat-badge');
+                    if (chatBadge) chatBadge.style.display = 'none';
+                }
+            });
+
+            userChannel.bind('knot_activity', (data) => {
+                const url = data.url || '/knots/';
+                const title = data.title || 'New Knots activity';
+                const body = data.body ? ` — ${data.body}` : '';
+                showGlobalToast(`${title}${body}`, url);
+            });
+
+            userChannel.bind('confession_activity', (data) => {
+                const url = data.url || '/confessions/';
+                const title = data.title || 'New confession activity';
+                const body = data.body ? ` — ${data.body}` : '';
+                showGlobalToast(`${title}${body}`, url);
+            });
+
+            userChannel.bind('new_connection', (data) => {
+                const matchBadge = document.getElementById('match-badge');
+                if (matchBadge) matchBadge.style.display = 'block';
+                showGlobalToast(`Connection request from ${data.sender_name || 'someone'}`, '/connections/');
+                // Update voice chat state in real-time
+                if (window.ME && data.sender_id) {
+                    var sid = data.sender_id;
+                    if (window.ME.pendingReceivedIds.indexOf(sid) === -1) {
+                        window.ME.pendingReceivedIds.push(sid);
+                    }
+                    if (window.VRS && window.VRS._renderPanel) {
+                        window.VRS._renderPanel();
+                    }
+                }
+            });
+
+            userChannel.bind('connection_accepted', (data) => {
+                const matchBadge = document.getElementById('match-badge');
+                if (matchBadge) matchBadge.style.display = 'block';
+                showGlobalToast(`${data.receiver_name || 'Someone'} accepted your request!`, '/connections/');
+                // Update voice chat state in real-time
+                if (window.ME && data.receiver_id) {
+                    var rid = data.receiver_id;
+                    window.ME.friendIds = window.ME.friendIds.filter(function(id){ return id !== rid; });
+                    window.ME.friendIds.push(rid);
+                    window.ME.pendingSentIds = window.ME.pendingSentIds.filter(function(id){ return id !== rid; });
+                    window.ME.pendingReceivedIds = window.ME.pendingReceivedIds.filter(function(id){ return id !== rid; });
+                    if (window.VRS && window.VRS._renderPanel) {
+                        window.VRS._renderPanel();
+                    }
+                }
+            });
+
+            userChannel.bind('connection_removed', (data) => {
+                if (window.ME && data.user_id) {
+                    var uid = data.user_id;
+                    window.ME.friendIds = window.ME.friendIds.filter(function(id){ return id !== uid; });
+                    if (window.VRS && window.VRS._renderPanel) {
+                        window.VRS._renderPanel();
+                    }
+                    showGlobalToast(`${data.user_name || 'Someone'} disconnected`, null);
+                }
+            });
+        }
+
+        function showGlobalToast(text, url = null) {
+            const container = document.querySelector('.messages-toast-container') || createToastContainer();
+            const toast = document.createElement('div');
+            toast.className = 'message-toast info';
+            if (url) {
+                toast.style.cursor = 'pointer';
+                toast.addEventListener('click', (e) => {
+                    if (e.target.tagName !== 'BUTTON') {
+                        window.location.href = url;
+                    }
+                });
+            }
+            toast.innerHTML = `<span>${text}</span><button onclick="this.parentElement.remove()" style="margin-left:auto; background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer;">&times;</button>`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 5000);
+        }
+
+        function createToastContainer() {
+            const div = document.createElement('div');
+            div.className = 'messages-toast-container';
+            document.querySelector('.container').prepend(div);
+            return div;
+        }
+
+        // PWA Logic
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // 1. Don't show if already in standalone mode
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+            if (isStandalone) return;
+
+            // 2. Don't show if dismissed before
+            if (localStorage.getItem('pwaDismissed') === 'true') {
+                return; 
+            }
+        });
+
+        // UI Utilities
+        function checkAndShowWarning(key, title, html, btnText, onConfirm) {
+            if (localStorage.getItem(key)) {
+                if (typeof onConfirm === 'function') onConfirm();
+                return;
+            }
+            const modal = document.createElement('div');
+            modal.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:10000; backdrop-filter:blur(5px);";
+            modal.innerHTML = `
+                <div style="background:white; padding:32px; border-radius:24px; max-width:400px; width:90%; box-shadow:0 20px 40px rgba(0,0,0,0.2); text-align:center; animation: qFadeIn 0.3s ease;">
+                    <h2 style="margin-bottom:16px; font-size:20px;">${title}</h2>
+                    <div style="margin-bottom:24px; color:#64748b; font-size:14px; line-height:1.6;">${html}</div>
+                    <button id="warning-confirm-btn" style="width:100%; padding:14px; background:#6366f1; color:white; border:none; border-radius:12px; font-weight:700; cursor:pointer;">${btnText}</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            document.getElementById('warning-confirm-btn').onclick = () => {
+                localStorage.setItem(key, 'true');
+                modal.remove();
+                if (typeof onConfirm === 'function') onConfirm();
+            };
+        }
+
+        function customAlert(msg, title = "Notice") {
+            const modal = document.createElement('div');
+            modal.className = "custom-alert-wrapper";
+            modal.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:11000; backdrop-filter:blur(8px); animation: fadeIn 0.3s ease;";
+            modal.innerHTML = `
+                <div style="background:white; padding:32px; border-radius:28px; max-width:350px; width:88%; box-shadow:0 25px 50px -12px rgba(0,0,0,0.25); text-align:center; transform: scale(1); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+                    <div style="width:50px; height:50px; background:rgba(99,102,241,0.1); color:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; margin: 0 auto 16px; font-size:24px;">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <h3 style="margin:0 0 10px; font-size:20px; font-weight:800;">${title}</h3>
+                    <p style="margin:0 0 24px; color:#64748b; font-size:15px; line-height:1.5;">${msg}</p>
+                    <button onclick="this.closest('.custom-alert-wrapper').remove()" style="width:100%; padding:14px; background:var(--primary); color:white; border:none; border-radius:14px; font-weight:700; cursor:pointer; font-size:15px; transition:0.2s;">Got it</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function customConfirm(msg, title = "Are you sure?", confirmBtnText = "Confirm", cancelBtnText = "Cancel") {
+            return new Promise((resolve) => {
+                const modal = document.createElement('div');
+                modal.className = "custom-alert-wrapper";
+                modal.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:11000; backdrop-filter:blur(8px); animation: fadeIn 0.3s ease;";
+                modal.innerHTML = `
+                    <div style="background:white; padding:32px; border-radius:28px; max-width:360px; width:90%; box-shadow:0 25px 50px -12px rgba(0,0,0,0.25); text-align:center; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+                        <div style="width:50px; height:50px; background:rgba(244,63,94,0.1); color:var(--accent); border-radius:50%; display:flex; align-items:center; justify-content:center; margin: 0 auto 16px; font-size:24px;">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3 style="margin:0 0 10px; font-size:20px; font-weight:800;">${title}</h3>
+                        <p style="margin:0 0 24px; color:#64748b; font-size:15px; line-height:1.5;">${msg}</p>
+                        <div style="display:flex; gap:12px;">
+                            <button id="confirm-cancel" style="flex:1; padding:14px; background:#f1f5f9; color:#475569; border:none; border-radius:14px; font-weight:700; cursor:pointer; font-size:15px;">${cancelBtnText}</button>
+                            <button id="confirm-yes" style="flex:1.5; padding:14px; background:var(--primary); color:white; border:none; border-radius:14px; font-weight:700; cursor:pointer; font-size:15px;">${confirmBtnText}</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+
+                modal.querySelector('#confirm-cancel').onclick = () => { modal.remove(); resolve(false); };
+                modal.querySelector('#confirm-yes').onclick = () => { modal.remove(); resolve(true); };
+            });
+        }
+
+        // Global alert override
+        window.alert = function(msg, title = "Notice") {
+            customAlert(msg, title);
+        };
+
+        // Global PWA Manager
+        window.deferredPrompt = null;
+        window.pwaHandlers = [];
+
+        window.onPwaReady = (handler) => {
+            if (window.deferredPrompt) handler(window.deferredPrompt);
+            else window.pwaHandlers.push(handler);
+        };
+
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/sw.js")
+                .then(reg => console.log("SW Registered"))
+                .catch(err => console.log("SW Failed", err));
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!isAppInstalled()) {
+                const navInstallBtn = document.getElementById('nav-install-btn');
+                if (navInstallBtn) navInstallBtn.style.display = 'flex';
+                
+                const miniPrompt = document.getElementById('pwa-mini-prompt');
+                if (miniPrompt && localStorage.getItem('pwaDismissed') !== 'true') {
+                    miniPrompt.style.display = 'flex';
+                }
+            }
+        });
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            window.deferredPrompt = e;
+            window.pwaHandlers.forEach(handler => handler(e));
+            console.log("PWA Prompt Ready");
+        });
+
+        window.addEventListener('appinstalled', () => {
+            localStorage.setItem('pwaInstalled', 'true');
+            const miniPrompt = document.getElementById('pwa-mini-prompt');
+            if (miniPrompt) miniPrompt.style.display = 'none';
+            const navBtn = document.getElementById('nav-install-btn');
+            if (navBtn) navBtn.style.display = 'none';
+        });
+
+        function dismissPwaPrompt() {
+            const miniPrompt = document.getElementById('pwa-mini-prompt');
+            if (miniPrompt) miniPrompt.style.display = 'none';
+            localStorage.setItem('pwaDismissed', 'true');
+        }
+
+        // Function to check if app is already installed
+        function isAppInstalled() {
+            return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone || localStorage.getItem('pwaInstalled') === 'true';
+        }
+
+        // Trigger install from anywhere
+        async function triggerPwaInstall() {
+            if (window.deferredPrompt) {
+                window.deferredPrompt.prompt();
+                const { outcome } = await window.deferredPrompt.userChoice;
+                
+                if (outcome === 'accepted') {
+                    localStorage.setItem('pwaInstalled', 'true');
+                    const navBtn = document.getElementById('nav-install-btn');
+                    if (navBtn) navBtn.style.display = 'none';
+                }
+                const miniPrompt = document.getElementById('pwa-mini-prompt');
+                if (miniPrompt) miniPrompt.style.display = 'none';
+                window.deferredPrompt = null;
+                return outcome;
+            } else if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+                customAlert("To install on iOS: Tap the 'Share' icon in Safari (at the bottom), then scroll down and select 'Add to Home Screen'.", "Install Guide");
+            } else {
+                const isUAInApp = /FBAN|FBAV|Instagram|LinkedIn|Twitter|MicroMessenger/.test(navigator.userAgent);
+                if (isUAInApp) {
+                    customAlert("You are using an in-app browser. Please tap the three dots (⋮) and select 'Open in Chrome' or 'Open in Browser' to install.", "In-App Browser Detected");
+                } else {
+                    customAlert("To install: Use Google Chrome or Edge. If you're already in Chrome, wait a few seconds for the prompt to appear, or check your browser menu for 'Install App'.", "Manual Install");
+                }
+            }
+        }
+    </script>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"49266b82111b4d779f00f10305ef294e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+
+
+
+<script>
+function triggerGoogleLogin() {
+  if (document.getElementById('dsu-ov')) return;
+  var ov = document.createElement('div');
+  ov.id = 'dsu-ov';
+  ov.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(15,23,42,.6);backdrop-filter:blur(14px);display:flex;align-items:flex-end;justify-content:center;';
+  document.body.appendChild(ov);
+  var s = document.createElement('style');
+  s.textContent = '@keyframes kUp{from{transform:translateY(100%)}to{transform:translateY(0)}}#dsuS{width:100%;max-width:480px;background:#fff;border-radius:36px 36px 0 0;padding:32px 24px 52px;box-sizing:border-box;font-family:Plus Jakarta Sans,-apple-system,sans-serif;position:relative;animation:kUp .4s cubic-bezier(.16,1,.3,1)}.dsuI{width:100%;padding:13px 15px;border-radius:14px;border:1.5px solid #e2e8f0;background:#f8fafc;font-size:15px;font-weight:600;color:#0f172a;box-sizing:border-box;margin-bottom:10px;outline:none;font-family:inherit;-webkit-appearance:none;appearance:none;display:block}.dsuI:focus{border-color:#004ac6;background:#fff;box-shadow:0 0 0 3px rgba(0,74,198,.1)}.dsuRow{display:flex;gap:8px}.dsuRow .dsuI{flex:1}.dsuBtn{width:100%;padding:15px;border-radius:100px;border:none;background:linear-gradient(135deg,#004ac6,#2563eb);color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;font-family:inherit}';
+  document.head.appendChild(s);
+  var sh = document.createElement('div');
+  sh.id = 'dsuS';
+  var cb = document.createElement('button');
+  cb.textContent = 'x';
+  cb.setAttribute('style','position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;background:#f1f5f9;border:none;cursor:pointer;font-size:17px;color:#64748b;');
+  cb.onclick = function(){ov.remove();};
+  sh.appendChild(cb);
+  var lg = document.createElement('div');
+  lg.setAttribute('style','display:flex;align-items:center;gap:10px;margin-bottom:16px;');
+  var lk = document.createElement('div');
+  lk.setAttribute('style','width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#004ac6,#2563eb);color:#fff;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;');
+  lk.textContent = 'K';
+  var lt = document.createElement('div');
+  var lt1 = document.createElement('div');
+  lt1.setAttribute('style','font-weight:800;font-size:15px;color:#0f172a;');
+  lt1.textContent = 'KnotSpot DSU';
+  var lt2 = document.createElement('div');
+  lt2.setAttribute('style','font-size:11px;color:#64748b;');
+  lt2.textContent = 'Dayananda Sagar University';
+  lt.appendChild(lt1); lt.appendChild(lt2);
+  lg.appendChild(lk); lg.appendChild(lt);
+  sh.appendChild(lg);
+  var h2 = document.createElement('h2');
+  h2.setAttribute('style','font-size:25px;font-weight:800;color:#0f172a;margin:0 0 4px;');
+  h2.textContent = 'Sign in';
+  sh.appendChild(h2);
+  var pp = document.createElement('p');
+  pp.setAttribute('style','font-size:13px;color:#64748b;margin:0 0 18px;');
+  pp.textContent = 'Connect with DSU students.';
+  sh.appendChild(pp);
+  var fm = document.createElement('form');
+  function mkInput(id, ph, tp) {
+    var i = document.createElement(tp === 'select' ? 'select' : 'input');
+    i.className = 'dsuI'; i.id = id; i.required = true;
+    if (tp !== 'select') { i.placeholder = ph; if (tp) i.type = tp; }
+    return i;
+  }
+  var iName = mkInput('dsu-name','Full Name','');
+  fm.appendChild(iName);
+  var iEmail = mkInput('dsu-email','Email address','email');
+  fm.appendChild(iEmail);
+  var row = document.createElement('div');
+  row.className = 'dsuRow';
+  var iCampus = mkInput('dsu-campus','','select');
+  ['','KS Layout Campus','Harohalli Campus'].forEach(function(v){
+    var o = document.createElement('option');
+    o.value = v; o.textContent = v || 'Campus'; iCampus.appendChild(o);
+  });
+  row.appendChild(iCampus);
+  var iYear = mkInput('dsu-year','','select');
+  ['','1st Year','2nd Year','3rd Year','4th Year'].forEach(function(v){
+    var o = document.createElement('option');
+    o.value = v; o.textContent = v || 'Year'; iYear.appendChild(o);
+  });
+  row.appendChild(iYear);
+  fm.appendChild(row);
+  var iBranch = mkInput('dsu-branch','Branch (CSE / ECE / MBA...)','');
+  fm.appendChild(iBranch);
+  var btn = document.createElement('button');
+  btn.className = 'dsuBtn'; btn.type = 'submit'; btn.textContent = 'Sign In & Enter';
+  fm.appendChild(btn);
+  fm.onsubmit = function(e) {
+    e.preventDefault();
+    var n = document.getElementById('dsu-name').value.trim();
+    var em = document.getElementById('dsu-email').value.trim();
+    var c = document.getElementById('dsu-campus').value;
+    var y = document.getElementById('dsu-year').value;
+    var b = document.getElementById('dsu-branch').value.trim();
+    if (!n||!em||!c||!y||!b) { alert('Fill all fields please!'); return; }
+    localStorage.setItem('dsu_user', JSON.stringify({
+      name:n, email:em, campus:c, year:y, branch:b,
+      avatar:'https://api.dicebear.com/9.x/avataaars/svg?seed='+encodeURIComponent(n)+'&backgroundColor=b6e3f4',
+      joinedAt:new Date().toISOString()
+    }));
+    ov.remove();
+    window.location.reload();
+  };
+  sh.appendChild(fm);
+  ov.appendChild(sh);
+  ov.addEventListener('click', function(e){ if(e.target===ov) ov.remove(); });
+}
+</script>
+</body>
+</html>
+
+

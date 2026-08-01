@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="X4viSHKffVA_JGTZMiKQlf-ugS7MBoGgyMrrwF_xmwQ" />
+<title>KnotSpot – Student Social Platform | Knots, Confessions, Roommate Finder & Events</title>
+<meta name="description" content="KnotSpot connects college students across DSU, VIT & Amrita campuses. Read Knots campus threads, post anonymous confessions, find roommates, discover events, and build friendships.">
+<meta name="keywords" content="KnotSpot, Knots, student social platform, campus discussion threads, college confessions, campus roommate finder, DSU, VIT, Amrita, college friend finder, student community India">
+<meta property="og:site_name" content="KnotSpot">
+<meta property="og:title" content="KnotSpot – Student Social Platform with Knots Campus Threads">
+<meta property="og:description" content="Meet college students, read Knots discussions, post anonymous confessions, find roommates, and connect with campus communities across DSU, VIT & Amrita campuses.">
+<meta property="og:image" content="https://knotspot.online/static/favicon.png">
+<meta property="og:url" content="https://www.knotspot.online/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.knotspot.online/">
+<meta name="robots" content="index, follow">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "KnotSpot",
+  "url": "https://knotspot.online",
+  "description": "Student social platform for campus discussions, anonymous confessions, roommate finder, events, and matching.",
+  "inLanguage": "en-IN",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "College Students"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "Student Community",
+    "description": "Social platform connecting students across DSU, VIT and Amrita campuses."
+  }
+}
+</script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #f7f9fb;
+    background-image: radial-gradient(ellipse at 50% -10%, #dbe1ff 0%, #f7f9fb 60%);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100dvh;
+    position: relative;
+}
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 20%, rgba(0,74,198,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(37,99,235,0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.page-wrap {
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 24px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Sections for Desktop compatibility */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    order: 1;
+}
+.action-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    order: 3;
+    margin-top: 24px;
+}
+
+.hero-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 14px;
+    border-radius: 100px;
+    background: rgba(0,74,198,0.08);
+    border: 1px solid rgba(0,74,198,0.12);
+    margin-bottom: 20px;
+}
+.hero-pill span {
+    font-size: 11px;
+    font-weight: 700;
+    color: #004ac6;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.hero-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #151b27;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+}
+.hero-title span { color: #004ac6; }
+.hero-sub {
+    font-size: 14px;
+    color: #64748b;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 28px;
+    max-width: 320px;
+}
+.glass-card {
+    width: 100%;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 28px;
+    padding: 28px 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+    margin-bottom: 12px;
+    transition: all 0.3s;
+}
+.glass-card h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    text-align: center;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+}
+.glass-card .desc {
+    font-size: 13px;
+    color: #64748b;
+    text-align: center;
+    margin-bottom: 24px;
+    line-height: 1.4;
+}
+.google-btn {
+    width: 100%;
+    padding: 13px 20px;
+    border-radius: 100px;
+    background: linear-gradient(135deg, #004ac6, #2563eb);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.google-btn:hover { box-shadow: 0 6px 20px rgba(0,74,198,0.25); }
+.google-btn:active { transform: scale(0.97); }
+.google-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+.links a {
+    font-size: 12px;
+    font-weight: 700;
+    color: #004ac6;
+    text-decoration: none;
+    padding: 7px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(0,74,198,0.15);
+    transition: all 0.2s;
+}
+.links a:hover { background: rgba(0,74,198,0.04); }
+.lock-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(100,116,139,0.6);
+    font-size: 12px;
+    font-weight: 500;
+}
+.lock-row .material-symbols-outlined { font-size: 15px; }
+
+.confess-card {
+    width: 100%;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 28px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+}
+.confess-card:active { transform: scale(0.98); }
+.confess-icon {
+    width: 48px; height: 48px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #004ac6, #2563eb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 6px 16px rgba(0,74,198,0.15);
+}
+.confess-icon .material-symbols-outlined { font-size: 22px; font-variation-settings: 'FILL' 1; }
+.confess-text h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+}
+.confess-text p {
+    font-size: 12px;
+    color: #94a3b8;
+    margin: 0;
+}
+.confess-arrow {
+    margin-left: auto;
+    color: #004ac6;
+    flex-shrink: 0;
+}
+.confess-arrow .material-symbols-outlined { font-size: 20px; }
+
+/* SEO Content Section (Mobile Base) */
+.seo-section {
+    width: 100%;
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0,74,198,0.08);
+    order: 2;
+}
+.seo-tagline {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    line-height: 1.6;
+    margin-top: 24px;
+    margin-bottom: 6px;
+    text-align: center;
+}
+.seo-campuses {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 22px;
+    text-align: center;
+    font-weight: 500;
+}
+.seo-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.seo-feature {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 20px;
+    border: 1px solid rgba(0,74,198,0.06);
+    transition: background 0.2s;
+}
+.seo-feature:hover {
+    background: rgba(255,255,255,0.85);
+}
+.seo-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: #e4ecff;
+    color: var(--primary, #004ac6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.seo-icon .material-symbols-outlined,
+.seo-icon i {
+    font-size: 20px;
+}
+.seo-feature h4 {
+    margin: 0 0 2px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #151b27;
+}
+.seo-feature p {
+    margin: 0;
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@media (min-width: 1024px) {
+    body {
+        background-image: radial-gradient(ellipse at 30% 0%, #dbe1ff 0%, #eef4ff 40%, #f7f9fb 80%);
+        padding: 60px 24px 40px;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        height: auto;
+    }
+    body::before {
+        background: radial-gradient(circle at 20% 30%, rgba(0,74,198,0.04) 0%, transparent 45%),
+                    radial-gradient(circle at 80% 60%, rgba(37,99,235,0.03) 0%, transparent 45%),
+                    radial-gradient(circle at 50% 90%, rgba(99,102,241,0.02) 0%, transparent 30%);
+    }
+    
+    .page-wrap {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "hero    action"
+            "seo     action";
+        column-gap: 48px;
+        row-gap: 0;
+        align-items: start;
+        min-height: auto;
+        flex: unset;
+    }
+    
+    .hero-content {
+        grid-area: hero;
+        align-items: flex-start;
+        text-align: left;
+        order: unset;
+    }
+    
+    .seo-section {
+        grid-area: seo;
+        margin-top: 40px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(0,74,198,0.1);
+        order: unset;
+    }
+    
+    .action-section {
+        grid-area: action;
+        width: 100%;
+        position: sticky;
+        top: 40px;
+        align-self: start;
+        order: unset;
+        margin-top: 0;
+    }
+
+    .hero-pill { font-size: 13px; margin-bottom: 24px; }
+    .hero-title { font-size: 48px; text-align: left; line-height: 1.1; margin-bottom: 20px; }
+    .hero-sub { font-size: 16px; text-align: left; max-width: 100%; margin-bottom: 0; }
+    
+    .glass-card { 
+        padding: 36px 32px; 
+        border-radius: 32px; 
+        box-shadow: 0 24px 60px rgba(0,0,0,0.06); 
+    }
+    .glass-card:hover { box-shadow: 0 32px 80px rgba(0,0,0,0.08); }
+    
+    .confess-card { 
+        margin-bottom: 24px; 
+        box-shadow: 0 24px 60px rgba(0,0,0,0.06); 
+    }
+    .confess-card:hover { 
+        box-shadow: 0 32px 80px rgba(0,0,0,0.08); 
+        transform: translateY(-2px); 
+    }
+    
+    .seo-tagline, .seo-campuses { text-align: left; }
+    .seo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .seo-feature {
+        padding: 18px 20px;
+        border-radius: 20px;
+        align-items: flex-start;
+    }
+    
+    #pwa-install-prompt {
+        max-width: 420px !important;
+        bottom: 32px !important;
+    }
+}
+
+/* Checklist of features */
+.students-capabilities {
+    margin-top: 24px;
+    background: rgba(255,255,255,0.4);
+    border: 1px solid rgba(0,74,198,0.06);
+    border-radius: 20px;
+    padding: 20px;
+}
+.capabilities-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 12px;
+}
+.capabilities-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.capabilities-list li {
+    font-size: 13px;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.check-icon {
+    font-size: 16px;
+    color: #10b981;
+    font-variation-settings: 'FILL' 1;
+}
+
+/* Why KnotSpot Card */
+.why-us-card {
+    margin-top: 28px;
+    background: linear-gradient(135deg, rgba(0,74,198,0.02), rgba(37,99,235,0.02));
+    border: 1px dashed rgba(0,74,198,0.15);
+    border-radius: 20px;
+    padding: 20px;
+}
+.why-us-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #004ac6;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.why-us-text {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+/* Popular Searches Pill Tags */
+.popular-searches {
+    margin-top: 28px;
+}
+.search-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.search-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.search-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: #475569;
+    background: rgba(0,74,198,0.05);
+    border: 1px solid rgba(0,74,198,0.08);
+    padding: 6px 12px;
+    border-radius: 100px;
+    transition: all 0.2s;
+}
+.search-tag:hover {
+    background: rgba(0,74,198,0.1);
+    color: #004ac6;
+}
+
+/* FAQ Accordion Details */
+.faq-section {
+    margin-top: 32px;
+    width: 100%;
+}
+.faq-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+}
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.faq-item {
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(0,74,198,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.faq-item[open] {
+    background: rgba(255,255,255,0.85);
+    border-color: rgba(0,74,198,0.15);
+}
+.faq-question {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e293b;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+.faq-question::-webkit-details-marker {
+    display: none;
+}
+.faq-icon {
+    font-size: 18px;
+    color: #64748b;
+    transition: transform 0.2s ease;
+}
+.faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+    color: #004ac6;
+}
+.faq-answer {
+    padding: 0 18px 14px;
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+@media (min-width: 1024px) {
+    .capabilities-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 20px;
+    }
+    .students-capabilities {
+        margin-top: 28px;
+    }
+    .faq-section {
+        margin-top: 36px;
+    }
+    .why-us-card {
+        margin-top: 32px;
+    }
+    .popular-searches {
+        margin-top: 32px;
+    }
+}
+
+/* Mobile App-optimized UI (≤768px) */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        min-height: 100dvh;
+        background-attachment: scroll;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    body::before {
+        display: none;
+    }
+
+    .page-wrap {
+        max-width: none !important;
+        width: 100% !important;
+        padding: 20px 16px 28px !important;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .hero-content {
+        width: 100%;
+        padding: 0;
+    }
+
+    .hero-title {
+        font-size: 40px !important;
+        margin-bottom: 8px;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+    }
+
+    .hero-sub {
+        font-size: 16px !important;
+        line-height: 1.5;
+        max-width: 100% !important;
+        margin-bottom: 16px;
+    }
+    h2.hero-sub {
+        font-size: 20px !important;
+        line-height: 1.3;
+        margin-bottom: 6px;
+    }
+    p.hero-sub {
+        font-size: 16px !important;
+    }
+
+    .action-section {
+        order: 2;
+        width: 100%;
+        margin-top: 24px;
+        padding: 0;
+    }
+
+    .confess-card {
+        width: 100%;
+        padding: 20px 20px;
+        gap: 16px;
+        min-height: 90px;
+        border-radius: 24px;
+        margin-bottom: 16px !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+    .confess-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 18px;
+        flex-shrink: 0;
+    }
+    .confess-icon i {
+        font-size: 22px !important;
+    }
+    .confess-text {
+        flex: 1;
+        min-width: 0;
+    }
+    .confess-text h3 {
+        font-size: 18px;
+        margin-bottom: 3px;
+    }
+    .confess-text p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    .confess-arrow {
+        flex-shrink: 0;
+    }
+    .confess-arrow .material-symbols-outlined {
+        font-size: 24px;
+    }
+
+    .glass-card {
+        width: 100%;
+        padding: 28px 24px;
+        border-radius: 28px;
+        margin-bottom: 0;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+    .glass-card h2 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    .glass-card .desc {
+        font-size: 15px;
+        margin-bottom: 24px;
+        line-height: 1.5;
+    }
+
+    .google-btn {
+        min-height: 52px;
+        padding: 14px 24px;
+        font-size: 16px;
+        gap: 12px;
+    }
+    .google-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .links {
+        margin-top: 20px;
+    }
+    .lock-row {
+        font-size: 13px;
+    }
+
+    .seo-section {
+        order: 3;
+        width: 100%;
+        margin-top: 4px;
+        padding: 16px 0 0;
+        border-top: 1px solid rgba(0,74,198,0.08);
+    }
+
+    .seo-grid {
+        width: 100%;
+        gap: 12px;
+    }
+    .seo-feature {
+        width: 100%;
+        min-height: 90px;
+        padding: 18px 20px;
+        gap: 16px;
+        border-radius: 22px;
+        box-sizing: border-box;
+    }
+    .seo-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        flex-shrink: 0;
+    }
+    .seo-icon i,
+    .seo-icon .material-symbols-outlined {
+        font-size: 24px;
+    }
+    .seo-feature > div:last-child {
+        flex: 1;
+        min-width: 0;
+    }
+    .seo-feature h4 {
+        font-size: 17px;
+        margin-bottom: 3px;
+    }
+    .seo-feature p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .seo-tagline {
+        font-size: 15px;
+        margin-top: 24px;
+        margin-bottom: 8px;
+        line-height: 1.6;
+    }
+    .seo-campuses {
+        font-size: 13px;
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+
+    .students-capabilities {
+        width: 100%;
+        margin-top: 28px;
+        padding: 24px;
+        border-radius: 24px;
+        box-sizing: border-box;
+    }
+    .capabilities-title {
+        font-size: 17px;
+        margin-bottom: 14px;
+    }
+    .capabilities-list {
+        gap: 12px;
+    }
+    .capabilities-list li {
+        font-size: 15px;
+        gap: 10px;
+        line-height: 1.5;
+    }
+    .check-icon {
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    .why-us-card {
+        width: 100%;
+        margin-top: 28px;
+        padding: 24px;
+        border-radius: 24px;
+        box-sizing: border-box;
+    }
+    .why-us-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .why-us-text {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .popular-searches {
+        width: 100%;
+        margin-top: 28px;
+    }
+    .search-title {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+    .search-tags {
+        gap: 8px;
+    }
+    .search-tag {
+        font-size: 13px;
+        padding: 10px 16px;
+        border-radius: 100px;
+        line-height: 1.3;
+    }
+
+    .faq-section {
+        width: 100%;
+        margin-top: 32px;
+    }
+    .faq-title {
+        font-size: 22px;
+        margin-bottom: 18px;
+    }
+    .faq-list {
+        gap: 12px;
+    }
+    .faq-item {
+        border-radius: 20px;
+    }
+    .faq-question {
+        padding: 18px 20px;
+        font-size: 16px;
+        min-height: 56px;
+        gap: 12px;
+    }
+    .faq-icon {
+        font-size: 22px;
+        flex-shrink: 0;
+    }
+    .faq-answer {
+        padding: 0 20px 18px;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .seo-tagline:last-of-type {
+        margin-top: 28px !important;
+    }
+    .seo-campuses:last-of-type {
+        margin-top: 14px !important;
+    }
+
+    /* Full width enforcement */
+    .page-wrap > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+    .seo-section > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+    .hero-sub {
+        max-width: 100% !important;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="page-wrap">
+    
+    <!-- Hero Content -->
+    <div class="hero-content">
+        <h1 class="hero-title">KnotSpot</h1>
+        <h2 class="hero-sub" style="margin-bottom:12px; font-weight:800; color:#151b27; font-size:24px; letter-spacing: -0.5px; line-height: 1.25;">Find Friends, Roommates &amp; Campus Conversations</h2>
+        <p class="hero-sub">KnotSpot is a student social platform that helps college students read Knots campus threads, find friends, roommates, campus communities, anonymous confessions, room rentals, flatmates, and meaningful connections.</p>
+    </div>
+
+    <!-- Actions (Confession & Login) -->
+    <div class="action-section">
+        <div class="confess-card" style="margin-bottom:20px; cursor:pointer;" onclick="window.location.href='/confessions/'">
+            <div class="confess-icon">
+                <i class="fas fa-mask" style="font-size:18px;"></i>
+            </div>
+            <div class="confess-text">
+                <h3>Anonymous Confessions</h3>
+                <p>See what's happening on campus anonymously</p>
+            </div>
+            <div class="confess-arrow">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2>Join the Hub</h2>
+            <p class="desc">Login to create Knots, comment, match, chat, and unlock exclusive student features.</p>
+            <button type="button" onclick="triggerGoogleLogin()" class="google-btn">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Sign in with Google
+            </button>
+            <div class="links">
+                <div class="lock-row">
+                    <span class="material-symbols-outlined">lock</span>
+                    <span>You can use your personal mail to login.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SEO Content -->
+    <div class="seo-section">
+        <div class="seo-grid">
+            <a href="/knots/" class="seo-feature" style="text-decoration:none;color:inherit;">
+                <div class="seo-icon" style="background:#eef4ff; color:#2563eb;"><span class="material-symbols-outlined">hub</span></div>
+                <div>
+                    <h4>Knots Campus Threads</h4>
+                    <p>Read Reddit-style college discussions, questions, advice, and campus updates.</p>
+                </div>
+            </a>
+            <a href="/confessions/" class="seo-feature" style="text-decoration:none;color:inherit;">
+                <div class="seo-icon"><i class="fas fa-mask"></i></div>
+                <div>
+                    <h4>Anonymous Confessions</h4>
+                    <p>Post and read campus confessions without revealing your name.</p>
+                </div>
+            </a>
+            <a href="/roomfinder/" class="seo-feature" style="text-decoration:none;color:inherit;">
+                <div class="seo-icon" style="background:#dcf5e7; color:#006242;"><span class="material-symbols-outlined">bed</span></div>
+                <div>
+                    <h4>Roommate Finder</h4>
+                    <p>Find rooms, PGs, roommates, and flatmates near your DSU campus.</p>
+                </div>
+            </a>
+            <div class="seo-feature" style="text-decoration:none;color:inherit;cursor:default;">
+                <div class="seo-icon" style="background:#fbe9f0; color:#be185d;"><span class="material-symbols-outlined">handshake</span></div>
+                <div>
+                    <h4>Match & Discover</h4>
+                    <p>Connect with like-minded students and build meaningful friendships.</p>
+                </div>
+            </div>
+            <a href="/events/" class="seo-feature" style="text-decoration:none;color:inherit;">
+                <div class="seo-icon" style="background:#ede9fe; color:#7c3aed;"><span class="material-symbols-outlined">event</span></div>
+                <div>
+                    <h4>Upcoming College Events</h4>
+                    <p>Discover workshops, fests, and cultural events happening across campuses.</p>
+                </div>
+            </a>
+        </div>
+        
+        <div class="students-capabilities">
+            <h4 class="capabilities-title">What you can do on KnotSpot:</h4>
+            <ul class="capabilities-list">
+                <li><span class="material-symbols-outlined check-icon">check_circle</span> Find roommates near campus</li>
+                <li><span class="material-symbols-outlined check-icon">check_circle</span> Discover rooms and PGs</li>
+                <li><span class="material-symbols-outlined check-icon">check_circle</span> Meet students with similar interests</li>
+                <li><span class="material-symbols-outlined check-icon">check_circle</span> Read and create Knots campus threads</li>
+                <li><span class="material-symbols-outlined check-icon">check_circle</span> Share anonymous confessions</li>
+                <li><span class="material-symbols-outlined check-icon">check_circle</span> Join campus discussions</li>
+                <li><span class="material-symbols-outlined check-icon">check_circle</span> Connect with verified college students</li>
+            </ul>
+        </div>
+
+        <div class="why-us-card">
+            <h4 class="why-us-title">Why Students Use KnotSpot</h4>
+            <p class="why-us-text">Whether you're looking for a roommate, searching for rooms near campus, reading Knots discussions, making new friends, finding study partners, sharing confessions anonymously, or exploring student communities, KnotSpot provides a safe and student-focused platform.</p>
+        </div>
+
+        <div class="popular-searches">
+            <h5 class="search-title">Popular Searches</h5>
+            <div class="search-tags">
+                <span class="search-tag">DSU friend finder</span>
+                <span class="search-tag">DSU roommate finder</span>
+                <span class="search-tag">DSU room finder</span>
+                <span class="search-tag">Bangalore student rooms</span>
+                <span class="search-tag">College confessions</span>
+                <span class="search-tag">Campus discussion threads</span>
+                <span class="search-tag">KnotSpot Knots</span>
+                <span class="search-tag">Student social platform</span>
+                <span class="search-tag">Campus connections</span>
+                <span class="search-tag">Roommates near me</span>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h3 class="faq-title">Frequently Asked Questions</h3>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>How do I find roommates on KnotSpot?</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Use the Roomie section to browse rooms, flats, PGs and roommate requests.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>Can I post anonymous confessions?</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Yes. Confessions are completely anonymous.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>Is KnotSpot only for DSU?</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Currently focused on DSU campuses but expanding to other colleges soon.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>Is KnotSpot free?</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Yes, KnotSpot is completely free to use for all college students.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <p class="seo-tagline" style="margin-top: 32px;">The smartest way to meet your campus crew — find friends, roommates, and real connections across college campuses, all in one place.</p>
+        <p class="seo-campuses" style="margin-top: 16px;">KnotSpot currently supports students from DSU campuses including KTR, Harohalli (Kanakapura) Campus, NCR, AP and Bangalore, with support for more colleges coming soon.</p>
+    </div>
+
+</div>
+
+<script>
+    // PWA Logic
+    window.deferredPrompt = null;
+
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js")
+            .then(reg => console.log("SW Registered"))
+            .catch(err => console.log("SW Failed", err));
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        window.deferredPrompt = e;
+    });
+
+    window.addEventListener('appinstalled', () => {
+        localStorage.setItem('pwaInstalled', 'true');
+    });
+
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+        localStorage.setItem('pwaInstalled', 'true');
+    }
+
+    async function triggerPwaInstall() {
+        if (window.deferredPrompt) {
+            window.deferredPrompt.prompt();
+            const { outcome } = await window.deferredPrompt.userChoice;
+            window.deferredPrompt = null;
+            if (outcome === 'accepted') {
+                localStorage.setItem('pwaInstalled', 'true');
+            }
+        } else if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+            alert("To install on iOS: Tap the 'Share' icon in Safari, then select 'Add to Home Screen'.");
+        } else {
+            alert("Open this page in Chrome or Edge to install the app.");
+        }
+    }
+</script>
+
+<footer class="app-footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="/favicon.ico" alt="KnotSpot Logo" width="24" height="24" loading="lazy" style="border-radius: 6px;">
+            <span>KnotSpot</span>
+        </div>
+        <div class="footer-links">
+            <a href="/campuses/">Campuses</a>
+            <a href="/knots/">Knots</a>
+            <a href="/student-matching/">Student Matching</a>
+            <a href="/college-roommate-finder/">Roommate Finder</a>
+            <a href="/anonymous-campus-confessions/">Campus Confessions</a>
+            <a href="/campus-events/">Campus Events</a>
+            <a href="/about/">About</a>
+            <a href="/founder/">Founder</a>
+            <a href="/privacy-policy/">Privacy</a>
+            <a href="/terms-and-conditions/">Terms</a>
+            <a href="/contact/">Contact</a>
+        </div>
+        <div class="footer-copy">
+            &copy; 2026 KnotSpot. All rights reserved.
+        </div>
+    </div>
+</footer>
+<style>
+.app-footer {
+    width: 100%;
+    margin-top: 60px;
+    padding: 40px 20px 20px;
+    background: transparent;
+    border-top: 1px solid var(--border, #d8e0eb);
+    text-align: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.footer-container {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    color: var(--text-main, #191c1e);
+    font-size: 16px;
+}
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 20px;
+}
+.footer-links a {
+    color: var(--text-muted, #5e6777);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+.footer-links a:hover {
+    color: var(--primary, #004ac6);
+}
+.footer-copy {
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 500;
+}
+@media (max-width: 480px) {
+    .footer-links {
+        gap: 10px 14px;
+    }
+}
+</style>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"49266b82111b4d779f00f10305ef294e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+
+
+
+<script>
+function triggerGoogleLogin() {
+  if (document.getElementById('dsu-ov')) return;
+  var ov = document.createElement('div');
+  ov.id = 'dsu-ov';
+  ov.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(15,23,42,.6);backdrop-filter:blur(14px);display:flex;align-items:flex-end;justify-content:center;';
+  document.body.appendChild(ov);
+  var s = document.createElement('style');
+  s.textContent = '@keyframes kUp{from{transform:translateY(100%)}to{transform:translateY(0)}}#dsuS{width:100%;max-width:480px;background:#fff;border-radius:36px 36px 0 0;padding:32px 24px 52px;box-sizing:border-box;font-family:Plus Jakarta Sans,-apple-system,sans-serif;position:relative;animation:kUp .4s cubic-bezier(.16,1,.3,1)}.dsuI{width:100%;padding:13px 15px;border-radius:14px;border:1.5px solid #e2e8f0;background:#f8fafc;font-size:15px;font-weight:600;color:#0f172a;box-sizing:border-box;margin-bottom:10px;outline:none;font-family:inherit;-webkit-appearance:none;appearance:none;display:block}.dsuI:focus{border-color:#004ac6;background:#fff;box-shadow:0 0 0 3px rgba(0,74,198,.1)}.dsuRow{display:flex;gap:8px}.dsuRow .dsuI{flex:1}.dsuBtn{width:100%;padding:15px;border-radius:100px;border:none;background:linear-gradient(135deg,#004ac6,#2563eb);color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;font-family:inherit}';
+  document.head.appendChild(s);
+  var sh = document.createElement('div');
+  sh.id = 'dsuS';
+  var cb = document.createElement('button');
+  cb.textContent = 'x';
+  cb.setAttribute('style','position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;background:#f1f5f9;border:none;cursor:pointer;font-size:17px;color:#64748b;');
+  cb.onclick = function(){ov.remove();};
+  sh.appendChild(cb);
+  var lg = document.createElement('div');
+  lg.setAttribute('style','display:flex;align-items:center;gap:10px;margin-bottom:16px;');
+  var lk = document.createElement('div');
+  lk.setAttribute('style','width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#004ac6,#2563eb);color:#fff;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;');
+  lk.textContent = 'K';
+  var lt = document.createElement('div');
+  var lt1 = document.createElement('div');
+  lt1.setAttribute('style','font-weight:800;font-size:15px;color:#0f172a;');
+  lt1.textContent = 'KnotSpot DSU';
+  var lt2 = document.createElement('div');
+  lt2.setAttribute('style','font-size:11px;color:#64748b;');
+  lt2.textContent = 'Dayananda Sagar University';
+  lt.appendChild(lt1); lt.appendChild(lt2);
+  lg.appendChild(lk); lg.appendChild(lt);
+  sh.appendChild(lg);
+  var h2 = document.createElement('h2');
+  h2.setAttribute('style','font-size:25px;font-weight:800;color:#0f172a;margin:0 0 4px;');
+  h2.textContent = 'Sign in';
+  sh.appendChild(h2);
+  var pp = document.createElement('p');
+  pp.setAttribute('style','font-size:13px;color:#64748b;margin:0 0 18px;');
+  pp.textContent = 'Connect with DSU students.';
+  sh.appendChild(pp);
+  var fm = document.createElement('form');
+  function mkInput(id, ph, tp) {
+    var i = document.createElement(tp === 'select' ? 'select' : 'input');
+    i.className = 'dsuI'; i.id = id; i.required = true;
+    if (tp !== 'select') { i.placeholder = ph; if (tp) i.type = tp; }
+    return i;
+  }
+  var iName = mkInput('dsu-name','Full Name','');
+  fm.appendChild(iName);
+  var iEmail = mkInput('dsu-email','Email address','email');
+  fm.appendChild(iEmail);
+  var row = document.createElement('div');
+  row.className = 'dsuRow';
+  var iCampus = mkInput('dsu-campus','','select');
+  ['','KS Layout Campus','Harohalli Campus'].forEach(function(v){
+    var o = document.createElement('option');
+    o.value = v; o.textContent = v || 'Campus'; iCampus.appendChild(o);
+  });
+  row.appendChild(iCampus);
+  var iYear = mkInput('dsu-year','','select');
+  ['','1st Year','2nd Year','3rd Year','4th Year'].forEach(function(v){
+    var o = document.createElement('option');
+    o.value = v; o.textContent = v || 'Year'; iYear.appendChild(o);
+  });
+  row.appendChild(iYear);
+  fm.appendChild(row);
+  var iBranch = mkInput('dsu-branch','Branch (CSE / ECE / MBA...)','');
+  fm.appendChild(iBranch);
+  var btn = document.createElement('button');
+  btn.className = 'dsuBtn'; btn.type = 'submit'; btn.textContent = 'Sign In & Enter';
+  fm.appendChild(btn);
+  fm.onsubmit = function(e) {
+    e.preventDefault();
+    var n = document.getElementById('dsu-name').value.trim();
+    var em = document.getElementById('dsu-email').value.trim();
+    var c = document.getElementById('dsu-campus').value;
+    var y = document.getElementById('dsu-year').value;
+    var b = document.getElementById('dsu-branch').value.trim();
+    if (!n||!em||!c||!y||!b) { alert('Fill all fields please!'); return; }
+    localStorage.setItem('dsu_user', JSON.stringify({
+      name:n, email:em, campus:c, year:y, branch:b,
+      avatar:'https://api.dicebear.com/9.x/avataaars/svg?seed='+encodeURIComponent(n)+'&backgroundColor=b6e3f4',
+      joinedAt:new Date().toISOString()
+    }));
+    ov.remove();
+    window.location.reload();
+  };
+  sh.appendChild(fm);
+  ov.appendChild(sh);
+  ov.addEventListener('click', function(e){ if(e.target===ov) ov.remove(); });
+}
+</script>
+</body>
+</html>
+
+

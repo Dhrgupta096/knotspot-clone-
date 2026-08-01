@@ -1,0 +1,19 @@
+[[redirects]]
+  from = "/knots"
+  to = "/knots/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/confessions"
+  to = "/confessions/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/roomfinder"
+  to = "/roomfinder/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/events"
+  to = "/events/index.html"
+  status = 200
