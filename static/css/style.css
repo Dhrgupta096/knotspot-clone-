@@ -1,40 +1,71 @@
 /* ==========================================================================
    DSU KnotSpot Global Style Sheet
-   Includes: Design System, Layouts, Navigation, Forms, Cards, and Utilities
+   Includes: Adaptive Dark/Light Design System, Layouts, Glassmorphism, 
+   Navigation, Forms, Cards, Micro-interactions, and Utilities
    ========================================================================== */
 
 :root {
-    /* Color Palette - Custom DSU Blue & Amber Gold theme */
+    /* Color Palette - Custom DSU Blue & Amber Gold theme (Light Mode) */
     --primary: #0a4ac7;
     --primary-strong: #0036a3;
     --primary-soft: #edf4ff;
-    --primary-soft-border: rgba(10, 74, 199, 0.12);
+    --primary-soft-border: rgba(10, 74, 199, 0.14);
     --accent: #f59e0b; /* Amber Gold for fests / highlights */
     --accent-soft: #fffbeb;
     
     --bg-color: #f7f9fb;
-    --bg-gradient: radial-gradient(circle at top left, rgba(180, 197, 255, 0.3), transparent 32%), 
-                    radial-gradient(circle at top right, rgba(253, 230, 138, 0.15), transparent 26%), 
+    --bg-gradient: radial-gradient(circle at top left, rgba(180, 197, 255, 0.32), transparent 35%), 
+                    radial-gradient(circle at top right, rgba(253, 230, 138, 0.18), transparent 28%), 
                     linear-gradient(180deg, #fbfcff 0%, #f7f9fb 50%, #eff4fb 100%);
     
     --text-main: #0f172a;
     --text-muted: #64748b;
     --surface: #ffffff;
-    --surface-soft: rgba(255, 255, 255, 0.82);
+    --surface-soft: rgba(255, 255, 255, 0.85);
     --surface-muted: #f1f5f9;
+    --surface-card: #ffffff;
     --border: #e2e8f0;
-    --border-soft: rgba(10, 74, 199, 0.06);
+    --border-soft: rgba(10, 74, 199, 0.08);
     
-    --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.03);
-    --shadow-md: 0 16px 40px rgba(15, 23, 42, 0.06);
-    --shadow-lg: 0 32px 80px rgba(15, 23, 42, 0.1);
+    --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 16px 40px rgba(15, 23, 42, 0.07);
+    --shadow-lg: 0 32px 80px rgba(15, 23, 42, 0.12);
     
     --radius-sm: 12px;
     --radius-md: 18px;
-    --radius-lg: 28px;
+    --radius-lg: 26px;
     --radius-xl: 36px;
     
     --shell-width: 560px;
+    --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dark Mode Tokens (Obsidian Glass Theme) */
+[data-theme="dark"] {
+    --primary: #3b82f6;
+    --primary-strong: #60a5fa;
+    --primary-soft: rgba(59, 130, 246, 0.18);
+    --primary-soft-border: rgba(59, 130, 246, 0.32);
+    --accent: #fbbf24;
+    --accent-soft: rgba(251, 191, 36, 0.16);
+    
+    --bg-color: #0b0f19;
+    --bg-gradient: radial-gradient(circle at 15% 15%, rgba(29, 78, 216, 0.25), transparent 45%), 
+                    radial-gradient(circle at 85% 20%, rgba(245, 158, 11, 0.14), transparent 38%), 
+                    linear-gradient(180deg, #0b0f19 0%, #0e1424 50%, #070a12 100%);
+    
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --surface: #111827;
+    --surface-soft: rgba(17, 24, 39, 0.88);
+    --surface-muted: #1e293b;
+    --surface-card: #131d31;
+    --border: rgba(255, 255, 255, 0.09);
+    --border-soft: rgba(255, 255, 255, 0.05);
+    
+    --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 16px 40px rgba(0, 0, 0, 0.55);
+    --shadow-lg: 0 32px 80px rgba(0, 0, 0, 0.75);
 }
 
 /* Base Resets & Layout */
@@ -48,12 +79,13 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background-color: var(--bg-color);
 }
 
 html::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome/Safari */
+    display: none;
 }
 
 body {
@@ -66,6 +98,7 @@ body {
     overflow-x: hidden;
     user-select: none;
     -webkit-user-select: none;
+    transition: var(--theme-transition);
 }
 
 body::before {
@@ -74,10 +107,15 @@ body::before {
     inset: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 30% 20%, rgba(10,74,199,0.02) 0%, transparent 50%),
+    background: radial-gradient(circle at 30% 20%, rgba(10,74,199,0.03) 0%, transparent 50%),
                 radial-gradient(circle at 70% 80%, rgba(245,158,11,0.02) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
+}
+
+[data-theme="dark"] body::before {
+    background: radial-gradient(circle at 30% 20%, rgba(59,130,246,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(251,191,36,0.03) 0%, transparent 50%);
 }
 
 input, textarea, [contenteditable] {
@@ -100,10 +138,10 @@ input, textarea, [contenteditable] {
 
 /* Glassmorphism Classes */
 .glass-card {
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: var(--surface-soft);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 24px;
     box-shadow: var(--shadow-md);
@@ -114,6 +152,39 @@ input, textarea, [contenteditable] {
 
 .glass-card:hover {
     box-shadow: var(--shadow-lg);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface-soft);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--text-main);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.08) rotate(15deg);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.92);
+}
+
+.theme-toggle-btn .material-symbols-rounded {
+    font-size: 20px;
 }
 
 /* Core Buttons */
@@ -131,14 +202,19 @@ input, textarea, [contenteditable] {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    box-shadow: 0 8px 20px rgba(10, 74, 199, 0.2);
+    box-shadow: 0 8px 20px rgba(10, 74, 199, 0.25);
     transition: all 0.22s ease;
     font-family: inherit;
     text-decoration: none;
 }
 
+[data-theme="dark"] .btn-primary {
+    background: linear-gradient(135deg, var(--primary), #1d4ed8);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+}
+
 .btn-primary:hover {
-    box-shadow: 0 10px 24px rgba(10, 74, 199, 0.3);
+    box-shadow: 0 10px 24px rgba(10, 74, 199, 0.35);
     transform: translateY(-1px);
 }
 
@@ -152,7 +228,7 @@ input, textarea, [contenteditable] {
     justify-content: center;
     gap: 8px;
     border: 1px solid var(--primary-soft-border);
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--surface-soft);
     color: var(--primary);
     padding: 12px 20px;
     border-radius: 100px;
@@ -193,14 +269,15 @@ input, textarea, [contenteditable] {
 
 .fab-btn:hover {
     box-shadow: 0 14px 30px rgba(10, 74, 199, 0.45);
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
 .fab-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.94);
 }
 
-.fab-btn .material-symbols-outlined {
+.fab-btn .material-symbols-outlined,
+.fab-btn .material-symbols-rounded {
     font-size: 24px;
 }
 
@@ -221,15 +298,15 @@ select {
     font-family: inherit;
     font-size: 15px;
     color: var(--text-main);
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--surface-muted);
     transition: all 0.2s ease;
     outline: none;
 }
 
 input:focus, textarea:focus, select:focus {
     border-color: var(--primary);
-    background: #ffffff;
-    box-shadow: 0 0 0 4px rgba(10, 74, 199, 0.08);
+    background: var(--surface);
+    box-shadow: 0 0 0 4px var(--primary-soft);
 }
 
 /* Shared Bottom App Navigation Bar */
@@ -242,14 +319,15 @@ nav.app-nav {
     width: min(100%, var(--shell-width));
     padding: 10px 12px;
     padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-    background: rgba(255, 255, 255, 0.82);
+    background: var(--surface-soft);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
     border-radius: 28px 28px 0 0;
-    box-shadow: 0 -10px 35px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.12);
+    transition: var(--theme-transition);
 }
 
 .nav-inner {
@@ -378,11 +456,11 @@ nav.app-nav {
 /* Segmented Control (Tabs) */
 .segmented-control {
     display: flex;
-    background: rgba(10, 74, 199, 0.05);
+    background: var(--surface-muted);
     padding: 4px;
     border-radius: 100px;
     margin-bottom: 16px;
-    border: 1px solid rgba(10, 74, 199, 0.04);
+    border: 1px solid var(--border);
 }
 
 .segmented-tab {
@@ -401,9 +479,9 @@ nav.app-nav {
 }
 
 .segmented-tab.active {
-    background: #ffffff;
+    background: var(--surface);
     color: var(--primary);
-    box-shadow: 0 4px 12px rgba(10, 74, 199, 0.1);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Badges / Chips */
@@ -425,7 +503,7 @@ nav.app-nav {
 .pill-badge.accent {
     background: var(--accent-soft);
     color: var(--accent);
-    border-color: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.25);
 }
 
 /* Toast Notification Styling */
@@ -444,16 +522,17 @@ nav.app-nav {
 }
 
 .toast {
-    background: #ffffff;
+    background: var(--surface);
     padding: 14px 20px;
     border-radius: var(--radius-md);
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15);
+    box-shadow: var(--shadow-lg);
     display: flex;
     align-items: center;
     gap: 12px;
     font-size: 14px;
     font-weight: 700;
     color: var(--text-main);
+    border: 1px solid var(--border);
     border-left: 4px solid var(--primary);
     animation: toastIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     pointer-events: auto;
@@ -489,9 +568,9 @@ nav.app-nav {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 2000;
     display: flex;
     justify-content: center;
@@ -508,10 +587,11 @@ nav.app-nav {
 
 .modal-sheet {
     width: min(100%, var(--shell-width));
-    background: #ffffff;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 32px 32px 0 0;
     padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px));
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-lg);
     transform: translateY(100%);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     max-height: 88vh;
@@ -567,6 +647,21 @@ nav.app-nav {
     display: none;
 }
 
+/* Common Feed Card Styles */
+.card-base {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.22s ease;
+}
+
+.card-base:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-soft-border);
+}
+
 /* Empty State Styling */
 .empty-state {
     text-align: center;
@@ -608,7 +703,7 @@ nav.app-nav {
 /* Desktop optimization (min-width: 1024px) */
 @media (min-width: 1024px) {
     body {
-        background-image: radial-gradient(ellipse at 30% 0%, rgba(180, 197, 255, 0.4) 0%, #eef4ff 40%, #f7f9fb 80%);
+        background: var(--bg-gradient);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -618,21 +713,21 @@ nav.app-nav {
     .app-container {
         min-height: calc(100vh - 40px);
         margin: 20px auto;
-        background: rgba(255, 255, 255, 0.38);
-        border: 1px solid rgba(255, 255, 255, 0.65);
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
         border-radius: 40px;
-        box-shadow: 0 32px 90px rgba(15, 23, 42, 0.08);
+        box-shadow: var(--shadow-lg);
         overflow: hidden;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
     }
     
     nav.app-nav {
         width: min(calc(100% - 32px), calc(var(--shell-width) - 32px));
         bottom: 36px;
         border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
     }
     
     .fab-btn {

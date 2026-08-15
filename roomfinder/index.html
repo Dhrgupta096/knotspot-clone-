@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
+    <!-- Theme Controller (instant hydration) -->
+    <script src="../static/js/theme.js"></script>
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="../static/css/style.css">
     <style>
@@ -21,43 +24,53 @@
         }
 
         .rf-card {
-            background: #ffffff;
+            background: var(--surface-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-sm);
             transition: all 0.25s ease;
+            cursor: pointer;
         }
 
         .rf-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-md);
-            border-color: rgba(10, 74, 199, 0.1);
+            border-color: var(--primary-soft-border);
         }
 
         .rf-card-image-wrap {
             height: 200px;
             position: relative;
             background: var(--surface-muted);
+            overflow: hidden;
         }
 
         .rf-card-image-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        .rf-card:hover .rf-card-image-wrap img {
+            transform: scale(1.03);
         }
 
         .rf-price-badge {
             position: absolute;
             bottom: 12px;
             right: 12px;
-            background: rgba(15, 23, 42, 0.76);
-            backdrop-filter: blur(4px);
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             color: #ffffff;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 800;
-            padding: 6px 12px;
+            padding: 6px 14px;
             border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
         }
 
         .rf-campus-badge {
@@ -68,10 +81,11 @@
             color: #ffffff;
             font-size: 11px;
             font-weight: 800;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 8px;
             text-transform: uppercase;
             letter-spacing: 0.04em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .rf-card-body {
@@ -104,18 +118,37 @@
 
         .rf-card-desc {
             font-size: 13px;
-            color: #475569;
-            line-height: 1.5;
-            margin-bottom: 16px;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin-bottom: 14px;
             word-break: break-word;
+        }
+
+        .rf-amenities-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .rf-amenity-pill {
+            background: var(--surface-muted);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 6px;
         }
 
         .rf-card-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            border-top: 1px solid var(--border);
             padding-top: 14px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .rf-author {
@@ -133,6 +166,92 @@
             border-radius: 50%;
             object-fit: cover;
         }
+
+        .rf-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Direct WhatsApp Button */
+        .btn-whatsapp {
+            background: #25D366;
+            color: #ffffff;
+            border: none;
+            border-radius: 100px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1eb956;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+            color: #ffffff;
+        }
+
+        .btn-whatsapp:active {
+            transform: scale(0.95);
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            margin-bottom: 12px;
+            padding-bottom: 4px;
+        }
+
+        .filter-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-chip {
+            padding: 7px 14px;
+            border-radius: 100px;
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-chip:hover, .filter-chip.active {
+            background: var(--primary-soft);
+            color: var(--primary);
+            border-color: var(--primary-soft-border);
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 6px;
+            margin-bottom: 14px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -146,19 +265,19 @@
                 </a>
                 <h1>Room Finder</h1>
             </div>
-            <div class="feed-header-icon">
-                <span class="material-symbols-rounded">bed</span>
-            </div>
+            <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme" title="Toggle Theme">
+                <span class="material-symbols-rounded">dark_mode</span>
+            </button>
         </header>
 
         <!-- Search and Campus filter -->
         <div style="display: flex; gap: 8px; margin-bottom: 10px;">
             <div style="position: relative; flex: 1; height: 44px;">
                 <span class="material-symbols-outlined" style="position: absolute; left: 14px; top: 12px; color: var(--text-muted); font-size: 20px;">search</span>
-                <input type="search" id="room-search" placeholder="Search rooms, seater, PGs..." oninput="searchRooms(this.value)" style="padding-left: 44px; margin-bottom: 0; height: 44px; border-radius: 100px;">
+                <input type="search" id="room-search" placeholder="Search rooms, amenities, PGs..." oninput="searchRooms(this.value)" style="padding-left: 44px; margin-bottom: 0; height: 44px; border-radius: 100px;">
             </div>
             
-            <select id="room-campus-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 44px; border-radius: 100px; padding: 0 16px; font-weight: 700; font-size: 13px; border-color: var(--border);">
+            <select id="room-campus-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 44px; border-radius: 100px; padding: 0 16px; font-weight: 700; font-size: 13px; border-color: var(--border); background: var(--surface-muted); color: var(--text-main);">
                 <option value="all">All Campuses</option>
                 <option value="ks-layout">KS Layout</option>
                 <option value="kanakapura">Harohalli</option>
@@ -166,27 +285,35 @@
         </div>
 
         <!-- Roommate Filter Bar (Gender, Seater Sharing, Hostel Type) -->
-        <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 12px; scrollbar-width: none;">
-            <select id="room-gender-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 38px; border-radius: 100px; padding: 0 14px; font-weight: 700; font-size: 12px; border-color: var(--border); background: #ffffff;">
+        <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 10px; scrollbar-width: none;">
+            <select id="room-gender-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 38px; border-radius: 100px; padding: 0 14px; font-weight: 700; font-size: 12px; border-color: var(--border); background: var(--surface-muted); color: var(--text-main);">
                 <option value="all">All Genders</option>
-                <option value="Boys Only">Boys Only</option>
-                <option value="Girls Only">Girls Only</option>
+                <option value="Boys Only">Boys Only 🚹</option>
+                <option value="Girls Only">Girls Only 🚺</option>
             </select>
 
-            <select id="room-seater-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 38px; border-radius: 100px; padding: 0 14px; font-weight: 700; font-size: 12px; border-color: var(--border); background: #ffffff;">
+            <select id="room-seater-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 38px; border-radius: 100px; padding: 0 14px; font-weight: 700; font-size: 12px; border-color: var(--border); background: var(--surface-muted); color: var(--text-main);">
                 <option value="all">All Seaters</option>
+                <option value="1 Seater">Single Seater</option>
                 <option value="2 Seater">2 Seater Sharing</option>
                 <option value="3 Seater">3 Seater Sharing</option>
                 <option value="4 Seater">4 Seater Sharing</option>
-                <option value="1 Seater">Single Seater</option>
             </select>
 
-            <select id="room-hostel-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 38px; border-radius: 100px; padding: 0 14px; font-weight: 700; font-size: 12px; border-color: var(--border); background: #ffffff;">
+            <select id="room-hostel-filter" onchange="loadRooms()" style="width: auto; margin-bottom: 0; height: 38px; border-radius: 100px; padding: 0 14px; font-weight: 700; font-size: 12px; border-color: var(--border); background: var(--surface-muted); color: var(--text-main);">
                 <option value="all">Hostel & PG Types</option>
-                <option value="College Hostel">College Hostel (On-Campus)</option>
+                <option value="College Hostel">College Hostel</option>
                 <option value="Private PG">Private PG</option>
                 <option value="Flat">Flat / Apartment</option>
             </select>
+        </div>
+
+        <!-- Budget Filter Chips -->
+        <div class="filter-row">
+            <button class="filter-chip active" onclick="filterBudget('all', this)">All Budgets</button>
+            <button class="filter-chip" onclick="filterBudget('under4k', this)">Under ₹4,000</button>
+            <button class="filter-chip" onclick="filterBudget('4k-6k', this)">₹4,000 - ₹6,000</button>
+            <button class="filter-chip" onclick="filterBudget('above6k', this)">₹6,000+</button>
         </div>
 
         <!-- Segmented Tab bar for Room Types -->
@@ -233,9 +360,9 @@
                             </select>
                         </div>
                         <div style="flex: 1;">
-                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Hostel / Property Type</label>
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Hostel / Property</label>
                             <select id="new-room-hostel-type" required>
-                                <option value="College Hostel">College Hostel (On-Campus)</option>
+                                <option value="College Hostel">College Hostel</option>
                                 <option value="Private PG">Private PG</option>
                                 <option value="Flat">Flat / Apartment</option>
                             </select>
@@ -254,23 +381,23 @@
                         <div style="flex: 1;">
                             <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Seater / Sharing</label>
                             <select id="new-room-seater" required>
-                                <option value="2 Seater">2 Seater (Double Sharing)</option>
-                                <option value="3 Seater">3 Seater (Triple Sharing)</option>
-                                <option value="4 Seater">4 Seater (Quad Sharing)</option>
-                                <option value="1 Seater">Single Seater</option>
+                                <option value="1 Seater">1 Seater (Single)</option>
+                                <option value="2 Seater" selected>2 Seater (Double)</option>
+                                <option value="3 Seater">3 Seater (Triple)</option>
+                                <option value="4 Seater">4 Seater (Quad)</option>
                             </select>
                         </div>
                     </div>
 
                     <div style="display: flex; gap: 8px;">
                         <div style="flex: 1;">
-                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Preferred Student Branch</label>
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Preferred Branch</label>
                             <select id="new-room-branch" required>
                                 <option value="Computer Science (CSE)">Computer Science (CSE)</option>
                                 <option value="Information Science (ISE)">Information Science (ISE)</option>
                                 <option value="Electronics (ECE)">Electronics (ECE)</option>
                                 <option value="Mechanical">Mechanical</option>
-                                <option value="Any Branch">Any Branch</option>
+                                <option value="Any Branch" selected>Any Branch</option>
                             </select>
                         </div>
                         <div style="flex: 1;">
@@ -286,17 +413,32 @@
                     <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Listing Title</label>
                     <input type="text" id="new-room-title" placeholder="e.g. 2-Seater vacancy in Block-B Girls Hostel" required>
 
-                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Monthly Rent / Mess Charges (₹)</label>
-                    <input type="number" id="new-room-rent" placeholder="e.g. 6500" required>
+                    <div style="display: flex; gap: 8px;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Rent / Mo (₹)</label>
+                            <input type="number" id="new-room-rent" placeholder="e.g. 6500" required>
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">WhatsApp / Phone</label>
+                            <input type="text" id="new-room-contact" placeholder="e.g. +91 9876543210" required>
+                        </div>
+                    </div>
 
-                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Contact Phone / WhatsApp</label>
-                    <input type="text" id="new-room-contact" placeholder="e.g. +91 99887 76655" required>
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Amenities Included</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-label"><input type="checkbox" name="amenity" value="Wi-Fi 📶" checked> Wi-Fi 📶</label>
+                        <label class="checkbox-label"><input type="checkbox" name="amenity" value="Food Included 🍽️" checked> Food Included 🍽️</label>
+                        <label class="checkbox-label"><input type="checkbox" name="amenity" value="Attached Bath 🚿"> Attached Bath 🚿</label>
+                        <label class="checkbox-label"><input type="checkbox" name="amenity" value="Washing Machine 🧺"> Washing Machine 🧺</label>
+                        <label class="checkbox-label"><input type="checkbox" name="amenity" value="Power Backup ⚡"> Power Backup ⚡</label>
+                        <label class="checkbox-label"><input type="checkbox" name="amenity" value="AC ❄️"> AC ❄️</label>
+                    </div>
 
-                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Description &amp; Hostel Rules</label>
-                    <textarea id="new-room-desc" placeholder="Detail mess food quality, Wi-Fi, study habits, gate curfew timing, etc." rows="3" required style="resize: none;"></textarea>
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Description &amp; House Rules</label>
+                    <textarea id="new-room-desc" placeholder="Detail mess food quality, study environment, gate timings, etc." rows="3" required style="resize: none;"></textarea>
 
-                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Room / Hostel Photo URL (Optional)</label>
-                    <input type="text" id="new-room-image" placeholder="Paste image URL, or leave blank for placeholder">
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Room Photo URL (Optional)</label>
+                    <input type="text" id="new-room-image" placeholder="Paste image URL, or leave blank for default photo">
 
                     <button type="submit" class="btn-primary" style="margin-top: 10px;">
                         Publish Roommate Listing
@@ -306,11 +448,27 @@
         </div>
     </div>
 
+    <!-- Room Details Modal -->
+    <div id="room-detail-modal" class="modal-overlay" onclick="closeRoomDetailModalOnOverlay(event)">
+        <div class="modal-sheet" style="max-height: 85vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h3>Room Details</h3>
+                <button type="button" class="modal-close-btn" onclick="closeRoomDetailModal()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="modal-body" id="room-detail-content">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
     <!-- Global Scripts -->
     <script src="../static/js/db.js"></script>
     <script src="../static/js/app.js"></script>
     <script>
         let selectedRoomType = 'all';
+        let selectedBudget = 'all';
         let roomSearchQuery = '';
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -319,11 +477,17 @@
 
         function filterRoomType(type, btn) {
             selectedRoomType = type;
-
             const tabs = btn.parentNode.querySelectorAll('.segmented-tab');
             tabs.forEach(t => t.classList.remove('active'));
             btn.classList.add('active');
+            loadRooms();
+        }
 
+        function filterBudget(budget, btn) {
+            selectedBudget = budget;
+            const chips = btn.parentNode.querySelectorAll('.filter-chip');
+            chips.forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
             loadRooms();
         }
 
@@ -352,11 +516,19 @@
                 const matchesSeater = (seaterFilter === 'all') || (r.seaterType === seaterFilter);
                 const matchesHostel = (hostelFilter === 'all') || (r.hostelType === hostelFilter);
                 
+                // Budget filter
+                let matchesBudget = true;
+                if (selectedBudget === 'under4k') matchesBudget = r.rent < 4000;
+                else if (selectedBudget === '4k-6k') matchesBudget = r.rent >= 4000 && r.rent <= 6000;
+                else if (selectedBudget === 'above6k') matchesBudget = r.rent > 6000;
+
                 const matchesSearch = !roomSearchQuery || 
                                      r.title.toLowerCase().includes(roomSearchQuery) || 
                                      r.description.toLowerCase().includes(roomSearchQuery) ||
-                                     (r.seaterType && r.seaterType.toLowerCase().includes(roomSearchQuery));
-                return matchesCampus && matchesType && matchesGender && matchesSeater && matchesHostel && matchesSearch;
+                                     (r.seaterType && r.seaterType.toLowerCase().includes(roomSearchQuery)) ||
+                                     (r.amenities && r.amenities.some(a => a.toLowerCase().includes(roomSearchQuery)));
+                
+                return matchesCampus && matchesType && matchesGender && matchesSeater && matchesHostel && matchesBudget && matchesSearch;
             });
 
             if (filtered.length === 0) {
@@ -366,7 +538,7 @@
                             <span class="material-symbols-rounded">bed</span>
                         </div>
                         <h3>No Roommate Listings Found</h3>
-                        <p>Try adjusting your gender, seater sharing, or campus filters above!</p>
+                        <p>Try adjusting your gender, budget, seater sharing, or campus filters above!</p>
                     </div>
                 `;
                 return;
@@ -377,11 +549,16 @@
                 const matchScore = window.dsuDb.calculateRoomMatchScore(r, currentUser);
                 const card = document.createElement('div');
                 card.className = 'rf-card';
+                card.onclick = (e) => {
+                    if (e.target.closest('button') || e.target.closest('a')) return;
+                    openRoomDetailModal(r.id);
+                };
                 
                 const genderTag = r.genderPref || 'Any Gender';
                 const seaterTag = r.seaterType || '2 Seater';
                 const hostelTag = r.hostelType || 'Private PG';
                 const branchTag = r.preferredBranch || 'Any Branch';
+                const amenities = r.amenities || ["Wi-Fi 📶", "Mess Food 🍽️"];
 
                 card.innerHTML = `
                     <div class="rf-card-image-wrap">
@@ -391,10 +568,10 @@
                     </div>
                     <div class="rf-card-body">
                         <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px;">
-                            <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 800;">🔥 ${matchScore}% Compatibility</span>
-                            <span style="background: #eef4ff; color: #2563eb; padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 800;">${seaterTag}</span>
-                            <span style="background: #fff1f2; color: #f43f5e; padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 800;">${genderTag}</span>
-                            <span style="background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 700;">Branch: ${branchTag}</span>
+                            <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 800;">🔥 ${matchScore}% Match</span>
+                            <span style="background: var(--primary-soft); color: var(--primary); padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 800;">${seaterTag}</span>
+                            <span style="background: rgba(244, 63, 94, 0.12); color: #f43f5e; padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 800;">${genderTag}</span>
+                            <span style="background: var(--surface-muted); color: var(--text-muted); border: 1px solid var(--border); padding: 3px 10px; border-radius: 100px; font-size: 11.5px; font-weight: 700;">${branchTag}</span>
                         </div>
 
                         <div class="rf-card-header">
@@ -404,15 +581,28 @@
                         <h2 class="rf-card-title">${escapeHTML(r.title)}</h2>
                         <p class="rf-card-desc">${escapeHTML(r.description)}</p>
                         
+                        <!-- Amenities Row -->
+                        <div class="rf-amenities-row">
+                            ${amenities.map(a => `<span class="rf-amenity-pill">${escapeHTML(a)}</span>`).join('')}
+                        </div>
+
                         <div class="rf-card-footer">
                             <div class="rf-author">
                                 <img src="${r.authorAvatar}" alt="Avatar">
                                 <span>${r.authorName}</span>
                             </div>
-                            <button class="btn-ghost" onclick="revealContact('${r.id}', '${escapeHTML(r.contact)}', this)" style="padding: 8px 16px; font-size:12px;">
-                                <span class="material-symbols-rounded" style="font-size:16px;">call</span>
-                                <span>Contact Student</span>
-                            </button>
+                            
+                            <div class="rf-actions">
+                                <button type="button" class="btn-whatsapp" onclick="connectWhatsApp('${escapeHTML(r.authorName)}', '${escapeHTML(r.title).replace(/'/g, "\\'")}', ${r.rent}, '${escapeHTML(r.contact)}', event)" title="Chat on WhatsApp">
+                                    <i class="fab fa-whatsapp" style="font-size: 15px;"></i>
+                                    <span>WhatsApp</span>
+                                </button>
+                                
+                                <button type="button" class="btn-ghost" onclick="revealContact('${r.id}', '${escapeHTML(r.contact)}', this, event)" style="padding: 7px 12px; font-size:12px;" title="Copy Phone Number">
+                                    <span class="material-symbols-rounded" style="font-size:16px;">call</span>
+                                    <span>Call</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -421,30 +611,106 @@
             });
         }
 
-        function revealContact(id, contact, btn) {
+        // Direct WhatsApp Click-to-Chat
+        function connectWhatsApp(authorName, title, rent, contact, e) {
+            if (e) e.stopPropagation();
+            const user = window.dsuDb.getUser();
+            if (!user) {
+                window.showToast("Please log in to contact roommates.", "accent");
+                return;
+            }
+
+            const cleanNumber = contact.replace(/[^0-9]/g, '');
+            const number = cleanNumber.startsWith('91') ? cleanNumber : ('91' + cleanNumber);
+            const message = `Hi ${authorName}! I saw your room listing for "${title}" (₹${rent}/mo) on DSU KnotSpot. Is this spot still available?`;
+            const waUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+            
+            window.open(waUrl, '_blank');
+        }
+
+        function revealContact(id, contact, btn, e) {
+            if (e) e.stopPropagation();
             if (!window.dsuDb.getUser()) {
                 window.showToast("Please log in to view contact details.", "accent");
                 return;
             }
 
             // Copy to clipboard
-            navigator.clipboard.writeText(contact)
-                .then(() => {
-                    window.showToast("Contact copied to clipboard!");
-                    btn.innerHTML = `
-                        <span class="material-symbols-rounded" style="font-size:16px; color:#10b981;">check</span>
-                        <span style="color:#10b981;">Copied!</span>
-                    `;
-                    setTimeout(() => {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(contact)
+                    .then(() => {
+                        window.showToast(`Contact copied: ${contact}`);
                         btn.innerHTML = `
-                            <span class="material-symbols-rounded" style="font-size:16px;">call</span>
-                            <span>Contact Student</span>
+                            <span class="material-symbols-rounded" style="font-size:16px; color:#10b981;">check</span>
+                            <span style="color:#10b981;">Copied!</span>
                         `;
-                    }, 2500);
-                })
-                .catch(() => {
-                    alert(`Contact Details: ${contact}`);
-                });
+                        setTimeout(() => {
+                            btn.innerHTML = `
+                                <span class="material-symbols-rounded" style="font-size:16px;">call</span>
+                                <span>Call</span>
+                            `;
+                        }, 2500);
+                    })
+                    .catch(() => {
+                        alert(`Contact Number: ${contact}`);
+                    });
+            } else {
+                alert(`Contact Number: ${contact}`);
+            }
+        }
+
+        // Room Detail Modal
+        function openRoomDetailModal(roomId) {
+            const room = window.dsuDb.getRooms().find(r => r.id === roomId);
+            if (!room) return;
+
+            const modalContent = document.getElementById('room-detail-content');
+            const amenities = room.amenities || ["Wi-Fi 📶", "Mess Food 🍽️"];
+            const campusText = room.campus === 'ks-layout' ? 'KS Layout Campus' : 'Harohalli (Kanakapura) Campus';
+
+            modalContent.innerHTML = `
+                <div style="border-radius: var(--radius-md); overflow: hidden; height: 220px; margin-bottom: 16px;">
+                    <img src="${room.images && room.images[0] ? room.images[0] : 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80'}" style="width: 100%; height: 100%; object-fit: cover;" alt="Room">
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span class="pill-badge accent">${room.seaterType || '2 Seater'} • ${room.genderPref}</span>
+                    <span style="font-size: 18px; font-weight: 800; color: var(--primary);">₹${room.rent.toLocaleString()}/month</span>
+                </div>
+                <h2 style="font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">${escapeHTML(room.title)}</h2>
+                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">📍 ${campusText} • ${room.hostelType}</p>
+                
+                <h4 style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">Included Amenities</h4>
+                <div class="rf-amenities-row" style="margin-bottom: 16px;">
+                    ${amenities.map(a => `<span class="rf-amenity-pill" style="font-size: 12px; padding: 5px 12px;">${escapeHTML(a)}</span>`).join('')}
+                </div>
+
+                <h4 style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">Room &amp; Hostel Details</h4>
+                <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-muted); margin-bottom: 20px; white-space: pre-wrap;">${escapeHTML(room.description)}</p>
+
+                <div style="display: flex; gap: 10px;">
+                    <button type="button" class="btn-whatsapp" style="flex: 1; justify-content: center; padding: 12px 16px; font-size: 14px;" onclick="connectWhatsApp('${escapeHTML(room.authorName)}', '${escapeHTML(room.title).replace(/'/g, "\\'")}', ${room.rent}, '${escapeHTML(room.contact)}', event)">
+                        <i class="fab fa-whatsapp" style="font-size: 18px;"></i>
+                        <span>Chat with ${room.authorName.split(' ')[0]}</span>
+                    </button>
+                    <button type="button" class="btn-primary" style="width: auto; padding: 12px 18px;" onclick="revealContact('${room.id}', '${escapeHTML(room.contact)}', this, event)">
+                        <span class="material-symbols-rounded">call</span>
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('room-detail-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRoomDetailModal() {
+            document.getElementById('room-detail-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeRoomDetailModalOnOverlay(e) {
+            if (e.target === document.getElementById('room-detail-modal')) {
+                closeRoomDetailModal();
+            }
         }
 
         // Room modal actions
@@ -483,9 +749,11 @@
             const desc = document.getElementById('new-room-desc').value.trim();
             const image = document.getElementById('new-room-image').value.trim();
 
+            const checkedAmenities = Array.from(document.querySelectorAll('input[name="amenity"]:checked')).map(cb => cb.value);
+
             if (!title || !rent || !contact || !desc) return;
 
-            window.dsuDb.createRoomListing(title, desc, rent, campus, type, gender, seater, hostelType, preferredBranch, contact, image);
+            window.dsuDb.createRoomListing(title, desc, rent, campus, type, gender, seater, hostelType, preferredBranch, contact, image, checkedAmenities);
             closeRoomModal();
             window.showToast("Roommate listing published successfully!");
             loadRooms();

@@ -119,28 +119,40 @@ const SEED_CONFESSIONS = [
         id: "conf-1",
         content: "I accidentally walked into the staff room thinking it was the seminar hall, and sat through a 15-minute departmental meeting before anyone noticed. The HOD just stared at me when I finally got up to leave.",
         campus: "ks-layout",
-        likesCount: 42,
+        category: "Funny",
+        likesCount: 54,
+        reactions: { heart: 22, fire: 14, skull: 16, cry: 2 },
+        userReactions: {},
         commentsCount: 2,
         createdAt: "2026-07-19T02:30:00Z",
-        likedBy: []
+        likedBy: [],
+        anonymousName: "Silent Cadet"
     },
     {
         id: "conf-2",
         content: "To the student who took my CSE lab manual from the central library table on Friday: please return it! My final internal marks depend on that submission, and I don't want to re-write 20 coding experiments.",
         campus: "ks-layout",
-        likesCount: 28,
+        category: "Exams",
+        likesCount: 38,
+        reactions: { heart: 4, fire: 6, skull: 8, cry: 20 },
+        userReactions: {},
         commentsCount: 1,
         createdAt: "2026-07-19T08:45:00Z",
-        likedBy: []
+        likedBy: [],
+        anonymousName: "Shadow Scholar"
     },
     {
         id: "conf-3",
         content: "I secretly log into the Kanakapura Campus computer lab PCs and change all the desktop wallpapers to photos of cats. I've done it on 40 computers so far. No regrets.",
         campus: "kanakapura",
-        likesCount: 56,
+        category: "Campus Life",
+        likesCount: 72,
+        reactions: { heart: 18, fire: 32, skull: 20, cry: 2 },
+        userReactions: {},
         commentsCount: 0,
         createdAt: "2026-07-19T10:20:00Z",
-        likedBy: []
+        likedBy: [],
+        anonymousName: "Ghost Coder"
     }
 ];
 
@@ -180,7 +192,8 @@ const SEED_ROOMS = [
         seaterType: "2 Seater",
         hostelType: "College Hostel",
         preferredBranch: "Computer Science (CSE)",
-        contact: "+91 98765 43210",
+        contact: "+91 9876543210",
+        amenities: ["Wi-Fi 📶", "Food Included 🍽️", "Attached Bath 🚿", "Power Backup ⚡"],
         authorName: "Meera Nair",
         authorAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
         createdAt: "2026-07-17T09:00:00Z",
@@ -197,7 +210,8 @@ const SEED_ROOMS = [
         seaterType: "3 Seater",
         hostelType: "College Hostel",
         preferredBranch: "Computer Science (CSE)",
-        contact: "+91 99887 76655",
+        contact: "+91 9988776655",
+        amenities: ["Wi-Fi 📶", "Mess Food 🍛", "Washing Machine 🧺", "Balcony 🌄"],
         authorName: "Siddharth Sen",
         authorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
         createdAt: "2026-07-18T12:00:00Z",
@@ -214,7 +228,8 @@ const SEED_ROOMS = [
         seaterType: "4 Seater",
         hostelType: "Private PG",
         preferredBranch: "Any Branch",
-        contact: "+91 91234 56789",
+        contact: "+91 9123456789",
+        amenities: ["Wi-Fi 📶", "Hot Water ♨️", "2x Food 🍽️", "CCTV Security 🔒"],
         authorName: "Kunal Verma",
         authorAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
         createdAt: "2026-07-19T06:30:00Z",
@@ -227,9 +242,11 @@ const SEED_EVENTS = [
         id: "ev-1",
         title: "Derby 2026 - DSU Annual Cultural Fest",
         description: "The biggest university event of the year! Live concerts, street dancing, fashion show, gaming battle, food stalls, and cultural performances. DJ Night featuring a top Indian artist. Do not miss it!",
-        date: "Aug 14, 2026",
+        date: "Aug 20, 2026",
+        isoDate: "2026-08-20T10:00:00",
         time: "10:00 AM - 9:00 PM",
         venue: "Harohalli Campus Grounds",
+        category: "Cultural & Fests",
         image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=800&q=80",
         rsvpsCount: 245,
         hasRsvp: false
@@ -238,9 +255,11 @@ const SEED_EVENTS = [
         id: "ev-2",
         title: "DSU Code-a-Thon 2026",
         description: "Join the DSU coding marathon! Solve challenging problems in data structures, algorithms, and build working web models. Great prizes, certificates for all participants, and internship interviews with top sponsors.",
-        date: "Jul 28, 2026",
+        date: "Aug 25, 2026",
+        isoDate: "2026-08-25T09:00:00",
         time: "9:00 AM - 6:00 PM",
         venue: "KS Layout Engineering Block CSE Labs",
+        category: "Hackathons",
         image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80",
         rsvpsCount: 89,
         hasRsvp: true
@@ -249,11 +268,26 @@ const SEED_EVENTS = [
         id: "ev-3",
         title: "Guest Lecture: AI & The Future of Careers",
         description: "Special guest seminar by a senior AI researcher from Google DeepMind. Learn how generative models are reshaping industries, what skills are in high demand, and how to build a portfolio during your college years.",
-        date: "Aug 02, 2026",
+        date: "Aug 28, 2026",
+        isoDate: "2026-08-28T14:30:00",
         time: "2:30 PM - 4:00 PM",
         venue: "Dental College Auditorium, KS Layout",
+        category: "Workshops",
         image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80",
         rsvpsCount: 154,
+        hasRsvp: false
+    },
+    {
+        id: "ev-4",
+        title: "DSU Inter-Campus Football & Cricket Cup",
+        description: "Annual sports clash between KS Layout & Harohalli campuses. Register your 7-a-side team or come cheer for your branch. Food stalls and trophy presentation ceremony.",
+        date: "Sep 05, 2026",
+        isoDate: "2026-09-05T08:00:00",
+        time: "8:00 AM - 5:00 PM",
+        venue: "DSU Sports Complex Turf, Harohalli",
+        category: "Sports",
+        image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80",
+        rsvpsCount: 112,
         hasRsvp: false
     }
 ];
@@ -419,24 +453,36 @@ const db = {
 
     // Anonymous Confessions
     getConfessions() {
-        return JSON.parse(localStorage.getItem('dsu_confessions'));
+        const confs = JSON.parse(localStorage.getItem('dsu_confessions')) || [];
+        // Ensure reactions object exists on legacy data
+        confs.forEach(c => {
+            if (!c.reactions) {
+                c.reactions = { heart: c.likesCount || 0, fire: 0, skull: 0, cry: 0 };
+            }
+            if (!c.userReactions) c.userReactions = {};
+            if (!c.category) c.category = 'General';
+        });
+        return confs;
     },
     getConfession(id) {
         const confessions = this.getConfessions();
         return confessions.find(c => c.id === id);
     },
-    createConfession(content, campus) {
+    createConfession(content, campus, category = 'General') {
         const confessions = this.getConfessions();
         
         // Random Anonymous names
-        const names = ["Anonymous Tiger", "Silent Cadet", "DSU Maverick", "Ghost Coder", "Hidden Sagarite", "Campus Phantom"];
+        const names = ["Anonymous Tiger", "Silent Cadet", "DSU Maverick", "Ghost Coder", "Hidden Sagarite", "Campus Phantom", "Shadow Scholar", "Midnight Sagarite"];
         const randomName = names[Math.floor(Math.random() * names.length)];
 
         const newConf = {
             id: "conf-" + Date.now(),
             content: content,
             campus: campus,
+            category: category,
             likesCount: 0,
+            reactions: { heart: 0, fire: 0, skull: 0, cry: 0 },
+            userReactions: {},
             commentsCount: 0,
             createdAt: new Date().toISOString(),
             likedBy: [],
@@ -446,24 +492,34 @@ const db = {
         localStorage.setItem('dsu_confessions', JSON.stringify(confessions));
         return newConf;
     },
-    likeConfession(id) {
+    reactConfession(id, reactionType) {
         const confessions = this.getConfessions();
         const user = this.getUser();
         const userEmail = user ? user.email : "guest";
         const conf = confessions.find(c => c.id === id);
         if (conf) {
-            if (!conf.likedBy) conf.likedBy = [];
-            const index = conf.likedBy.indexOf(userEmail);
-            if (index === -1) {
-                conf.likesCount += 1;
-                conf.likedBy.push(userEmail);
+            if (!conf.reactions) conf.reactions = { heart: conf.likesCount || 0, fire: 0, skull: 0, cry: 0 };
+            if (!conf.userReactions) conf.userReactions = {};
+            
+            const currentReaction = conf.userReactions[userEmail];
+            if (currentReaction === reactionType) {
+                // Undo reaction
+                conf.reactions[reactionType] = Math.max(0, (conf.reactions[reactionType] || 0) - 1);
+                delete conf.userReactions[userEmail];
             } else {
-                conf.likesCount -= 1;
-                conf.likedBy.splice(index, 1);
+                if (currentReaction) {
+                    conf.reactions[currentReaction] = Math.max(0, (conf.reactions[currentReaction] || 0) - 1);
+                }
+                conf.reactions[reactionType] = (conf.reactions[reactionType] || 0) + 1;
+                conf.userReactions[userEmail] = reactionType;
             }
+            conf.likesCount = Object.values(conf.reactions).reduce((a, b) => a + b, 0);
             localStorage.setItem('dsu_confessions', JSON.stringify(confessions));
         }
         return conf;
+    },
+    likeConfession(id) {
+        return this.reactConfession(id, 'heart');
     },
 
     // Comments for Confessions
@@ -516,7 +572,7 @@ const db = {
         }
         return Math.min(score, 98);
     },
-    createRoomListing(title, description, rent, campus, roomType, genderPref, seaterType, hostelType, preferredBranch, contact, imageUrl) {
+    createRoomListing(title, description, rent, campus, roomType, genderPref, seaterType, hostelType, preferredBranch, contact, imageUrl, amenities = []) {
         const rooms = this.getRooms();
         const user = this.getUser();
         const newRoom = {
@@ -531,6 +587,7 @@ const db = {
             hostelType: hostelType || 'Private PG',
             preferredBranch: preferredBranch || 'Any Branch',
             contact: contact,
+            amenities: (amenities && amenities.length > 0) ? amenities : ["Wi-Fi 📶", "Mess Food 🍽️"],
             authorName: user ? user.name : "Student",
             authorAvatar: user ? user.avatar : "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
             createdAt: new Date().toISOString(),

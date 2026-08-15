@@ -135,7 +135,7 @@ function triggerGoogleLogin() {
     const hasClientId = Boolean(window.GOOGLE_CLIENT_ID);
 
     overlay.innerHTML = `
-        <div class="modal-sheet" style="max-height: 560px;">
+        <div class="modal-sheet" style="max-height: 90vh; overflow-y: auto;">
             <div class="modal-header">
                 <div style="display: flex; align-items: center; gap: 8px;">
                     <svg viewBox="0 0 24 24" style="width: 22px; height: 22px;"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
@@ -146,9 +146,20 @@ function triggerGoogleLogin() {
                 </button>
             </div>
             <div class="modal-body" style="padding-bottom: 20px;">
-                <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.5;">
-                    Sign in with your Dayananda Sagar University student profile details to access Knots, Confessions, and Roommate Finder.
+                <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5;">
+                    Sign in with your Dayananda Sagar University student profile to access Knots, Confessions, and Roommate Finder.
                 </p>
+
+                <!-- Quick 1-Click Demo Login -->
+                <button type="button" onclick="quickDemoLogin(this)" class="btn-primary" style="margin-bottom: 16px; background: linear-gradient(135deg, #10b981, #059669); border: none; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);">
+                    <span class="material-symbols-rounded">bolt</span>
+                    <span>1-Click Demo Login (Aarav Sharma - CSE)</span>
+                </button>
+
+                <div style="text-align: center; margin-bottom: 16px; font-size: 11px; font-weight: 700; color: var(--text-muted); position: relative;">
+                    <span style="background: var(--surface-card); padding: 0 10px; position: relative; z-index: 1;">OR ENTER CUSTOM STUDENT DETAILS</span>
+                    <div style="position: absolute; top: 50%; left: 0; right: 0; border-top: 1px solid var(--border); z-index: 0;"></div>
+                </div>
 
                 ${hasClientId ? `
                     <div id="g_id_onload"
@@ -157,32 +168,28 @@ function triggerGoogleLogin() {
                          data-auto_prompt="false">
                     </div>
                     <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left" style="margin-bottom: 18px; display: flex; justify-content: center;"></div>
-                    <div style="text-align: center; margin-bottom: 16px; font-size: 12px; color: var(--text-muted); position: relative;">
-                        <span style="background: white; padding: 0 10px; position: relative; z-index: 1;">OR CONTINUING WITH STUDENT DETAILS</span>
-                        <div style="position: absolute; top: 50%; left: 0; right: 0; border-top: 1px solid var(--border); z-index: 0;"></div>
-                    </div>
                 ` : ''}
 
                 <form id="google-auth-form" onsubmit="handleAuthSubmit(event, this)">
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 8px; margin-bottom: 14px;">
-                        <label style="font-size: 11.5px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">Real Google OAuth 2.0 Client ID (Optional)</label>
-                        <input type="text" id="auth-client-id" value="${window.GOOGLE_CLIENT_ID}" placeholder="Paste Google Client ID from Google Cloud Console" style="margin-bottom: 0; font-size: 11.5px; padding: 6px 10px;" onchange="setGoogleClientId(this.value)">
-                    </div>
-
                     <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Student Full Name</label>
                     <input type="text" id="auth-name" placeholder="e.g. Aarav Sharma" required style="margin-bottom: 12px;">
                     
                     <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Student Email (@dsu.edu.in)</label>
                     <input type="email" id="auth-email" placeholder="aarav.sharma@dsu.edu.in" required style="margin-bottom: 12px;">
 
-                    <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">College Branch</label>
-                    <input type="text" id="auth-branch" placeholder="e.g. Computer Science (CSE)" required style="margin-bottom: 12px;">
-                    
-                    <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Campus</label>
-                    <select id="auth-campus" required style="margin-bottom: 20px;">
-                        <option value="ks-layout">KS Layout Campus</option>
-                        <option value="kanakapura">Harohalli (Kanakapura) Campus</option>
-                    </select>
+                    <div style="display: flex; gap: 8px;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Branch</label>
+                            <input type="text" id="auth-branch" placeholder="CSE / ISE / ECE" required style="margin-bottom: 12px;">
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Campus</label>
+                            <select id="auth-campus" required style="margin-bottom: 12px;">
+                                <option value="ks-layout">KS Layout</option>
+                                <option value="kanakapura">Harohalli</option>
+                            </select>
+                        </div>
+                    </div>
 
                     <button type="submit" class="btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
                         <span class="material-symbols-rounded">verified_user</span>
@@ -211,6 +218,29 @@ function triggerGoogleLogin() {
             }
         }
     }, 50);
+}
+
+function quickDemoLogin(btn) {
+    const user = {
+        id: 'u-demo-1',
+        name: "Aarav Sharma",
+        email: "aarav.sharma@dsu.edu.in",
+        branch: "Computer Science (CSE)",
+        year: "2nd Year",
+        campus: "ks-layout",
+        gender: "Male",
+        avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+        profileComplete: true
+    };
+
+    window.dsuDb.saveUser(user);
+    const overlay = btn.closest('.modal-overlay');
+    if (overlay) overlay.remove();
+
+    showToast("Welcome, Aarav! Signed in successfully.");
+    setTimeout(() => {
+        window.location.href = getRootPath() + 'knots/index.html';
+    }, 600);
 }
 
 async function handleGoogleCredentialResponse(response) {

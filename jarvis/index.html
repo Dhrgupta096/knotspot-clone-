@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J.A.R.V.I.S. // Personal Laptop Assistant</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Sci-Fi Background Glows -->
+  <div class="ambient-glow bg-glow-1"></div>
+  <div class="ambient-glow bg-glow-2"></div>
+
+  <div class="hud-wrapper">
+    
+    <!-- TOP CLEAN HEADER -->
+    <header class="hud-topbar">
+      <div class="brand">
+        <span class="logo-dot"></span>
+        <span class="logo-title">J.A.R.V.I.S.</span>
+        <span class="logo-sub">// DHRUV'S LAPTOP</span>
+      </div>
+
+      <div class="top-status">
+        <div class="telemetry-pill">
+          <span class="pill-dot"></span>
+          <span id="sys-status-text">ONLINE</span>
+        </div>
+        <div class="telemetry-pill batt-pill">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="16" height="10" rx="2" />
+            <line x1="20" y1="10" x2="20" y2="14" />
+          </svg>
+          <span id="header-batt-val">21%</span>
+        </div>
+        <div class="clock-display" id="hud-clock">00:00:00</div>
+      </div>
+    </header>
+
+    <!-- SPACIOUS HERO CENTER DISPLAY -->
+    <main class="hero-stage">
+      
+      <!-- FLOATING LEFT TELEMETRY BAR -->
+      <aside class="floating-side side-left">
+        <div class="side-item">
+          <span class="side-label">CPU</span>
+          <span class="side-val" id="cpu-pct">0%</span>
+        </div>
+        <div class="side-item">
+          <span class="side-label">RAM</span>
+          <span class="side-val" id="ram-pct">0%</span>
+        </div>
+        <div class="side-item">
+          <span class="side-label">STORAGE</span>
+          <span class="side-val" id="disk-pct">0%</span>
+        </div>
+        <div class="side-item">
+          <span class="side-label">BATTERY</span>
+          <span class="side-val" id="batt-pct">--%</span>
+        </div>
+      </aside>
+
+      <!-- CENTER ARC REACTOR HUD HUB -->
+      <div class="arc-center-stage">
+        <div class="arc-ring outer-ring"></div>
+        <div class="arc-ring middle-ring"></div>
+        <div class="arc-ring inner-ring"></div>
+
+        <div class="arc-core" id="arc-reactor" title="Click to activate voice command">
+          <div class="core-inner-glow"></div>
+          <div class="core-symbol">J</div>
+        </div>
+
+        <div class="status-subtitle" id="jarvis-state">AT YOUR SERVICE, SIR</div>
+
+        <!-- SPECTRUM WAVEFORM CANVAS -->
+        <div class="waveform-box">
+          <canvas id="audio-visualizer" width="400" height="40"></canvas>
+        </div>
+
+        <!-- FLOATING SLEEK COMMAND BAR -->
+        <div class="floating-input-card">
+          <button class="mic-trigger" id="mic-toggle-btn" title="Toggle Voice Recognition">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+              <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+            </svg>
+          </button>
+
+          <input type="text" id="cmd-input" placeholder="Ask J.A.R.V.I.S. or speak a command..." autocomplete="off">
+
+          <button class="send-trigger" id="send-cmd-btn">
+            <span>EXECUTE</span>
+          </button>
+        </div>
+
+        <!-- MINIMAL QUICK SUGGESTION CHIPS -->
+        <div class="quick-suggestions">
+          <button class="sug-btn" onclick="quickCommand('Open Chrome')">🌐 Chrome</button>
+          <button class="sug-btn" onclick="quickCommand('Open VS Code')">💻 VS Code</button>
+          <button class="sug-btn" onclick="quickCommand('Take screenshot')">📸 Screenshot</button>
+          <button class="sug-btn" onclick="quickCommand('Volume 70%')">🔊 Vol 70%</button>
+          <button class="sug-btn" onclick="quickCommand('System telemetry')">📊 Telemetry</button>
+        </div>
+      </div>
+
+      <!-- FLOATING RIGHT QUICK LAUNCHER -->
+      <aside class="floating-side side-right">
+        <button class="quick-app-btn" onclick="quickCommand('Open Chrome')" title="Launch Chrome">🌐</button>
+        <button class="quick-app-btn" onclick="quickCommand('Open VS Code')" title="Launch VS Code">💻</button>
+        <button class="quick-app-btn" onclick="quickCommand('Open Terminal')" title="Launch Terminal">⌨️</button>
+        <button class="quick-app-btn" onclick="quickCommand('Open Finder')" title="Open Finder">📁</button>
+        <button class="quick-app-btn" onclick="quickCommand('Open Spotify')" title="Open Spotify">🎧</button>
+        <button class="quick-app-btn" onclick="quickCommand('lock')" title="Lock Laptop Screen">🔒</button>
+      </aside>
+
+    </main>
+
+    <!-- CLEAN FLOATING CONSOLE LOG -->
+    <footer class="console-drawer">
+      <div class="console-stream" id="console-output">
+        <div class="log-line jarvis-line">
+          <span class="time">[ONLINE]</span> J.A.R.V.I.S. standing by, sir. All laptop core modules operational.
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

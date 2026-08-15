@@ -9,10 +9,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
+    <!-- Theme Controller (instant hydration) -->
+    <script src="../static/js/theme.js"></script>
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="../static/css/style.css">
     <style>
         /* Confession-specific styles */
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            margin-bottom: 16px;
+            padding-bottom: 4px;
+        }
+
+        .filter-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            border-radius: 100px;
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 12.5px;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-chip:hover, .filter-chip.active {
+            background: var(--primary-soft);
+            color: var(--primary);
+            border-color: var(--primary-soft-border);
+        }
+
         .conf-feed {
             display: flex;
             flex-direction: column;
@@ -21,19 +56,20 @@
         }
 
         .conf-card {
-            background: #ffffff;
+            background: var(--surface-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             padding: 20px;
             box-shadow: var(--shadow-sm);
             transition: all 0.22s ease;
             position: relative;
+            overflow: visible;
         }
 
         .conf-card:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
-            border-color: rgba(10, 74, 199, 0.1);
+            border-color: var(--primary-soft-border);
         }
 
         .conf-card-header {
@@ -58,7 +94,7 @@
             align-items: center;
             justify-content: center;
             color: #ffffff;
-            box-shadow: 0 4px 10px rgba(10, 74, 199, 0.1);
+            box-shadow: 0 4px 10px rgba(10, 74, 199, 0.15);
         }
 
         .conf-avatar i {
@@ -78,9 +114,9 @@
         }
 
         .conf-content {
-            font-size: 14px;
+            font-size: 14.5px;
             line-height: 1.6;
-            color: #334155;
+            color: var(--text-main);
             margin-bottom: 14px;
             white-space: pre-wrap;
             word-break: break-word;
@@ -88,10 +124,58 @@
 
         .conf-footer {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            flex-direction: column;
+            gap: 12px;
+            border-top: 1px solid var(--border);
             padding-top: 12px;
+        }
+
+        .conf-reactions-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reaction-btn {
+            border: 1px solid var(--border);
+            background: var(--surface-muted);
+            color: var(--text-main);
+            border-radius: 100px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            user-select: none;
+            font-family: inherit;
+        }
+
+        .reaction-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            border-color: var(--primary-soft-border);
+            background: var(--primary-soft);
+        }
+
+        .reaction-btn.active {
+            background: var(--primary-soft);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+        }
+
+        .reaction-btn:active {
+            transform: scale(0.92);
+        }
+
+        .conf-action-links {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .action-btn {
@@ -99,7 +183,7 @@
             background: var(--surface-muted);
             color: var(--text-muted);
             border-radius: 100px;
-            padding: 8px 14px;
+            padding: 7px 14px;
             font-size: 12px;
             font-weight: 700;
             cursor: pointer;
@@ -115,22 +199,29 @@
             color: var(--primary);
         }
 
-        .action-btn.liked {
-            background: #fff1f2;
-            color: #f43f5e;
+        .emoji-pop {
+            position: fixed;
+            pointer-events: none;
+            animation: floatUp 0.85s ease-out forwards;
+            font-size: 24px;
+            z-index: 9999;
         }
 
-        .action-btn.liked .material-symbols-rounded {
-            font-variation-settings: 'FILL' 1;
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.5); }
+            100% { opacity: 0; transform: translateY(-60px) scale(1.8); }
         }
 
         /* Comment Bubble */
         .comment-item {
             padding: 12px 14px;
             background: var(--surface-muted);
+            border: 1px solid var(--border);
             border-radius: 16px;
             margin-bottom: 10px;
             font-size: 13px;
+            color: var(--text-main);
         }
 
         .comment-item-header {
@@ -159,21 +250,35 @@
                 </a>
                 <h1>Confessions</h1>
             </div>
-            <div class="feed-header-icon">
-                <i class="fas fa-mask" style="font-size: 18px;"></i>
-            </div>
+            <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme" title="Toggle Theme">
+                <span class="material-symbols-rounded">dark_mode</span>
+            </button>
         </header>
+
+        <!-- Search Bar -->
+        <div style="position: relative; height: 44px; margin-bottom: 12px;">
+            <span class="material-symbols-outlined" style="position: absolute; left: 14px; top: 12px; color: var(--text-muted); font-size: 20px;">search</span>
+            <input type="search" id="conf-search" placeholder="Search confessions..." oninput="searchConfessions(this.value)" style="padding-left: 44px; margin-bottom: 0; height: 44px; border-radius: 100px;">
+        </div>
 
         <!-- Segmented Campus Filter -->
         <div class="segmented-control">
-            <button class="segmented-tab active" onclick="filterConfessions('all', this)">All Campuses</button>
-            <button class="segmented-tab" onclick="filterConfessions('ks-layout', this)">KS Layout</button>
-            <button class="segmented-tab" onclick="filterConfessions('kanakapura', this)">Kanakapura Rd</button>
+            <button class="segmented-tab active" onclick="filterConfessionsCampus('all', this)">All Campuses</button>
+            <button class="segmented-tab" onclick="filterConfessionsCampus('ks-layout', this)">KS Layout</button>
+            <button class="segmented-tab" onclick="filterConfessionsCampus('kanakapura', this)">Kanakapura Rd</button>
         </div>
 
-        <!-- Confessions Feed -->
-        <div id="confessions-list" class="conf-feed">
-            <!-- Dynamically populated by JS -->
+        <!-- Category Chip Row -->
+        <div class="filter-row">
+            <button class="filter-chip active" onclick="filterConfessionsCategory('all', this)">All Topics</button>
+            <button class="filter-chip" onclick="filterConfessionsCategory('Crushes', this)">Crushes ❤️</button>
+            <button class="filter-chip" onclick="filterConfessionsCategory('Exams', this)">Exams & Stress 📚</button>
+            <button class="filter-chip" onclick="filterConfessionsCategory('Hostel', this)">Hostel & Food 🍛</button>
+            <button class="filter-chip" onclick="filterConfessionsCategory('Campus Life', this)">Campus Life 🏫</button>
+            <button class="filter-chip" onclick="filterConfessionsCategory('Funny', this)">Funny 💀</button>
+        </div>
+
+            <!-- Confession Feed List Container -->
         </div>
 
         <!-- FAB to post a confession -->
@@ -198,11 +303,26 @@
             </div>
             <div class="modal-body">
                 <form id="confession-form" onsubmit="submitConfession(event)">
-                    <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Select Campus</label>
-                    <select id="conf-campus" required>
-                        <option value="ks-layout">KS Layout Campus</option>
-                        <option value="kanakapura">Harohalli (Kanakapura) Campus</option>
-                    </select>
+                    <div style="display: flex; gap: 8px;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Campus</label>
+                            <select id="conf-campus" required>
+                                <option value="ks-layout">KS Layout</option>
+                                <option value="kanakapura">Harohalli</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Category</label>
+                            <select id="conf-category" required>
+                                <option value="General">General</option>
+                                <option value="Crushes">Crushes ❤️</option>
+                                <option value="Exams">Exams 📚</option>
+                                <option value="Hostel">Hostel 🍛</option>
+                                <option value="Campus Life">Campus 🏫</option>
+                                <option value="Funny">Funny 💀</option>
+                            </select>
+                        </div>
+                    </div>
 
                     <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Your Confession</label>
                     <textarea id="conf-text" placeholder="Share your anonymous campus story..." rows="5" required style="resize: none;"></textarea>
@@ -223,7 +343,7 @@
     <div id="comments-modal" class="modal-overlay" onclick="closeCommentsModalOnOverlay(event)">
         <div class="modal-sheet" style="max-height: 80vh;">
             <div class="modal-header">
-                <h3>Confession Comments</h3>
+                <h3>Confession Replies</h3>
                 <button type="button" class="modal-close-btn" onclick="closeCommentsModal()">
                     <span class="material-symbols-rounded">close</span>
                 </button>
@@ -254,21 +374,40 @@
     <script src="../static/js/db.js"></script>
     <script src="../static/js/app.js"></script>
     <script>
-        let currentFilter = 'all';
+        let currentCampus = 'all';
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        const EMOJI_MAP = {
+            heart: '❤️',
+            fire: '🔥',
+            skull: '💀',
+            cry: '😭'
+        };
 
         // Load Feed on page show
         document.addEventListener('DOMContentLoaded', () => {
             loadConfessions();
         });
 
-        function filterConfessions(campus, btn) {
-            currentFilter = campus;
-            
-            // Toggle active classes on tabs
+        function filterConfessionsCampus(campus, btn) {
+            currentCampus = campus;
             const tabs = btn.parentNode.querySelectorAll('.segmented-tab');
             tabs.forEach(t => t.classList.remove('active'));
             btn.classList.add('active');
+            loadConfessions();
+        }
 
+        function filterConfessionsCategory(category, btn) {
+            currentCategory = category;
+            const chips = btn.parentNode.querySelectorAll('.filter-chip');
+            chips.forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            loadConfessions();
+        }
+
+        function searchConfessions(query) {
+            searchQuery = query.toLowerCase().trim();
             loadConfessions();
         }
 
@@ -280,10 +419,12 @@
             const user = window.dsuDb.getUser();
             const userEmail = user ? user.email : "guest";
 
-            // Filter confessions by campus
+            // Filter confessions
             const filtered = confessions.filter(c => {
-                if (currentFilter === 'all') return true;
-                return c.campus === currentFilter;
+                const matchesCampus = currentCampus === 'all' || c.campus === currentCampus;
+                const matchesCategory = currentCategory === 'all' || c.category === currentCategory;
+                const matchesSearch = !searchQuery || c.content.toLowerCase().includes(searchQuery) || (c.anonymousName && c.anonymousName.toLowerCase().includes(searchQuery));
+                return matchesCampus && matchesCategory && matchesSearch;
             });
 
             if (filtered.length === 0) {
@@ -292,20 +433,21 @@
                         <div class="empty-state-icon">
                             <span class="material-symbols-rounded">visibility_off</span>
                         </div>
-                        <h3>No Confessions Yet</h3>
-                        <p>Be the first one to post a confession for this campus!</p>
+                        <h3>No Confessions Found</h3>
+                        <p>No confessions match your filter or search query. Be the first to share one!</p>
                     </div>
                 `;
                 return;
             }
 
             filtered.forEach(c => {
-                const isLiked = c.likedBy && c.likedBy.includes(userEmail);
-                const likedClass = isLiked ? 'liked' : '';
                 const timeString = formatTime(c.createdAt);
+                const reactions = c.reactions || { heart: c.likesCount || 0, fire: 0, skull: 0, cry: 0 };
+                const userReaction = (c.userReactions && c.userReactions[userEmail]) || null;
                 
                 const card = document.createElement('div');
                 card.className = 'conf-card';
+                card.id = `conf-card-${c.id}`;
                 card.innerHTML = `
                     <div class="conf-card-header">
                         <div class="conf-author">
@@ -317,43 +459,100 @@
                                 <div class="conf-time">${timeString}</div>
                             </div>
                         </div>
-                        <span class="pill-badge">${c.campus === 'ks-layout' ? 'KS Layout' : 'Harohalli'}</span>
+                        <div style="display: flex; gap: 6px; align-items: center;">
+                            ${c.category && c.category !== 'General' ? `<span class="pill-badge accent">${escapeHTML(c.category)}</span>` : ''}
+                            <span class="pill-badge">${c.campus === 'ks-layout' ? 'KS Layout' : 'Harohalli'}</span>
+                        </div>
                     </div>
                     <div class="conf-content">${escapeHTML(c.content)}</div>
+                    
                     <div class="conf-footer">
-                        <button class="action-btn ${likedClass}" onclick="likeConfession('${c.id}', this)">
-                            <span class="material-symbols-rounded" style="font-size:18px;">favorite</span>
-                            <span>${c.likesCount || 0}</span>
-                        </button>
-                        <button class="action-btn" onclick="openCommentsModal('${c.id}')">
-                            <span class="material-symbols-rounded" style="font-size:18px;">comment</span>
-                            <span>${c.commentsCount || 0}</span>
-                        </button>
+                        <!-- Multi-Reaction Bar -->
+                        <div class="conf-reactions-bar">
+                            <button type="button" class="reaction-btn ${userReaction === 'heart' ? 'active' : ''}" onclick="reactConfession('${c.id}', 'heart', event)">
+                                <span>❤️</span>
+                                <span>${reactions.heart || 0}</span>
+                            </button>
+                            <button type="button" class="reaction-btn ${userReaction === 'fire' ? 'active' : ''}" onclick="reactConfession('${c.id}', 'fire', event)">
+                                <span>🔥</span>
+                                <span>${reactions.fire || 0}</span>
+                            </button>
+                            <button type="button" class="reaction-btn ${userReaction === 'skull' ? 'active' : ''}" onclick="reactConfession('${c.id}', 'skull', event)">
+                                <span>💀</span>
+                                <span>${reactions.skull || 0}</span>
+                            </button>
+                            <button type="button" class="reaction-btn ${userReaction === 'cry' ? 'active' : ''}" onclick="reactConfession('${c.id}', 'cry', event)">
+                                <span>😭</span>
+                                <span>${reactions.cry || 0}</span>
+                            </button>
+                        </div>
+
+                        <!-- Action Links (Replies and Share) -->
+                        <div class="conf-action-links">
+                            <button type="button" class="action-btn" onclick="openCommentsModal('${c.id}')">
+                                <span class="material-symbols-rounded" style="font-size:18px;">chat_bubble_outline</span>
+                                <span>${c.commentsCount || 0} Replies</span>
+                            </button>
+
+                            <button type="button" class="action-btn" onclick="shareConfession('${c.id}', '${escapeHTML(c.content.substring(0, 80)).replace(/'/g, "\\'")}')" title="Share Confession">
+                                <span class="material-symbols-rounded" style="font-size:18px;">share</span>
+                                <span>Share</span>
+                            </button>
+                        </div>
                     </div>
                 `;
                 feedContainer.appendChild(card);
             });
         }
 
-        // Like handler
-        function likeConfession(id, btn) {
+        // Reaction Handler with Animated Pop
+        function reactConfession(id, reactionType, event) {
             const user = window.dsuDb.getUser();
             if (!user) {
-                window.showToast("Please log in to like confessions.", "accent");
+                window.showToast("Please log in to react to confessions.", "accent");
                 return;
             }
             
-            const updated = window.dsuDb.likeConfession(id);
+            // Pop float animation
+            triggerEmojiPop(event, EMOJI_MAP[reactionType]);
+
+            const updated = window.dsuDb.reactConfession(id, reactionType);
             if (updated) {
-                const countSpan = btn.querySelector('span:last-child');
-                countSpan.textContent = updated.likesCount;
-                
-                const userEmail = user.email;
-                if (updated.likedBy.includes(userEmail)) {
-                    btn.classList.add('liked');
-                } else {
-                    btn.classList.remove('liked');
-                }
+                // Smooth reload of confession card
+                loadConfessions();
+            }
+        }
+
+        function triggerEmojiPop(e, emoji) {
+            const pop = document.createElement('div');
+            pop.className = 'emoji-pop';
+            pop.textContent = emoji;
+            
+            const rect = e.currentTarget.getBoundingClientRect();
+            pop.style.left = `${rect.left + rect.width / 2 - 12}px`;
+            pop.style.top = `${rect.top - 10}px`;
+            
+            document.body.appendChild(pop);
+            pop.addEventListener('animationend', () => pop.remove());
+        }
+
+        // Share Confession
+        function shareConfession(id, snippet) {
+            const shareText = `🤫 DSU KnotSpot Confession:\n"${snippet}..."\n\nRead more at ${window.location.origin}/confessions/`;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'DSU KnotSpot Confession',
+                    text: shareText,
+                    url: window.location.href
+                }).catch(() => {});
+            } else if (navigator.clipboard) {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    window.showToast("Confession copied to clipboard!");
+                }).catch(() => {
+                    window.showToast("Link copied!");
+                });
+            } else {
+                window.showToast("Sharing ready!");
             }
         }
 
@@ -385,10 +584,11 @@
             e.preventDefault();
             const text = document.getElementById('conf-text').value.trim();
             const campus = document.getElementById('conf-campus').value;
+            const category = document.getElementById('conf-category').value;
 
             if (!text) return;
 
-            window.dsuDb.createConfession(text, campus);
+            window.dsuDb.createConfession(text, campus, category);
             closePostModal();
             window.showToast("Confession posted anonymously!");
             loadConfessions();
@@ -448,12 +648,11 @@
                         <span>${c.authorName}</span>
                         <span class="comment-item-time">${formatTime(c.createdAt)}</span>
                     </div>
-                    <div style="color: #475569; font-size:13.5px; line-height:1.4;">${escapeHTML(c.content)}</div>
+                    <div style="color: var(--text-main); font-size:13.5px; line-height:1.4;">${escapeHTML(c.content)}</div>
                 `;
                 container.appendChild(commentDiv);
             });
 
-            // Scroll container to bottom
             container.scrollTop = container.scrollHeight;
         }
 
