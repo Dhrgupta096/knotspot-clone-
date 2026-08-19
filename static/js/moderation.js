@@ -50,10 +50,17 @@ const moderationEngine = {
             return;
         }
 
+        // Clean up any existing overlay
+        const existing = document.getElementById('report-modal-overlay');
+        if (existing) existing.remove();
+
         const overlay = document.createElement('div');
         overlay.className = 'modal-overlay active';
         overlay.id = 'report-modal-overlay';
         overlay.style.zIndex = '9999';
+        overlay.onclick = (e) => {
+            if (e.target === overlay) overlay.remove();
+        };
 
         overlay.innerHTML = `
             <div class="modal-sheet" style="max-width: 420px;">
@@ -138,10 +145,16 @@ const moderationEngine = {
 
     // Show community guidelines modal
     showGuidelinesModal() {
+        const existing = document.getElementById('guidelines-modal-overlay');
+        if (existing) existing.remove();
+
         const overlay = document.createElement('div');
         overlay.className = 'modal-overlay active';
         overlay.id = 'guidelines-modal-overlay';
         overlay.style.zIndex = '9999';
+        overlay.onclick = (e) => {
+            if (e.target === overlay) overlay.remove();
+        };
 
         overlay.innerHTML = `
             <div class="modal-sheet" style="max-width: 440px;">
