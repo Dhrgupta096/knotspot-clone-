@@ -215,6 +215,7 @@ const SEED_ROOMS = [
         hostelType: "College Hostel",
         preferredBranch: "Computer Science & Engineering",
         contact: "+91 98765 43210",
+        authorEmail: "meera.nair@dsu.edu.in",
         amenities: ["Wi-Fi 📶", "Mess Food 🍽️", "Attached Bath 🚿", "Power Backup ⚡", "CCTV Security 🔒"],
         authorName: "Meera Nair",
         authorAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
@@ -233,6 +234,7 @@ const SEED_ROOMS = [
         hostelType: "Private PG",
         preferredBranch: "Any Branch",
         contact: "+91 99887 76655",
+        authorEmail: "siddharth.sen@dsu.edu.in",
         amenities: ["Wi-Fi 📶", "2x Food 🍛", "Washing Machine 🧺", "Hot Water ♨️"],
         authorName: "Siddharth Sen",
         authorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
@@ -251,6 +253,7 @@ const SEED_ROOMS = [
         hostelType: "Private PG",
         preferredBranch: "School of Engineering",
         contact: "+91 91234 56789",
+        authorEmail: "kunal.verma@dsu.edu.in",
         amenities: ["Wi-Fi 📶", "3x Food 🍽️", "Bike Parking 🛵", "Hot Water ♨️"],
         authorName: "Kunal Verma",
         authorAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
@@ -647,6 +650,7 @@ const db = {
             amenities: (amenities && amenities.length > 0) ? amenities : ["Wi-Fi 📶", "Mess Food 🍽️"],
             authorName: user ? user.name : "Student",
             authorAvatar: user ? user.avatar : "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+            authorEmail: user ? user.email : "student@dsu.edu.in",
             createdAt: new Date().toISOString(),
             images: [imageUrl || "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80"]
         };

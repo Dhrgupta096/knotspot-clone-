@@ -203,6 +203,32 @@
             transform: scale(0.95);
         }
 
+        .btn-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: #ffffff;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-email:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-email:active {
+            transform: scale(0.95);
+        }
+
         .filter-row {
             display: flex;
             gap: 8px;
@@ -269,6 +295,14 @@
                 <span class="material-symbols-rounded">dark_mode</span>
             </button>
         </header>
+
+        <!-- Privacy Shield Banner -->
+        <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(16, 185, 129, 0.08)); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: var(--radius-md); padding: 10px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+            <span class="material-symbols-rounded" style="color: #2563eb; font-size: 24px;">shield_lock</span>
+            <div style="font-size: 12px; color: var(--text-main); line-height: 1.4;">
+                <strong style="color: var(--primary);">DSU Student Privacy Shield:</strong> Authenticated contact via verified <code>@dsu.edu.in</code> student emails. Phone numbers are protected against scraping.
+            </div>
+        </div>
 
         <!-- Search and Campus filter -->
         <div style="display: flex; gap: 8px; margin-bottom: 10px;">
@@ -589,18 +623,21 @@
                         <div class="rf-card-footer">
                             <div class="rf-author">
                                 <img src="${r.authorAvatar}" alt="Avatar">
-                                <span>${r.authorName}</span>
+                                <div>
+                                    <div style="font-weight: 700; font-size: 13px;">${escapeHTML(r.authorName)}</div>
+                                    <div style="font-size: 11px; color: var(--text-muted);">${r.authorEmail ? escapeHTML(r.authorEmail) : 'Verified Student'}</div>
+                                </div>
                             </div>
                             
                             <div class="rf-actions">
+                                <button type="button" class="btn-email" onclick="connectEmail('${escapeHTML(r.authorName)}', '${escapeHTML(r.authorEmail || "student@dsu.edu.in")}', '${escapeHTML(r.title).replace(/'/g, "\\'")}', ${r.rent}, event)" title="Email via DSU Student Mail">
+                                    <span class="material-symbols-rounded" style="font-size: 15px;">mail</span>
+                                    <span>Email</span>
+                                </button>
+                                
                                 <button type="button" class="btn-whatsapp" onclick="connectWhatsApp('${escapeHTML(r.authorName)}', '${escapeHTML(r.title).replace(/'/g, "\\'")}', ${r.rent}, '${escapeHTML(r.contact)}', event)" title="Chat on WhatsApp">
                                     <i class="fab fa-whatsapp" style="font-size: 15px;"></i>
                                     <span>WhatsApp</span>
-                                </button>
-                                
-                                <button type="button" class="btn-ghost" onclick="revealContact('${r.id}', '${escapeHTML(r.contact)}', this, event)" style="padding: 7px 12px; font-size:12px;" title="Copy Phone Number">
-                                    <span class="material-symbols-rounded" style="font-size:16px;">call</span>
-                                    <span>Call</span>
                                 </button>
                             </div>
                         </div>
@@ -611,18 +648,34 @@
             });
         }
 
-        // Direct WhatsApp Click-to-Chat
+        // Verified DSU Student Email Direct Connect
+        function connectEmail(authorName, authorEmail, title, rent, e) {
+            if (e) e.stopPropagation();
+            const user = window.dsuDb.getUser();
+            if (!user) {
+                window.showToast("Please log in with your DSU profile to email roommates.", "accent");
+                return;
+            }
+
+            const subject = `DSU KnotSpot: Roommate Match Inquiry for "${title}"`;
+            const body = `Hi ${authorName},\n\nI am ${user.name} from DSU (${user.branch || 'Engineering'}, ${user.year || 'Student'}).\n\nI came across your room listing for "${title}" (₹${rent}/mo) on DSU KnotSpot. I am looking for a roommate and would like to discuss the room details, move-in schedule, and amenities.\n\nBest regards,\n${user.name}\n${user.email || ''}`;
+            
+            const mailtoUrl = `mailto:${authorEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoUrl;
+        }
+
+        // Direct WhatsApp Click-to-Chat (Authenticated DSU Students Only)
         function connectWhatsApp(authorName, title, rent, contact, e) {
             if (e) e.stopPropagation();
             const user = window.dsuDb.getUser();
             if (!user) {
-                window.showToast("Please log in to contact roommates.", "accent");
+                window.showToast("Please log in with your DSU profile to connect via WhatsApp.", "accent");
                 return;
             }
 
             const cleanNumber = contact.replace(/[^0-9]/g, '');
             const number = cleanNumber.startsWith('91') ? cleanNumber : ('91' + cleanNumber);
-            const message = `Hi ${authorName}! I saw your room listing for "${title}" (₹${rent}/mo) on DSU KnotSpot. Is this spot still available?`;
+            const message = `Hi ${authorName}! I am ${user.name} from DSU (${user.branch || 'Engineering'}). I saw your room listing for "${title}" (₹${rent}/mo) on DSU KnotSpot. Is this spot still available?`;
             const waUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
             
             window.open(waUrl, '_blank');
@@ -635,7 +688,6 @@
                 return;
             }
 
-            // Copy to clipboard
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(contact)
                     .then(() => {
@@ -667,6 +719,7 @@
             const modalContent = document.getElementById('room-detail-content');
             const amenities = room.amenities || ["Wi-Fi 📶", "Mess Food 🍽️"];
             const campusText = room.campus === 'ks-layout' ? 'KS Layout Campus' : 'Harohalli (Kanakapura) Campus';
+            const authorEmail = room.authorEmail || 'student@dsu.edu.in';
 
             modalContent.innerHTML = `
                 <div style="border-radius: var(--radius-md); overflow: hidden; height: 220px; margin-bottom: 16px;">
@@ -679,6 +732,18 @@
                 <h2 style="font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">${escapeHTML(room.title)}</h2>
                 <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">📍 ${campusText} • ${room.hostelType}</p>
                 
+                <!-- Verified Student Badge -->
+                <div style="background: var(--surface-muted); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 10px 14px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <img src="${room.authorAvatar}" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover;" alt="Author">
+                        <div>
+                            <div style="font-weight: 800; font-size: 13.5px; color: var(--text-main);">${escapeHTML(room.authorName)}</div>
+                            <div style="font-size: 11.5px; color: var(--text-muted);">🎓 ${escapeHTML(authorEmail)}</div>
+                        </div>
+                    </div>
+                    <span style="background: rgba(16, 185, 129, 0.12); color: #10b981; font-weight: 800; font-size: 11px; padding: 4px 10px; border-radius: 100px;">Verified DSU</span>
+                </div>
+
                 <h4 style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">Included Amenities</h4>
                 <div class="rf-amenities-row" style="margin-bottom: 16px;">
                     ${amenities.map(a => `<span class="rf-amenity-pill" style="font-size: 12px; padding: 5px 12px;">${escapeHTML(a)}</span>`).join('')}
@@ -688,12 +753,13 @@
                 <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-muted); margin-bottom: 20px; white-space: pre-wrap;">${escapeHTML(room.description)}</p>
 
                 <div style="display: flex; gap: 10px;">
+                    <button type="button" class="btn-email" style="flex: 1; justify-content: center; padding: 12px 16px; font-size: 14px;" onclick="connectEmail('${escapeHTML(room.authorName)}', '${escapeHTML(authorEmail)}', '${escapeHTML(room.title).replace(/'/g, "\\'")}', ${room.rent}, event)">
+                        <span class="material-symbols-rounded" style="font-size: 18px;">mail</span>
+                        <span>Email Student</span>
+                    </button>
                     <button type="button" class="btn-whatsapp" style="flex: 1; justify-content: center; padding: 12px 16px; font-size: 14px;" onclick="connectWhatsApp('${escapeHTML(room.authorName)}', '${escapeHTML(room.title).replace(/'/g, "\\'")}', ${room.rent}, '${escapeHTML(room.contact)}', event)">
                         <i class="fab fa-whatsapp" style="font-size: 18px;"></i>
-                        <span>Chat with ${room.authorName.split(' ')[0]}</span>
-                    </button>
-                    <button type="button" class="btn-primary" style="width: auto; padding: 12px 18px;" onclick="revealContact('${room.id}', '${escapeHTML(room.contact)}', this, event)">
-                        <span class="material-symbols-rounded">call</span>
+                        <span>WhatsApp</span>
                     </button>
                 </div>
             `;

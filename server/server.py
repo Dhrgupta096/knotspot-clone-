@@ -129,6 +129,7 @@ class KnotSpotHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             for r in rows:
                 r['authorName'] = r.pop('author_name', '')
                 r['authorAvatar'] = r.pop('author_avatar', '')
+                r['authorEmail'] = r.pop('author_email', 'student@dsu.edu.in')
                 r['roomType'] = r.pop('room_type', '')
                 r['genderPref'] = r.pop('gender_pref', 'Any Gender')
                 r['seaterType'] = r.pop('seater_type', '2 Seater')
@@ -420,10 +421,11 @@ class KnotSpotHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             room_id = body.get('id') or ("r-" + str(int(time.time() * 1000)))
             created_at = body.get('createdAt') or time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
 
-            cursor.execute("SELECT name, avatar FROM users ORDER BY created_at DESC LIMIT 1")
+            cursor.execute("SELECT name, avatar, email FROM users ORDER BY created_at DESC LIMIT 1")
             user = cursor.fetchone()
             author_name = body.get('authorName') or (user['name'] if user else "Student")
             author_avatar = body.get('authorAvatar') or (user['avatar'] if user else "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80")
+            author_email = body.get('authorEmail') or (user['email'] if user else "student@dsu.edu.in")
             
             img_list = body.get('images')
             if not img_list:
@@ -437,11 +439,11 @@ class KnotSpotHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             amenities = body.get('amenities', ["Wi-Fi 📶", "Mess Food 🍽️"])
 
             cursor.execute('''
-                INSERT OR REPLACE INTO rooms (id, title, description, rent, campus, room_type, gender_pref, seater_type, hostel_type, preferred_branch, contact, author_name, author_avatar, images, amenities, created_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT OR REPLACE INTO rooms (id, title, description, rent, campus, room_type, gender_pref, seater_type, hostel_type, preferred_branch, contact, author_name, author_avatar, author_email, images, amenities, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ''', (room_id, body.get('title'), body.get('description'), int(body.get('rent', 0)), body.get('campus'),
                   body.get('roomType'), gender_pref, seater_type, hostel_type, preferred_branch, body.get('contact'),
-                  author_name, author_avatar, json.dumps(img_list), json.dumps(amenities), created_at))
+                  author_name, author_avatar, author_email, json.dumps(img_list), json.dumps(amenities), created_at))
             conn.commit()
             conn.close()
 
@@ -449,7 +451,7 @@ class KnotSpotHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
                 'id': room_id, 'title': body.get('title'), 'description': body.get('description'),
                 'rent': int(body.get('rent', 0)), 'campus': body.get('campus'), 'roomType': body.get('roomType'),
                 'genderPref': gender_pref, 'seaterType': seater_type, 'hostelType': hostel_type, 'preferredBranch': preferred_branch,
-                'contact': body.get('contact'), 'authorName': author_name, 'authorAvatar': author_avatar,
+                'contact': body.get('contact'), 'authorName': author_name, 'authorAvatar': author_avatar, 'authorEmail': author_email,
                 'images': img_list, 'amenities': amenities, 'createdAt': created_at
             })
 

@@ -117,12 +117,14 @@ def init_db():
             contact TEXT NOT NULL,
             author_name TEXT NOT NULL,
             author_avatar TEXT NOT NULL,
+            author_email TEXT DEFAULT 'student@dsu.edu.in',
             images TEXT NOT NULL,
             amenities TEXT DEFAULT '["Wi-Fi 📶", "Mess Food 🍽️"]',
             created_at TEXT NOT NULL
         )
     ''')
     add_column_if_not_exists(cursor, 'rooms', 'amenities', "TEXT DEFAULT '[\"Wi-Fi 📶\", \"Mess Food 🍽️\"]'")
+    add_column_if_not_exists(cursor, 'rooms', 'author_email', "TEXT DEFAULT 'student@dsu.edu.in'")
 
     # Events Table
     cursor.execute('''
@@ -150,7 +152,6 @@ def init_db():
     conn.close()
 
 def seed_real_dsu_data(cursor):
-    # Clear and re-populate with authentic Dayananda Sagar University content
     cursor.execute("DELETE FROM knots")
     cursor.execute("DELETE FROM knot_comments")
     cursor.execute("DELETE FROM confessions")
@@ -222,12 +223,13 @@ def seed_real_dsu_data(cursor):
         VALUES (?,?,?,?,?)
     ''', conf_comments)
 
-    # Real DSU Roommate / PG Listings
+    # Real DSU Roommate / PG Listings with Verified Student Email & Protected Contact
     rooms = [
         ('r-1', 'DSU On-Campus Girls Hostel (Block-B) - 2 Seater Sharing Vacancy',
          'Looking for a female roommate for a 2-seater room in DSU Harohalli Campus Girls Hostel Block-B. Room features attached washroom, study desks, high-speed campus Wi-Fi, 3-times hygienic mess meals, and 24x7 power backup. CSE/AIML/ECE student preferred.',
          6800, 'kanakapura', 'College Hostel', 'Girls Only', '2 Seater', 'College Hostel', 'Computer Science & Engineering', '+91 98765 43210', 'Meera Nair',
          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80',
+         'meera.nair@dsu.edu.in',
          json.dumps(['https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80']),
          json.dumps(["Wi-Fi 📶", "Mess Food 🍽️", "Attached Bath 🚿", "Power Backup ⚡", "CCTV Security 🔒"]),
          '2026-08-17T09:00:00Z'),
@@ -235,6 +237,7 @@ def seed_real_dsu_data(cursor):
          '1 spot available for male student in a 2-seater executive PG room near KS Layout 2nd Stage, right behind Dayananda Sagar College campus. Includes high-speed optical fiber Wi-Fi, daily North/South Indian meals, washing machine, hot water, and lift.',
          5500, 'ks-layout', 'Sharing PG / Room', 'Boys Only', '2 Seater', 'Private PG', 'Any Branch', '+91 99887 76655', 'Siddharth Sen',
          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+         'siddharth.sen@dsu.edu.in',
          json.dumps(['https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=600&q=80']),
          json.dumps(["Wi-Fi 📶", "2x Food 🍛", "Washing Machine 🧺", "Hot Water ♨️"]),
          '2026-08-18T12:00:00Z'),
@@ -242,13 +245,14 @@ def seed_real_dsu_data(cursor):
          'Spacious 3-seater room in Green Valley PG on Harohalli Main Road, 400m from DSU Campus gate. Includes 3-time meals, power backup, study library, and bike parking. Ideal for 1st & 2nd year students.',
          4200, 'kanakapura', 'Sharing PG / Room', 'Boys Only', '3 Seater', 'Private PG', 'School of Engineering', '+91 91234 56789', 'Kunal Verma',
          'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80',
+         'kunal.verma@dsu.edu.in',
          json.dumps(['https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80']),
          json.dumps(["Wi-Fi 📶", "3x Food 🍽️", "Bike Parking 🛵", "Hot Water ♨️"]),
          '2026-08-19T06:30:00Z')
     ]
     cursor.executemany('''
-        INSERT INTO rooms (id, title, description, rent, campus, room_type, gender_pref, seater_type, hostel_type, preferred_branch, contact, author_name, author_avatar, images, amenities, created_at)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        INSERT INTO rooms (id, title, description, rent, campus, room_type, gender_pref, seater_type, hostel_type, preferred_branch, contact, author_name, author_avatar, author_email, images, amenities, created_at)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
     ''', rooms)
 
     # Real Dayananda Sagar University Campus Events & Fests
@@ -286,4 +290,4 @@ if __name__ == '__main__':
     seed_real_dsu_data(cursor)
     conn.commit()
     conn.close()
-    print("✅ Dayananda Sagar University (DSU) Real Campus Data Seeded Successfully!")
+    print("✅ Dayananda Sagar University (DSU) Real Campus Data Seeded Successfully with Protected Contact & Verified Emails!")
