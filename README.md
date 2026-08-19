@@ -1,163 +1,132 @@
-# 🎓 DSU KnotSpot — Dayananda Sagar University Campus Super-App
+# 🎓 DSU KnotSpot
 
-[![Platform](https://img.shields.io/badge/Platform-Web%20%7C%20PWA%20%7C%20Mobile-blue.svg)](https://github.com/Dhrgupta096/knotspot-clone-)
-[![Python](https://img.shields.io/badge/Python-3.9+-3776AB.svg?logo=python&logoColor=white)](https://python.org)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E.svg?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Database](https://img.shields.io/badge/Database-SQLite3-003B57.svg?logo=sqlite&logoColor=white)](https://sqlite.org)
-[![PWA](https://img.shields.io/badge/PWA-Offline%20Ready-5A0FC8.svg?logo=pwa&logoColor=white)](https://web.dev/progressive-web-apps/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+> **A student community platform built for Dayananda Sagar University (DSU) students across Kumaraswamy Layout & Harohalli campuses.**
 
-> **The all-in-one student social and campus utility hub engineered exclusively for Dayananda Sagar University (DSU).**
-> Connect with classmates across KS Layout & Harohalli campuses, find flatmates & PGs with student privacy shields, share anonymous rants, study notes, and track annual university fests like **DERBY 2026**.
+KnotSpot is a college web app designed to solve real daily problems students face at DSU: finding flatmates and PGs without leaking personal contact info, discussing academics and placements, sharing campus thoughts anonymously without cyberbullying, and staying updated on university fests like **DERBY** and **AIC-DSU Hackathons**.
 
 ---
 
-## 🌟 Key Features
+## 🌐 Live Access & Links
 
-| Module | Features & Capabilities |
+* **GitHub Repository:** [https://github.com/Dhrgupta096/knotspot-clone-](https://github.com/Dhrgupta096/knotspot-clone-)
+* **Local / College Wi-Fi Access:** Run `bash start.sh` on your laptop to open `http://localhost:3000` (or share the displayed Wi-Fi IP `http://10.x.x.x:3000` with friends on campus).
+
+---
+
+## 📌 Why I Built This (The Real Problems at DSU)
+
+| Real Student Problem | How KnotSpot Solves It |
 |---|---|
-| **📌 Knots Forum** | Branch & campus filtered discussion threads (`Academics`, `Coding`, `Campus Life`, `General`), upvotes, starred bookmarks, real-time comments drawer, and thread search. |
-| **🤫 Anonymous Confessions** | Zero-trace student anonymity, fun aliases (`Silent Cadet`, `Ghost Coder`), animated multi-emoji reactions (❤️, 🔥, 💀, 😭), reply drawer, and automated pre-moderation filter. |
-| **🛏️ Room Finder & Flatmate Match** | Dynamic **🔥 Match Score** algorithm (branch, campus, budget, gender), verified `@dsu.edu.in` email inquiries, masked phone numbers (anti-scraping), and 1-click WhatsApp connect. |
-| **🎉 Events & Fest Tracker** | Real-time countdowns for **DERBY 2026**, **AIC-DSU 36h Hackathon**, **SPARDHA Sports Cup**, live RSVP counter, **Google Calendar direct sync**, and Apple/Outlook `.ics` downloads. |
-| **🔑 Student Authentication** | Google Identity Services (GSI) / OAuth 2.0 integration, 1-Click Fast Student Demo login, and custom `@dsu.edu.in` student profile generator. |
-| **🛡️ Student Safety & Moderation** | Automated anti-doxxing filter (blocks phone numbers in confessions), hate speech shield, `🚩 Report Content` system, and community safety guidelines. |
-| **📱 Progressive Web App (PWA)** | Offline-first Service Worker cache (`sw.js`), native mobile app experience, installable to Home Screen on iOS (Safari) and Android (Chrome). |
-| **🤖 J.A.R.V.I.S. Core Assistant** | Standalone high-tech HUD interface with real-time macOS CPU/RAM/Battery telemetry, audio spectrum visualizer, and voice speech recognition on port `8765`. |
+| **Finding Roommates in KS Layout / Harohalli:** Students constantly spam WhatsApp batches and unofficial groups looking for flatmates, which leads to phone numbers getting leaked to random brokers. | **Privacy-Shield Room Finder:** Student phone numbers are protected. Students connect safely using their verified `@dsu.edu.in` college email or verified mutual WhatsApp. Includes a match score based on campus, branch, and budget. |
+| **Anonymous Confessions without Doxxing:** College confession pages on Instagram often lead to toxic doxxing, harassment, or students' phone numbers being posted publicly. | **Anti-Doxxing Pre-Filter & Report System:** A regex content filter automatically blocks phone numbers and abusive text before posting. Plus a 1-click report button for students to flag harmful posts. |
+| **Branch & Campus Discussions (Knots):** First years and seniors need a clean place to ask about internals, lab exams, electives, coding problems, and college shuttle timings. | **Knots Forum:** Category-filtered threads (`Academics`, `Coding`, `Campus Life`, `General`) with upvotes, bookmarks, and comment replies. |
+| **Missing Campus Events & Deadlines:** Students often miss fest registrations, hackathon deadlines, or sports trials because notices get buried in emails. | **Events & Fest Hub:** Direct countdown timers for annual fests like **DERBY 2026** and **AIC-DSU Hackathon**, with 1-click **Add to Google Calendar** and Apple/Outlook `.ics` download. |
 
 ---
 
-## 🏛️ System Architecture
+## 💻 Tech Stack (No Bloat, Fast on Mobile)
 
-```
-                                  +---------------------------------------+
-                                  |    DSU Student Client (Browser/PWA)   |
-                                  +---------------------------------------+
-                                         |                         |
-               Static Asset / PWA Cache  |                         | REST API Calls
-                     (sw.js / Port 3000) |                         | (Port 5000)
-                                         v                         v
-                          +--------------------+         +-----------------------+
-                          |   Frontend Server  |         |   Python REST API     |
-                          | (http.server:3000) |         | (server/server.py:5000)
-                          +--------------------+         +-----------------------+
-                                                                   |
-                                                         SQL Queries / Transactions
-                                                                   |
-                                                                   v
-                                                         +-----------------------+
-                                                         |  SQLite DB (knotspot) |
-                                                         | - users, knots, rooms |
-                                                         | - confessions, events |
-                                                         | - reports & comments  |
-                                                         +-----------------------+
-```
+* **Frontend:** Clean Vanilla HTML5, CSS3, and JavaScript (ES6+). Zero heavy frameworks like React or Angular, so pages load in under a second even on spotty college Wi-Fi.
+* **Backend:** Lightweight Python 3 REST API (`server/server.py`).
+* **Database:** SQLite (`server/knotspot.db`) with real Dayananda Sagar University campus data pre-seeded.
+* **PWA / Mobile:** Offline-ready Service Worker (`sw.js`) and Web App Manifest (`manifest.json`) — installable directly to your phone's home screen on Android and iOS Safari.
 
 ---
 
-## 📂 Repository Structure
+## 📱 Features Walkthrough
 
-```
-dsu-knotspot/
-├── index.html                 # Main Landing Page with Hero, Features & Google Auth Modal
-├── start.sh                   # Auto-detecting multi-device local launch script
-├── sw.js                      # Service Worker caching engine for Offline PWA
-├── manifest.json              # Web App Manifest for mobile installation
-├── Dockerfile                 # Containerization specification
-├── Procfile                   # Cloud process file for Render / Railway
-├── requirements.txt           # Python dependencies
-│
-├── knots/                     # Campus Discussion Forum
-│   └── index.html
-├── confessions/               # Anonymous Student Confessions & Emoji Reactions
-│   └── index.html
-├── roomfinder/                # Privacy-Protected Roommate & PG Matcher
-│   └── index.html
-├── events/                    # Campus Fests, Calendar Sync & RSVP Tracker
-│   └── index.html
-│
-├── server/                    # Python Backend & SQLite Database Engine
-│   ├── server.py              # Lightweight REST API server (port 5000)
-│   ├── database.py            # SQLite schema migrations & realistic DSU seed data
-│   └── knotspot.db            # Persistent SQLite database file
-│
-├── static/
-│   ├── css/                   # Design tokens, themes & responsive layouts
-│   ├── js/
-│   │   ├── app.js             # Global auth, toast notifications & modal manager
-│   │   ├── db.js              # Hybrid data layer (LocalStorage + REST API Sync)
-│   │   ├── theme.js           # Dark/Light mode theme switcher
-│   │   └── moderation.js      # Anti-doxxing, content filter & report system
-│   └── images/                # App icons & badges
-│
-└── jarvis/                    # J.A.R.V.I.S. HUD Core Assistant & Telemetry
-    ├── index.html             # Sci-Fi canvas visualizer & telemetry display
-    ├── jarvis_telemetry.py    # WebSocket system monitor (port 8765)
-    └── start_jarvis.sh
-```
+### 1. 🛏️ Room & Flatmate Finder
+* Search and filter PGs/hostels near **KS Layout** or **Harohalli (Kanakapura Road)**.
+* Filter by rent budget (Under ₹8k, ₹8k–₹15k, ₹15k+), room type (Single, Double, Flat share), and gender preference.
+* **🔥 Match Score:** Automatically calculates compatibility percentage based on your campus, branch, and budget.
+* **Privacy Shield:** Masked phone numbers + 1-click pre-filled college email match request.
+
+### 2. 🤫 Anonymous Confessions
+* Share college thoughts, funny campus moments, or rants completely anonymously.
+* Every post gets a random alias (e.g., *Silent Cadet*, *Ghost Coder*).
+* Interactive animated reactions: ❤️, 🔥, 💀, 😭.
+* Built-in moderation engine that rejects any post containing phone numbers or harassment.
+
+### 3. 📌 Knots Forum
+* Start discussion threads for exam tips, coding questions, campus transit schedules, or project team formation.
+* Filter by campus and category.
+* Upvote helpful answers and bookmark threads to read later.
+
+### 4. 🎉 Events Tracker
+* Live countdown timers for major DSU events (**DERBY Cultural Fest**, **AIC-DSU 36h Hackathon**, **SPARDHA Sports Cup**, **IEEE Tech-Vision**).
+* 1-Click **Google Calendar Sync** (adds event date, venue, and description straight to your Google account).
+* Apple / Outlook `.ics` calendar file download.
+* RSVP counter showing how many DSU students are attending.
+
+### 5. 🔑 Login Options
+* **Google Sign-In:** Official Google Identity authentication.
+* **Custom Profile:** Set your DSU branch (`CSE`, `AIML`, `ECE`, `B.Pharm`, etc.), year, and campus.
+* **1-Click Demo Login:** Fast login for quick testing without typing credentials.
 
 ---
 
-## 🔌 REST API Reference
+## 🚀 How to Run Locally
 
-| Endpoint | Method | Description |
-|---|---|---|
-| `/api/health` | `GET` | Health check & service status |
-| `/api/user` | `POST` | Create or update student profile |
-| `/api/auth/google` | `POST` | Verify Google ID token against Google OAuth endpoints |
-| `/api/logout` | `POST` | Safe user session termination |
-| `/api/knots` | `GET` / `POST` | Retrieve all discussion threads / Publish a new thread |
-| `/api/knots/upvote` | `POST` | Toggle thread upvote with duplicate prevention |
-| `/api/knots/star` | `POST` | Bookmark/star a thread |
-| `/api/knots/comments` | `GET` / `POST` | Retrieve or submit comments for a thread |
-| `/api/confessions` | `GET` / `POST` | Retrieve anonymous confessions / Submit new confession |
-| `/api/confessions/react`| `POST` | Add/toggle emoji reaction (`heart`, `fire`, `skull`, `cry`) |
-| `/api/confessions/comments`| `GET` / `POST` | Retrieve or post anonymous replies to a confession |
-| `/api/rooms` | `GET` / `POST` | Fetch roommate & PG listings / Publish new room vacancy |
-| `/api/events` | `GET` | List all campus events, fests, and hackathons |
-| `/api/events/rsvp` | `POST` | Toggle RSVP status for an event |
-| `/api/reports` | `GET` / `POST` | Submit a content moderation report / Fetch pending reports |
+### Prerequisites
+* Python 3.9+ installed on your computer.
 
----
-
-## ⚡ Quickstart Guide
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/Dhrgupta096/knotspot-clone-.git
-cd knotspot-clone-
-```
-
-### 2. Launch Locally (1 Command)
+### Quick Start (1 Command)
 ```bash
 bash start.sh
 ```
-This automatically:
-* Seeds the SQLite database with authentic Dayananda Sagar University data.
-* Launches the Python REST API server on `http://localhost:5000`.
-* Launches the Frontend Web Server on `http://localhost:3000`.
-* Displays your LAN Wi-Fi IP (e.g. `http://10.1.7.54:3000`) for mobile testing.
+
+This single command will:
+1. Initialize the SQLite database with DSU campus seed data.
+2. Start the Python REST API on `http://localhost:5000`.
+3. Start the Web App on `http://localhost:3000`.
+4. Show your local Wi-Fi IP address so you can open it on your phone.
+
+Open **`http://localhost:3000`** in your browser to use KnotSpot.
 
 ---
 
-## 🌐 1-Click Cloud Deployment
+## 📂 Project Structure
 
-### Deploy Frontend on Vercel:
-1. Go to [vercel.com](https://vercel.com) and import `knotspot-clone-`.
-2. Click **Deploy**. Vercel will deploy the site live with global CDN in 15 seconds.
-
-### Deploy Backend on Render:
-1. Go to [render.com](https://render.com) $\rightarrow$ **New Web Service** $\rightarrow$ select `knotspot-clone-`.
-2. Set Runtime to `Python 3` and Start Command to `python3 server/server.py`.
+```
+dsu-knotspot/
+├── index.html                 # Landing page with hero, features & login modal
+├── start.sh                   # 1-click startup script for both frontend & backend
+├── sw.js                      # Service Worker for offline PWA caching
+├── manifest.json              # Web app manifest for mobile installation
+├── netlify.toml               # Deployment config for Netlify
+├── Procfile                   # Process file for Render / Railway
+├── requirements.txt           # Python backend dependencies
+│
+├── knots/                     # Knots campus forum page
+│   └── index.html
+├── confessions/               # Anonymous confessions page & emoji reactions
+│   └── index.html
+├── roomfinder/                # Roommate & PG finder with privacy protection
+│   └── index.html
+├── events/                    # Campus events & Google Calendar sync page
+│   └── index.html
+│
+├── server/                    # Backend API and database
+│   ├── server.py              # Python REST API server (port 5000)
+│   ├── database.py            # SQLite schema & DSU seed data
+│   └── knotspot.db            # Persistent SQLite database
+│
+└── static/
+    ├── css/style.css          # Design system & dark/light mode styles
+    └── js/
+        ├── app.js             # Authentication, navigation & toasts
+        ├── db.js              # LocalStorage + REST API data sync layer
+        ├── moderation.js      # Anti-doxxing & content safety filter
+        └── theme.js           # Theme switcher (Dark / Light mode)
+```
 
 ---
 
-## 🛡️ Privacy & Safety Model
-* **Student Privacy Shield:** Personal mobile numbers are masked. Students connect through authenticated `@dsu.edu.in` emails or mutual WhatsApp handshakes.
-* **Anti-Doxxing Pre-Filter:** Prevents phone numbers and room numbers from being posted in anonymous confessions.
-* **Student Moderation:** Posts can be reported in 1 click and hidden pending review.
+## 🔒 Safety & Privacy Rules
+* **No Doxxing:** Phone numbers and room numbers cannot be posted in confessions.
+* **Student Privacy:** Personal phone numbers are masked by default in room listings.
+* **Student Moderation:** Any student can flag problematic content using the `🚩 Report` button.
 
 ---
 
-## 📄 License
-This project is licensed under the MIT License — open for the Dayananda Sagar University student community.
+**Built with ❤️ for Dayananda Sagar University students.**

@@ -505,6 +505,11 @@
                     Continue with Google
                 </button>
 
+                <button type="button" onclick="shareApp()" class="btn-primary" style="margin-top: 10px; background: var(--surface-muted); color: var(--text-main); border: 1px solid var(--border); box-shadow: none;">
+                    <span class="material-symbols-rounded" style="font-size: 18px; color: var(--primary);">share</span>
+                    <span>Share with Classmates</span>
+                </button>
+
                 <div class="lock-info">
                     <span class="material-symbols-outlined">lock</span>
                     <span>Securely verified student access.</span>
@@ -641,11 +646,10 @@
                 <a href="confessions/index.html">Confessions</a>
                 <a href="roomfinder/index.html">Room Finder</a>
                 <a href="events/index.html">Events</a>
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
+                <a href="javascript:void(0)" onclick="if(window.moderationEngine) window.moderationEngine.showGuidelinesModal()">Safety Guidelines</a>
             </div>
             <div class="footer-copy">
-                &copy; 2026 KnotSpot DSU. Built for Dayananda Sagar University.
+                Made by DSU students for Dayananda Sagar University.
             </div>
         </footer>
 
@@ -653,6 +657,7 @@
 
     <!-- Scripts -->
     <script src="static/js/db.js"></script>
+    <script src="static/js/moderation.js"></script>
     <script src="static/js/app.js"></script>
 </body>
 </html>

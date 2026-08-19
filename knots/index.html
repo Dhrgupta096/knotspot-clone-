@@ -390,9 +390,13 @@
             loadKnots();
         }
 
+        let _knotsSearchTimer;
         function searchKnots(query) {
-            searchQuery = query.toLowerCase().trim();
-            loadKnots();
+            clearTimeout(_knotsSearchTimer);
+            _knotsSearchTimer = setTimeout(() => {
+                searchQuery = query.toLowerCase().trim();
+                loadKnots();
+            }, 120);
         }
 
         function loadKnots() {

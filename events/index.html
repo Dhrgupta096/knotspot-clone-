@@ -308,6 +308,7 @@
 
     <!-- Global Scripts -->
     <script src="../static/js/db.js"></script>
+    <script src="../static/js/moderation.js"></script>
     <script src="../static/js/app.js"></script>
     <script>
         let eventFilter = 'all';
@@ -339,9 +340,13 @@
             loadEvents();
         }
 
+        let _eventsSearchTimer;
         function searchEvents(query) {
-            eventSearchQuery = query.toLowerCase().trim();
-            loadEvents();
+            clearTimeout(_eventsSearchTimer);
+            _eventsSearchTimer = setTimeout(() => {
+                eventSearchQuery = query.toLowerCase().trim();
+                loadEvents();
+            }, 120);
         }
 
         // Live countdown string calculator with cross-browser Safari/WebKit normalizer
@@ -540,7 +545,25 @@
                 } else {
                     window.showToast("RSVP cancelled.");
                 }
-                loadEvents();
+
+                if (eventFilter === 'rsvps') {
+                    loadEvents();
+                } else {
+                    // Update in-place
+                    const rsvpClass = updated.hasRsvp ? 'going' : 'not-going';
+                    const rsvpText = updated.hasRsvp ? 'Going' : 'RSVP';
+                    const rsvpIcon = updated.hasRsvp ? 'check_circle' : 'event_available';
+                    btn.className = `rsvp-btn ${rsvpClass}`;
+                    btn.innerHTML = `
+                        <span class="material-symbols-rounded" style="font-size:16px;">${rsvpIcon}</span>
+                        <span>${rsvpText}</span>
+                    `;
+                    const card = btn.closest('.event-card');
+                    if (card) {
+                        const countEl = card.querySelector('.event-rsvps-count span:last-child');
+                        if (countEl) countEl.textContent = `${updated.rsvpsCount} attending`;
+                    }
+                }
             }
         }
 

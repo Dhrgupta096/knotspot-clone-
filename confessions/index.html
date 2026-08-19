@@ -423,9 +423,13 @@
             loadConfessions();
         }
 
+        let _confSearchTimer;
         function searchConfessions(query) {
-            searchQuery = query.toLowerCase().trim();
-            loadConfessions();
+            clearTimeout(_confSearchTimer);
+            _confSearchTimer = setTimeout(() => {
+                searchQuery = query.toLowerCase().trim();
+                loadConfessions();
+            }, 120);
         }
 
         function loadConfessions() {
@@ -527,7 +531,7 @@
             });
         }
 
-        // Reaction Handler with Animated Pop
+        // Reaction Handler with Animated Pop and In-Place 0ms DOM update
         function reactConfession(id, reactionType, event) {
             const user = window.dsuDb.getUser();
             if (!user) {
@@ -540,8 +544,35 @@
 
             const updated = window.dsuDb.reactConfession(id, reactionType);
             if (updated) {
-                // Smooth reload of confession card
-                loadConfessions();
+                const card = document.getElementById(`conf-card-${id}`);
+                if (card) {
+                    const userEmail = user.email || 'guest';
+                    const reactions = updated.reactions || { heart: 0, fire: 0, skull: 0, cry: 0 };
+                    const userReaction = (updated.userReactions && updated.userReactions[userEmail]) || null;
+                    const bar = card.querySelector('.conf-reactions-bar');
+                    if (bar) {
+                        bar.innerHTML = `
+                            <button type="button" class="reaction-btn ${userReaction === 'heart' ? 'active' : ''}" onclick="reactConfession('${updated.id}', 'heart', event)">
+                                <span>❤️</span>
+                                <span>${reactions.heart || 0}</span>
+                            </button>
+                            <button type="button" class="reaction-btn ${userReaction === 'fire' ? 'active' : ''}" onclick="reactConfession('${updated.id}', 'fire', event)">
+                                <span>🔥</span>
+                                <span>${reactions.fire || 0}</span>
+                            </button>
+                            <button type="button" class="reaction-btn ${userReaction === 'skull' ? 'active' : ''}" onclick="reactConfession('${updated.id}', 'skull', event)">
+                                <span>💀</span>
+                                <span>${reactions.skull || 0}</span>
+                            </button>
+                            <button type="button" class="reaction-btn ${userReaction === 'cry' ? 'active' : ''}" onclick="reactConfession('${updated.id}', 'cry', event)">
+                                <span>😭</span>
+                                <span>${reactions.cry || 0}</span>
+                            </button>
+                        `;
+                    }
+                } else {
+                    loadConfessions();
+                }
             }
         }
 

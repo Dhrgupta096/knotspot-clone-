@@ -499,6 +499,7 @@
 
     <!-- Global Scripts -->
     <script src="../static/js/db.js"></script>
+    <script src="../static/js/moderation.js"></script>
     <script src="../static/js/app.js"></script>
     <script>
         let selectedRoomType = 'all';
@@ -530,9 +531,13 @@
             loadRooms();
         }
 
+        let _roomSearchTimer;
         function searchRooms(query) {
-            roomSearchQuery = query.toLowerCase().trim();
-            loadRooms();
+            clearTimeout(_roomSearchTimer);
+            _roomSearchTimer = setTimeout(() => {
+                roomSearchQuery = query.toLowerCase().trim();
+                loadRooms();
+            }, 120);
         }
 
         function loadRooms() {
@@ -601,7 +606,7 @@
 
                 card.innerHTML = `
                     <div class="rf-card-image-wrap">
-                        <img src="${r.images && r.images[0] ? r.images[0] : 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80'}" alt="Room image" loading="lazy" decoding="async">
+                        <img src="${r.images && r.images[0] ? r.images[0] : 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80'}" alt="Room image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80';">
                         <div class="rf-campus-badge">${campusText} • ${hostelTag}</div>
                         <div class="rf-price-badge">₹${r.rent.toLocaleString()}/mo</div>
                     </div>

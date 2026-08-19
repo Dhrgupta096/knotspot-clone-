@@ -44,22 +44,31 @@ function showToast(message, type = 'primary') {
     }, 3000);
 }
 
-// Check if user is logged in
-function checkAuthState() {
-    const path = window.location.pathname;
-    const isSubpage = path.includes('/knots/') || path.includes('/confessions/') || path.includes('/roomfinder/') || path.includes('/events/');
-    const isLanding = !isSubpage;
-    
-    const user = window.dsuDb.getUser();
-
-    if (!user && !isLanding) {
-        // Redirect to landing page if trying to access sub-pages without login
-        showToast("Please sign in to access student features.", "accent");
-        setTimeout(() => {
-            const rootPath = getRootPath();
-            window.location.href = rootPath + 'index.html';
-        }, 1500);
+// Global Share App Helper
+function shareApp() {
+    const shareUrl = window.location.origin + getRootPath();
+    const shareText = `🎓 Hey! Check out KnotSpot DSU — our campus hub for finding flatmates & PGs in KS Layout/Harohalli, asking seniors about exams, anonymous confessions, and fest countdowns:\n${shareUrl}`;
+    if (navigator.share) {
+        navigator.share({
+            title: 'DSU KnotSpot',
+            text: shareText,
+            url: shareUrl
+        }).catch(() => {});
+    } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareText).then(() => {
+            showToast("KnotSpot link copied! Share with your classmates.");
+        }).catch(() => {
+            showToast("Link: " + shareUrl);
+        });
+    } else {
+        showToast("Link: " + shareUrl);
     }
+}
+window.shareApp = shareApp;
+
+// Check if user is logged in (informative banner for guests, allowing read access)
+function checkAuthState() {
+    // Guest students can browse freely; interactive actions prompt login
 }
 
 // Helper to determine root path depth for correct routing
