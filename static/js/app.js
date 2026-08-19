@@ -77,10 +77,11 @@ function renderNavigation() {
     if (!navPlaceholder) return;
 
     const root = getRootPath();
-    const path = window.location.pathname;
+    const isSubPage = path.includes('/knots/') || path.includes('/confessions/') || path.includes('/roomfinder/') || path.includes('/events/');
+    const isHome = !isSubPage && (path === '/' || path.endsWith('/') || path.endsWith('/index.html') || path.endsWith('index.html') || path.endsWith('dsu-knotspot/'));
 
     const tabs = [
-        { name: 'Home', icon: 'home', link: 'index.html', active: path === '/' || path.endsWith('index.html') || path.endsWith('dsu-knotspot/') },
+        { name: 'Home', icon: 'home', link: 'index.html', active: isHome },
         { name: 'Knots', icon: 'forum', link: 'knots/index.html', active: path.includes('/knots/') },
         { name: 'Confessions', icon: 'visibility_off', link: 'confessions/index.html', active: path.includes('/confessions/') },
         { name: 'Rooms', icon: 'bed', link: 'roomfinder/index.html', active: path.includes('/roomfinder/') },

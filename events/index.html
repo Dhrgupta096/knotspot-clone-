@@ -318,6 +318,11 @@
             loadEvents();
         });
 
+        // Auto-refresh when background data sync completes
+        window.addEventListener('dsu:data-synced', () => {
+            loadEvents();
+        });
+
         function toggleEventsFilter(filter, btn) {
             eventFilter = filter;
             const tabs = btn.parentNode.querySelectorAll('.segmented-tab');
@@ -339,10 +344,15 @@
             loadEvents();
         }
 
-        // Live countdown string calculator
+        // Live countdown string calculator with cross-browser Safari/WebKit normalizer
         function getEventCountdown(isoDate) {
             if (!isoDate) return '📅 Upcoming';
-            const eventDate = new Date(isoDate);
+            const normalized = (typeof isoDate === 'string' && !isoDate.includes('Z') && !isoDate.includes('+')) 
+                               ? isoDate + 'Z' 
+                               : isoDate;
+            const eventDate = new Date(normalized);
+            if (isNaN(eventDate.getTime())) return '📅 Upcoming';
+
             const now = new Date();
             const diffTime = eventDate - now;
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));

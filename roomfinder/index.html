@@ -509,6 +509,11 @@
             loadRooms();
         });
 
+        // Auto-refresh when background data sync completes
+        window.addEventListener('dsu:data-synced', () => {
+            loadRooms();
+        });
+
         function filterRoomType(type, btn) {
             selectedRoomType = type;
             const tabs = btn.parentNode.querySelectorAll('.segmented-tab');
