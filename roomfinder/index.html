@@ -693,6 +693,11 @@
                 return;
             }
 
+            if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                window.location.href = `tel:${contact}`;
+                return;
+            }
+
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(contact)
                     .then(() => {
@@ -709,10 +714,10 @@
                         }, 2500);
                     })
                     .catch(() => {
-                        alert(`Contact Number: ${contact}`);
+                        window.showToast(`Contact: ${contact}`);
                     });
             } else {
-                alert(`Contact Number: ${contact}`);
+                window.showToast(`Contact: ${contact}`);
             }
         }
 
@@ -845,7 +850,8 @@
         }
 
         function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, 
+            if (str === null || str === undefined) return '';
+            return String(str).replace(/[&<>'"]/g, 
                 tag => ({
                     '&': '&amp;',
                     '<': '&lt;',

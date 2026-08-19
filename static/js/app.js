@@ -268,8 +268,13 @@ function quickDemoLogin(btn) {
 
     showToast("Welcome, Aarav! Signed in successfully.");
     setTimeout(() => {
-        window.location.href = getRootPath() + 'knots/index.html';
-    }, 600);
+        const p = window.location.pathname;
+        if (p.includes('/knots/') || p.includes('/confessions/') || p.includes('/roomfinder/') || p.includes('/events/')) {
+            window.location.reload();
+        } else {
+            window.location.href = getRootPath() + 'knots/index.html';
+        }
+    }, 500);
 }
 
 async function handleGoogleCredentialResponse(response) {
@@ -279,17 +284,24 @@ async function handleGoogleCredentialResponse(response) {
     }
     const branch = document.getElementById('auth-branch')?.value || 'CSE';
     const campus = document.getElementById('auth-campus')?.value || 'ks-layout';
-
-    showToast("Verifying Google ID Token with backend server...");
+    
+    showToast("Verifying Google student account...", "accent");
     const user = await window.dsuDb.verifyGoogleToken(response.credential, branch, campus);
-
-    if (user && !user.error) {
-        showToast(`Google Auth verified! Welcome, ${user.name}.`);
+    
+    if (user) {
+        const overlay = document.querySelector('.modal-overlay.active');
+        if (overlay) overlay.remove();
+        showToast(`Welcome, ${user.name}! Signed in via Google.`);
         setTimeout(() => {
-            window.location.href = getRootPath() + 'knots/index.html';
-        }, 1000);
+            const p = window.location.pathname;
+            if (p.includes('/knots/') || p.includes('/confessions/') || p.includes('/roomfinder/') || p.includes('/events/')) {
+                window.location.reload();
+            } else {
+                window.location.href = getRootPath() + 'knots/index.html';
+            }
+        }, 500);
     } else {
-        showToast("Backend verification failed: Invalid Google ID token.", "accent");
+        showToast("Failed to verify Google token with backend. Please retry.", "accent");
     }
 }
 
@@ -323,8 +335,13 @@ function handleAuthSubmit(e, form) {
 
     showToast(`Welcome, ${name}! Logged in as verified student.`);
     setTimeout(() => {
-        window.location.href = getRootPath() + 'knots/index.html';
-    }, 1000);
+        const p = window.location.pathname;
+        if (p.includes('/knots/') || p.includes('/confessions/') || p.includes('/roomfinder/') || p.includes('/events/')) {
+            window.location.reload();
+        } else {
+            window.location.href = getRootPath() + 'knots/index.html';
+        }
+    }, 600);
 }
 
 // Profile Modal Renderer
