@@ -375,6 +375,11 @@
             loadKnots();
         });
 
+        // Auto-refresh when background data sync completes
+        window.addEventListener('dsu:data-synced', () => {
+            loadKnots();
+        });
+
         function filterCategory(category, btn) {
             selectedCategory = category;
 

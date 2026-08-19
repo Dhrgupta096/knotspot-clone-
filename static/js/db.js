@@ -415,10 +415,23 @@ if (document.readyState === 'loading') {
     syncDataFromServer(false);
 }
 
+// Resilient LocalStorage Parser
+function safeGetJson(key, fallback = null) {
+    try {
+        const item = localStorage.getItem(key);
+        if (!item) return fallback;
+        const parsed = JSON.parse(item);
+        return parsed !== null ? parsed : fallback;
+    } catch (e) {
+        console.warn(`[DSU DB] Corrupted storage for key "${key}", falling back.`);
+        return fallback;
+    }
+}
+
 // DB Access Methods
 const db = {
     getUser() {
-        return JSON.parse(localStorage.getItem('dsu_user'));
+        return safeGetJson('dsu_user', null);
     },
     async verifyGoogleToken(idToken, branch = 'CSE', campus = 'ks-layout') {
         const res = await apiFetch('/auth/google', {
@@ -444,7 +457,7 @@ const db = {
 
     // Knots (Forum Discussions)
     getKnots() {
-        return JSON.parse(localStorage.getItem('dsu_knots')) || [];
+        return safeGetJson('dsu_knots', []);
     },
     getKnot(id) {
         const knots = this.getKnots();
@@ -505,11 +518,11 @@ const db = {
 
     // Comments for Knots
     getKnotComments(knotId) {
-        const comments = JSON.parse(localStorage.getItem('dsu_comments')) || [];
+        const comments = safeGetJson('dsu_comments', []);
         return comments.filter(c => c.knotId === knotId).sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
     },
     addKnotComment(knotId, content) {
-        const comments = JSON.parse(localStorage.getItem('dsu_comments')) || [];
+        const comments = safeGetJson('dsu_comments', []);
         const user = this.getUser();
         const newComment = {
             id: "c-" + Date.now(),
@@ -535,7 +548,7 @@ const db = {
 
     // Anonymous Confessions
     getConfessions() {
-        const confs = JSON.parse(localStorage.getItem('dsu_confessions')) || [];
+        const confs = safeGetJson('dsu_confessions', []);
         confs.forEach(c => {
             if (!c.reactions) {
                 c.reactions = { heart: c.likesCount || 0, fire: 0, skull: 0, cry: 0 };
@@ -604,11 +617,11 @@ const db = {
 
     // Comments for Confessions
     getConfessionComments(confessionId) {
-        const comments = JSON.parse(localStorage.getItem('dsu_conf_comments')) || [];
+        const comments = safeGetJson('dsu_conf_comments', []);
         return comments.filter(c => c.confessionId === confessionId).sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
     },
     addConfessionComment(confessionId, content) {
-        const comments = JSON.parse(localStorage.getItem('dsu_conf_comments')) || [];
+        const comments = safeGetJson('dsu_conf_comments', []);
         const names = ["Anonymous Ninja", "Curious Owl", "Wandering Brain", "Mystery Student", "Code Debugger"];
         const randomName = names[Math.floor(Math.random() * names.length)];
 
@@ -635,7 +648,7 @@ const db = {
 
     // Roommate Finder Listings
     getRooms() {
-        return JSON.parse(localStorage.getItem('dsu_rooms')) || [];
+        return safeGetJson('dsu_rooms', []);
     },
     calculateRoomMatchScore(room, user) {
         if (!user) return 85;
@@ -678,9 +691,9 @@ const db = {
         return newRoom;
     },
 
-    // Events Tracker
+    // Campus Events
     getEvents() {
-        return JSON.parse(localStorage.getItem('dsu_events')) || [];
+        return safeGetJson('dsu_events', []);
     },
     rsvpEvent(id) {
         const events = this.getEvents();

@@ -6,29 +6,37 @@
    - API Requests (/api/): Direct Network (no stale API data)
    ========================================================================== */
 
-const CACHE_NAME = 'dsu-knotspot-v2.1';
-const PRECACHE_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/static/css/style.css',
-  '/static/js/theme.js',
-  '/static/js/db.js',
-  '/static/js/app.js',
-  '/static/js/moderation.js',
-  '/static/js/firebase-config.js',
-  '/static/images/favicon.png',
-  '/confessions/index.html',
-  '/knots/index.html',
-  '/roomfinder/index.html',
-  '/events/index.html'
+const CACHE_NAME = 'dsu-knotspot-v2.2';
+
+// Dynamic base resolution for GitHub Pages (/knotspot-clone-/) vs Root Domains (/)
+const getScopePath = (rel) => {
+  const scope = self.registration.scope;
+  return new URL(rel, scope).pathname;
+};
+
+const RELATIVE_ASSETS = [
+  '',
+  'index.html',
+  'manifest.json',
+  'static/css/style.css',
+  'static/js/theme.js',
+  'static/js/db.js',
+  'static/js/app.js',
+  'static/js/moderation.js',
+  'static/js/firebase-config.js',
+  'static/images/favicon.png',
+  'confessions/index.html',
+  'knots/index.html',
+  'roomfinder/index.html',
+  'events/index.html'
 ];
 
 // Install: Pre-cache core shell assets
 self.addEventListener('install', (event) => {
+  const precacheUrls = RELATIVE_ASSETS.map(getScopePath);
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(PRECACHE_ASSETS).catch((err) => {
+      return cache.addAll(precacheUrls).catch((err) => {
         console.warn('[SW] Non-critical asset failed to precache:', err);
       });
     })

@@ -402,6 +402,11 @@
             loadConfessions();
         });
 
+        // Auto-refresh when background data sync completes
+        window.addEventListener('dsu:data-synced', () => {
+            loadConfessions();
+        });
+
         function filterConfessionsCampus(campus, btn) {
             currentCampus = campus;
             const tabs = btn.parentNode.querySelectorAll('.segmented-tab');
