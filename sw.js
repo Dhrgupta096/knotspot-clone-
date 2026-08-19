@@ -1,68 +1,100 @@
-const CACHE_NAME = 'dsu-knotspot-v2';
-const ASSETS = [
-  'index.html',
-  'manifest.json',
-  'static/css/style.css',
-  'static/js/theme.js',
-  'static/js/db.js',
-  'static/js/app.js',
-  'static/js/firebase-config.js',
-  'static/images/favicon.png',
-  'confessions/index.html',
-  'knots/index.html',
-  'roomfinder/index.html',
-  'events/index.html'
+/* ==========================================================================
+   DSU KnotSpot Service Worker (v2.1)
+   Strategies:
+   - Navigation (HTML): Network-First with Cache Fallback (prevents stale deploys)
+   - Static Assets (CSS, JS, Fonts): Stale-While-Revalidate (instant loads + background updates)
+   - API Requests (/api/): Direct Network (no stale API data)
+   ========================================================================== */
+
+const CACHE_NAME = 'dsu-knotspot-v2.1';
+const PRECACHE_ASSETS = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/static/css/style.css',
+  '/static/js/theme.js',
+  '/static/js/db.js',
+  '/static/js/app.js',
+  '/static/js/moderation.js',
+  '/static/js/firebase-config.js',
+  '/static/images/favicon.png',
+  '/confessions/index.html',
+  '/knots/index.html',
+  '/roomfinder/index.html',
+  '/events/index.html'
 ];
 
-// Install Service Worker
-self.addEventListener('install', (e) => {
-  e.waitUntil(
+// Install: Pre-cache core shell assets
+self.addEventListener('install', (event) => {
+  event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('SW Caching static assets');
-      return cache.addAll(ASSETS).catch(err => {
-        console.warn('Some assets could not be pre-cached:', err);
+      return cache.addAll(PRECACHE_ASSETS).catch((err) => {
+        console.warn('[SW] Non-critical asset failed to precache:', err);
       });
     })
   );
   self.skipWaiting();
 });
 
-// Activate Service Worker
-self.addEventListener('activate', (e) => {
-  e.waitUntil(
+// Activate: Immediately purge all outdated cache versions
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
         keys.map((key) => {
           if (key !== CACHE_NAME) {
-            console.log('SW Clearing old cache:', key);
+            console.log('[SW] Deleting obsolete cache:', key);
             return caches.delete(key);
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
-// Network-first falling back to cache
-self.addEventListener('fetch', (e) => {
-  if (e.request.url.includes('/api/')) {
-    return; // Don't cache dynamic API requests
+// Fetch: Smart routing strategy
+self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url);
+
+  // 1. Bypass Service Worker completely for API calls and non-GET requests
+  if (event.request.method !== 'GET' || url.pathname.startsWith('/api/')) {
+    return;
   }
 
-  e.respondWith(
-    fetch(e.request)
-      .then((networkResponse) => {
-        if (networkResponse && networkResponse.status === 200 && e.request.method === 'GET') {
-          const responseClone = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(e.request, responseClone);
-          });
+  // 2. HTML Navigation requests: Network-First (guarantees latest deployment)
+  if (event.request.mode === 'navigate' || event.request.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse.ok) {
+            const copy = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
+          return networkResponse;
+        })
+        .catch(async () => {
+          const cachedResponse = await caches.match(event.request);
+          if (cachedResponse) return cachedResponse;
+          return caches.match('/index.html');
+        })
+    );
+    return;
+  }
+
+  // 3. Static Assets (CSS, JS, Images, Fonts): Stale-While-Revalidate
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      const fetchPromise = fetch(event.request).then((networkResponse) => {
+        if (networkResponse.ok) {
+          const copy = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
         }
         return networkResponse;
-      })
-      .catch(() => {
-        return caches.match(e.request);
-      })
+      }).catch(() => {
+        // Offline and not in cache
+      });
+
+      return cachedResponse || fetchPromise;
+    })
   );
 });

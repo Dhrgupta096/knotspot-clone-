@@ -596,7 +596,7 @@
 
                 card.innerHTML = `
                     <div class="rf-card-image-wrap">
-                        <img src="${r.images && r.images[0] ? r.images[0] : 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80'}" alt="Room image">
+                        <img src="${r.images && r.images[0] ? r.images[0] : 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80'}" alt="Room image" loading="lazy" decoding="async">
                         <div class="rf-campus-badge">${campusText} • ${hostelTag}</div>
                         <div class="rf-price-badge">₹${r.rent.toLocaleString()}/mo</div>
                     </div>
@@ -723,7 +723,7 @@
 
             modalContent.innerHTML = `
                 <div style="border-radius: var(--radius-md); overflow: hidden; height: 220px; margin-bottom: 16px;">
-                    <img src="${room.images && room.images[0] ? room.images[0] : 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80'}" style="width: 100%; height: 100%; object-fit: cover;" alt="Room">
+                    <img src="${room.images && room.images[0] ? room.images[0] : 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80'}" style="width: 100%; height: 100%; object-fit: cover;" alt="Room" loading="lazy" decoding="async">
                 </div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                     <span class="pill-badge accent">${room.seaterType || '2 Seater'} • ${room.genderPref}</span>

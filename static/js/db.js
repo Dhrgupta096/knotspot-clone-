@@ -366,8 +366,17 @@ async function apiFetch(endpoint, options = {}) {
     return null;
 }
 
-// Background sync on load
-async function syncDataFromServer() {
+let _lastSyncTimestamp = 0;
+const SYNC_THROTTLE_MS = 15000; // 15 seconds throttle
+
+// Background sync on load (throttled)
+async function syncDataFromServer(force = false) {
+    const now = Date.now();
+    if (!force && (now - _lastSyncTimestamp < SYNC_THROTTLE_MS)) {
+        return; // Skip duplicate sync within 15 seconds
+    }
+    _lastSyncTimestamp = now;
+
     try {
         const [knots, confessions, rooms, events] = await Promise.all([
             apiFetch('/knots'),
@@ -376,25 +385,34 @@ async function syncDataFromServer() {
             apiFetch('/events')
         ]);
 
+        let hasUpdates = false;
         if (knots && Array.isArray(knots) && knots.length > 0) {
             localStorage.setItem('dsu_knots', JSON.stringify(knots));
+            hasUpdates = true;
         }
         if (confessions && Array.isArray(confessions) && confessions.length > 0) {
             localStorage.setItem('dsu_confessions', JSON.stringify(confessions));
+            hasUpdates = true;
         }
         if (rooms && Array.isArray(rooms) && rooms.length > 0) {
             localStorage.setItem('dsu_rooms', JSON.stringify(rooms));
+            hasUpdates = true;
         }
         if (events && Array.isArray(events) && events.length > 0) {
             localStorage.setItem('dsu_events', JSON.stringify(events));
+            hasUpdates = true;
+        }
+
+        if (hasUpdates) {
+            window.dispatchEvent(new CustomEvent('dsu:data-synced'));
         }
     } catch (e) {}
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', syncDataFromServer);
+    document.addEventListener('DOMContentLoaded', () => syncDataFromServer(false));
 } else {
-    syncDataFromServer();
+    syncDataFromServer(false);
 }
 
 // DB Access Methods
