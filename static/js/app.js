@@ -127,6 +127,18 @@ function setGoogleClientId(val) {
     showToast("Google Client ID saved!");
 }
 
+function saveGoogleClientIdFromModal() {
+    const input = document.getElementById('cfg-google-client-id');
+    if (input && input.value.trim()) {
+        setGoogleClientId(input.value.trim());
+        const overlay = document.querySelector('.modal-overlay.active');
+        if (overlay) overlay.remove();
+        setTimeout(() => triggerGoogleLogin(), 200);
+    } else {
+        showToast("Please enter a valid Google Client ID", "accent");
+    }
+}
+
 function triggerGoogleLogin() {
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay active';
@@ -168,7 +180,23 @@ function triggerGoogleLogin() {
                          data-auto_prompt="false">
                     </div>
                     <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left" style="margin-bottom: 18px; display: flex; justify-content: center;"></div>
-                ` : ''}
+                ` : `
+                    <details style="margin-bottom: 16px; background: var(--surface-muted); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 8px 12px; font-size: 12.5px;">
+                        <summary style="cursor: pointer; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px;">
+                            <span class="material-symbols-rounded" style="font-size: 16px;">settings</span>
+                            <span>Setup Real Google Sign-In (Client ID)</span>
+                        </summary>
+                        <div style="margin-top: 10px;">
+                            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                                Paste your Google OAuth 2.0 Web Client ID below to enable the official "Sign In with Google" button:
+                            </p>
+                            <div style="display: flex; gap: 6px;">
+                                <input type="text" id="cfg-google-client-id" placeholder="e.g. 12345-abc.apps.googleusercontent.com" style="flex: 1; padding: 6px 10px; font-size: 12px;">
+                                <button type="button" class="btn-primary" style="padding: 6px 12px; font-size: 12px;" onclick="saveGoogleClientIdFromModal()">Save</button>
+                            </div>
+                        </div>
+                    </details>
+                `}
 
                 <form id="google-auth-form" onsubmit="handleAuthSubmit(event, this)">
                     <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px;">Student Full Name</label>

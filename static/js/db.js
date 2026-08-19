@@ -1,64 +1,79 @@
 /* ==========================================================================
-   DSU KnotSpot Database Engine (localStorage Wrapper)
-   Provides Seed Data, CRUD operations, state caching, and persistence
+   DSU KnotSpot Database Engine
+   Hybrid Architecture: LocalStorage Cache + Python REST API Bi-directional Sync
+   Realistic Dayananda Sagar University (DSU) Campus Data
    ========================================================================== */
 
 const DSU_CAMPUSES = [
-    { id: 'ks-layout', name: 'KS Layout Campus' },
-    { id: 'kanakapura', name: 'Harohalli (Kanakapura) Campus' }
+    { id: 'ks-layout', name: 'KS Layout Campus (City Campus)' },
+    { id: 'kanakapura', name: 'Harohalli (Kanakapura Road) Main Campus' }
 ];
 
 const SEED_USER = {
-    name: "Aarav Sharma",
-    email: "aarav.sharma@dsu.edu.in",
+    name: "Dhruv Gupta",
+    email: "dhruv.gupta@dsu.edu.in",
     campus: "ks-layout",
-    branch: "Computer Science (CSE)",
+    branch: "Computer Science & Engineering",
     year: "3rd Year",
-    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80",
+    avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
     profileComplete: true
 };
 
 const SEED_KNOTS = [
     {
         id: "k-1",
-        title: "Is Kanakapura Campus hostel food better than local PGs?",
-        content: "Honestly, the mess food at Harohalli is decent on some days (Sunday Biryani is good!), but looking for honest reviews of local PGs nearby. Are there any good PG options near the main road with good food?",
+        title: "Harohalli Shuttle Bus timings from Banashankari & Silk Institute Metro?",
+        content: "Does anyone have the updated 2026 timetable for the official DSU University shuttle buses? Especially the morning 7:45 AM batch from Banashankari Bus Stand and the feeder shuttle from Silk Institute Metro Station on Kanakapura Green Line. Please drop the schedule below!",
         category: "General",
         campus: "kanakapura",
         authorName: "Ananya Iyer",
         authorAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
-        upvotes: 18,
-        starred: false,
+        upvotes: 42,
+        starred: true,
         commentsCount: 3,
-        createdAt: "2026-07-18T14:32:00Z",
+        createdAt: "2026-08-18T14:32:00Z",
         upvotedBy: []
     },
     {
         id: "k-2",
-        title: "How to clear the DSU Maths-II final exams? Any advice?",
-        content: "Our math professor is super strict and the papers are always tricky. Are there any YouTube channels or specific question banks (VTU/DSU syllabus) that you guys recommend? Please help!",
+        title: "DSU CIE-2 Internals & Math-IV Engineering Revision Resources",
+        content: "With the second Continuous Internal Evaluation (CIE) coming up next week, can seniors share previous year question papers for Math-IV (Probability & Statistics) and Operating Systems? Also, does professor give marks for VTU-format solutions or strictly autonomous DSU answer schemes?",
         category: "Academics",
         campus: "ks-layout",
         authorName: "Rohan Das",
         authorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
-        upvotes: 24,
+        upvotes: 67,
         starred: true,
-        commentsCount: 2,
-        createdAt: "2026-07-19T09:15:00Z",
+        commentsCount: 3,
+        createdAt: "2026-08-18T16:15:00Z",
         upvotedBy: []
     },
     {
         id: "k-3",
-        title: "DSU Hackathon 'Dayananda Sagar Innovates' registration opens next week!",
-        content: "DSU Innovation Club is hosting a 36-hour hackathon with cash prizes up to 1 Lakh. Teams of 2-4. Registration starts next Monday. Looking for a designer and a frontend dev to join my team. Hit me up if interested!",
+        title: "DSU Hackathon 'Dayananda Sagar Innovates 2026' - Team Formation",
+        content: "The AIC-DSU (Atal Incubation Center) is hosting a 36-hour national hackathon with cash prize pool of 1.5 Lakhs! Tracks include Generative AI, Smart Healthcare, and FinTech. Looking for 1 UI/UX designer and 1 backend developer proficient in Python/FastAPI. Hit me up if interested!",
         category: "Coding",
-        campus: "ks-layout",
+        campus: "kanakapura",
         authorName: "Karthik Raja",
         authorAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
-        upvotes: 35,
+        upvotes: 94,
         starred: false,
         commentsCount: 4,
-        createdAt: "2026-07-19T11:00:00Z",
+        createdAt: "2026-08-18T18:00:00Z",
+        upvotedBy: []
+    },
+    {
+        id: "k-4",
+        title: "Best lunch spots near KS Layout Campus - Sagar Food Court vs Kadirenahalli Cross",
+        content: "Rank your top 3 affordable hangout food spots around KS Layout 1st/2nd Stage. Sagar Canteen dosa is classic, but looking for good roll joints, thali meals, and tea stalls between afternoon breaks.",
+        category: "Campus Life",
+        campus: "ks-layout",
+        authorName: "Pooja Hegde",
+        authorAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
+        upvotes: 53,
+        starred: false,
+        commentsCount: 2,
+        createdAt: "2026-08-19T08:20:00Z",
         upvotedBy: []
     }
 ];
@@ -67,92 +82,92 @@ const SEED_COMMENTS = [
     {
         id: "c-1",
         knotId: "k-1",
-        content: "Honestly, PG food near Harohalli is average. Your best bet is to get a room at Green View PG, or just order tiffin service. Biryani day in mess is unbeatable though!",
-        authorName: "Vikram Malhotra",
-        authorAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
-        createdAt: "2026-07-18T16:00:00Z"
+        content: "The Banashankari shuttle leaves sharp at 7:50 AM from TTMC Gate 2. Silk Institute Metro pickup runs every 20 mins from 8:15 AM to 9:15 AM.",
+        authorName: "Siddharth M",
+        authorAvatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+        createdAt: "2026-08-18T15:10:00Z"
     },
     {
         id: "c-2",
         knotId: "k-1",
-        content: "Can verify. Green View is good. Cleaning is regular, but Wi-Fi speed goes down in the evening.",
-        authorName: "Neha Sen",
-        authorAvatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80",
-        createdAt: "2026-07-18T17:15:00Z"
+        content: "Make sure to carry your physical DSU Student ID card, security checks it before boarding the Kanakapura highway bus.",
+        authorName: "Priya Sharma",
+        authorAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+        createdAt: "2026-08-18T16:00:00Z"
     },
     {
         id: "c-3",
         knotId: "k-1",
-        content: "Thanks guys! Will check out Green View tomorrow.",
-        authorName: "Ananya Iyer",
-        authorAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
-        createdAt: "2026-07-18T19:00:00Z"
+        content: "Pro tip: Download Namma Metro app, Silk Institute is terminal station so you always get a seat on the return journey!",
+        authorName: "Varun K",
+        authorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+        createdAt: "2026-08-18T18:45:00Z"
     },
     {
         id: "c-4",
         knotId: "k-2",
-        content: "Check out Gajendra Purohit on YouTube. He covers engineering mathematics concepts really well. Also solve last 3 years internal papers.",
-        authorName: "Sameer Joshi",
-        authorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80",
-        createdAt: "2026-07-19T10:00:00Z"
+        content: "DSU evaluation strictly follows class slide notes and textbook references. Solved papers are uploaded on the DSU LMS portal under 'Engineering Resources'.",
+        authorName: "Neha Patil",
+        authorAvatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80",
+        createdAt: "2026-08-18T17:00:00Z"
     },
     {
         id: "c-5",
         knotId: "k-2",
-        content: "Thanks, Gajendra Purohit is a savior. Will check it out.",
-        authorName: "Rohan Das",
-        authorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
-        createdAt: "2026-07-19T10:30:00Z"
+        content: "Watch Gajendra Purohit on YouTube for Probability Distributions, helped me score O grade in Math-III.",
+        authorName: "Sameer Joshi",
+        authorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80",
+        createdAt: "2026-08-18T17:30:00Z"
     },
     {
         id: "c-6",
         knotId: "k-3",
-        content: "I'm a frontend developer in React/Tailwind, would love to join. Which tech stack are you planning to use?",
+        content: "I am an AIML 3rd year student working with PyTorch and React. Would love to join the team! DM on WhatsApp.",
         authorName: "Pooja Hegde",
         authorAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
-        createdAt: "2026-07-19T12:00:00Z"
+        createdAt: "2026-08-18T19:00:00Z"
     }
 ];
 
 const SEED_CONFESSIONS = [
     {
         id: "conf-1",
-        content: "I accidentally walked into the staff room thinking it was the seminar hall, and sat through a 15-minute departmental meeting before anyone noticed. The HOD just stared at me when I finally got up to leave.",
+        content: "I accidentally walked into the Mechanical Engineering Faculty meeting in Heritage Block thinking it was the Python seminar room, and sat through a 15-minute budget debate before anyone noticed. The Dean just smiled at me when I finally sneaked out.",
         campus: "ks-layout",
         category: "Funny",
-        likesCount: 54,
-        reactions: { heart: 22, fire: 14, skull: 16, cry: 2 },
+        likesCount: 86,
+        reactions: { heart: 34, fire: 28, skull: 22, cry: 2 },
         userReactions: {},
         commentsCount: 2,
-        createdAt: "2026-07-19T02:30:00Z",
+        createdAt: "2026-08-18T14:30:00Z",
         likedBy: [],
         anonymousName: "Silent Cadet"
     },
     {
         id: "conf-2",
-        content: "To the student who took my CSE lab manual from the central library table on Friday: please return it! My final internal marks depend on that submission, and I don't want to re-write 20 coding experiments.",
-        campus: "ks-layout",
+        content: "To the student who picked up my blue DSU spiral lab record from the Central Library 2nd floor cubicle on Friday: please drop it at the lost & found desk! My CIE submission deadline is tomorrow.",
+        campus: "kanakapura",
         category: "Exams",
-        likesCount: 38,
-        reactions: { heart: 4, fire: 6, skull: 8, cry: 20 },
+        likesCount: 52,
+        reactions: { heart: 8, fire: 12, skull: 14, cry: 18 },
         userReactions: {},
         commentsCount: 1,
-        createdAt: "2026-07-19T08:45:00Z",
+        createdAt: "2026-08-18T19:45:00Z",
         likedBy: [],
         anonymousName: "Shadow Scholar"
     },
     {
         id: "conf-3",
-        content: "I secretly log into the Kanakapura Campus computer lab PCs and change all the desktop wallpapers to photos of cats. I've done it on 40 computers so far. No regrets.",
-        campus: "kanakapura",
+        content: "I have tested every single coffee vending machine across KS Layout Dental, Pharmacy, and Engineering blocks. The machine on 3rd floor CSE wing makes the undisputed best filter coffee at ₹15.",
+        campus: "ks-layout",
         category: "Campus Life",
-        likesCount: 72,
-        reactions: { heart: 18, fire: 32, skull: 20, cry: 2 },
+        likesCount: 114,
+        reactions: { heart: 55, fire: 42, skull: 15, cry: 2 },
         userReactions: {},
-        commentsCount: 0,
-        createdAt: "2026-07-19T10:20:00Z",
+        commentsCount: 2,
+        createdAt: "2026-08-19T06:20:00Z",
         likedBy: [],
-        anonymousName: "Ghost Coder"
+        anonymousName: "Midnight Sagarite"
     }
 ];
 
@@ -160,79 +175,86 @@ const SEED_CONF_COMMENTS = [
     {
         id: "cc-1",
         confessionId: "conf-1",
-        content: "Classic! Did they make you sign an attendance sheet? 😂",
+        content: "Classic DSU moment! At least you didn't get assigned departmental committee duties 😂",
         authorName: "Anonymous Tiger",
-        createdAt: "2026-07-19T03:00:00Z"
+        createdAt: "2026-08-18T15:00:00Z"
     },
     {
         id: "cc-2",
         confessionId: "conf-1",
-        content: "HOD probably thought you were a highly motivated student attending extra lectures.",
+        content: "Dean probably thought you were the most attentive student in the faculty!",
         authorName: "Anonymous Ninja",
-        createdAt: "2026-07-19T04:10:00Z"
+        createdAt: "2026-08-18T16:10:00Z"
     },
     {
         id: "cc-3",
         confessionId: "conf-2",
-        content: "Check with the librarian, sometimes they clear the tables and keep lost manuals at the counter.",
+        content: "Check with the librarian at front desk, they clear tables every evening at 7:30 PM.",
         authorName: "Anonymous Owl",
-        createdAt: "2026-07-19T09:00:00Z"
+        createdAt: "2026-08-18T20:00:00Z"
+    },
+    {
+        id: "cc-4",
+        confessionId: "conf-3",
+        content: "Can confirm! The 3rd floor CSE machine is always refilled first by the canteen staff.",
+        authorName: "Ghost Coder",
+        createdAt: "2026-08-19T07:15:00Z"
     }
 ];
 
 const SEED_ROOMS = [
     {
         id: "r-1",
-        title: "DSU On-Campus Girls Hostel - 2 Seater Room Vacancy",
-        description: "Looking for a female roommate in DSU Block-B Hostel. 2 seater spacious room with attached bath, study tables, high-speed Wi-Fi, 3-time mess meals, and 24x7 power backup. CSE/ISE preferred.",
-        rent: 6500,
-        campus: "ks-layout",
+        title: "DSU On-Campus Girls Hostel (Block-B) - 2 Seater Sharing Vacancy",
+        description: "Looking for a female roommate for a 2-seater room in DSU Harohalli Campus Girls Hostel Block-B. Room features attached washroom, study desks, high-speed campus Wi-Fi, 3-times hygienic mess meals, and 24x7 power backup. CSE/AIML/ECE student preferred.",
+        rent: 6800,
+        campus: "kanakapura",
         roomType: "College Hostel",
         genderPref: "Girls Only",
         seaterType: "2 Seater",
         hostelType: "College Hostel",
-        preferredBranch: "Computer Science (CSE)",
-        contact: "+91 9876543210",
-        amenities: ["Wi-Fi 📶", "Food Included 🍽️", "Attached Bath 🚿", "Power Backup ⚡"],
+        preferredBranch: "Computer Science & Engineering",
+        contact: "+91 98765 43210",
+        amenities: ["Wi-Fi 📶", "Mess Food 🍽️", "Attached Bath 🚿", "Power Backup ⚡", "CCTV Security 🔒"],
         authorName: "Meera Nair",
         authorAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
-        createdAt: "2026-07-17T09:00:00Z",
+        createdAt: "2026-08-17T09:00:00Z",
         images: ["https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80"]
     },
     {
         id: "r-2",
-        title: "Kanakapura Campus Boys Hostel - 3 Seater Sharing",
-        description: "1 spot open for male student in 3-seater quad room near DSU Harohalli Campus main gate. Clean mess food included, spacious cupboards, balcony view. Looking for non-smoker, CSE/ECE student.",
-        rent: 4800,
-        campus: "kanakapura",
-        roomType: "College Hostel",
+        title: "Royal Comfort PG near KS Layout 2nd Stage (5 Mins to DSU Gate)",
+        description: "1 spot available for male student in a 2-seater executive PG room near KS Layout 2nd Stage, right behind Dayananda Sagar College campus. Includes high-speed optical fiber Wi-Fi, daily North/South Indian meals, washing machine, hot water, and lift.",
+        rent: 5500,
+        campus: "ks-layout",
+        roomType: "Sharing PG / Room",
         genderPref: "Boys Only",
-        seaterType: "3 Seater",
-        hostelType: "College Hostel",
-        preferredBranch: "Computer Science (CSE)",
-        contact: "+91 9988776655",
-        amenities: ["Wi-Fi 📶", "Mess Food 🍛", "Washing Machine 🧺", "Balcony 🌄"],
+        seaterType: "2 Seater",
+        hostelType: "Private PG",
+        preferredBranch: "Any Branch",
+        contact: "+91 99887 76655",
+        amenities: ["Wi-Fi 📶", "2x Food 🍛", "Washing Machine 🧺", "Hot Water ♨️"],
         authorName: "Siddharth Sen",
         authorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
-        createdAt: "2026-07-18T12:00:00Z",
+        createdAt: "2026-08-18T12:00:00Z",
         images: ["https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=600&q=80"]
     },
     {
         id: "r-3",
-        title: "4 Seater Budget PG Room near KS Layout Campus",
-        description: "Need 2 male roommates for a 4-seater room in Royal Heights PG (5 mins from DSU). Includes Wi-Fi, washing machine, hot water, and 2 times daily food. Great for 1st/2nd year engineering students.",
-        rent: 3800,
-        campus: "ks-layout",
+        title: "Harohalli Green Valley PG - 3 Seater Budget Room (Close to Main Gate)",
+        description: "Spacious 3-seater room in Green Valley PG on Harohalli Main Road, 400m from DSU Campus gate. Includes 3-time meals, power backup, study library, and bike parking. Ideal for 1st & 2nd year students.",
+        rent: 4200,
+        campus: "kanakapura",
         roomType: "Sharing PG / Room",
         genderPref: "Boys Only",
-        seaterType: "4 Seater",
+        seaterType: "3 Seater",
         hostelType: "Private PG",
-        preferredBranch: "Any Branch",
-        contact: "+91 9123456789",
-        amenities: ["Wi-Fi 📶", "Hot Water ♨️", "2x Food 🍽️", "CCTV Security 🔒"],
+        preferredBranch: "School of Engineering",
+        contact: "+91 91234 56789",
+        amenities: ["Wi-Fi 📶", "3x Food 🍽️", "Bike Parking 🛵", "Hot Water ♨️"],
         authorName: "Kunal Verma",
         authorAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
-        createdAt: "2026-07-19T06:30:00Z",
+        createdAt: "2026-08-19T06:30:00Z",
         images: ["https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80"]
     }
 ];
@@ -240,59 +262,59 @@ const SEED_ROOMS = [
 const SEED_EVENTS = [
     {
         id: "ev-1",
-        title: "Derby 2026 - DSU Annual Cultural Fest",
-        description: "The biggest university event of the year! Live concerts, street dancing, fashion show, gaming battle, food stalls, and cultural performances. DJ Night featuring a top Indian artist. Do not miss it!",
-        date: "Aug 20, 2026",
-        isoDate: "2026-08-20T10:00:00",
-        time: "10:00 AM - 9:00 PM",
-        venue: "Harohalli Campus Grounds",
+        title: "DERBY 2026 - DSU Flagship Annual Cultural Fest & DJ Night",
+        description: "The biggest university festival of the year! 3 days of high-voltage celebrations: Battle of the Bands, Street Dance Battles, National Fashion Show 'GlamSagar', Pro-DJ Night featuring top Indian EDM artists, food carnivals, and gaming tournaments. Open to all DSU schools & campuses!",
+        date: "Aug 22, 2026",
+        isoDate: "2026-08-22T10:00:00",
+        time: "10:00 AM - 10:00 PM",
+        venue: "Harohalli Campus Grounds & Amphitheatre",
         category: "Cultural & Fests",
         image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=800&q=80",
-        rsvpsCount: 245,
+        rsvpsCount: 380,
         hasRsvp: false
     },
     {
         id: "ev-2",
-        title: "DSU Code-a-Thon 2026",
-        description: "Join the DSU coding marathon! Solve challenging problems in data structures, algorithms, and build working web models. Great prizes, certificates for all participants, and internship interviews with top sponsors.",
-        date: "Aug 25, 2026",
-        isoDate: "2026-08-25T09:00:00",
+        title: "DSU Hackathon 'Dayananda Sagar Innovates 2026' (36h Hackfest)",
+        description: "AIC-DSU Foundation 36-hour national hackathon. Build scalable projects across GenAI, Autonomous Tech, and FinTech. Cash prize pool: ₹1,50,000 + direct incubation grants and sponsor internship fast-track interviews!",
+        date: "Aug 26, 2026",
+        isoDate: "2026-08-26T09:00:00",
         time: "9:00 AM - 6:00 PM",
-        venue: "KS Layout Engineering Block CSE Labs",
+        venue: "AIC-DSU Innovation Center, Harohalli",
         category: "Hackathons",
         image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80",
-        rsvpsCount: 89,
+        rsvpsCount: 145,
         hasRsvp: true
     },
     {
         id: "ev-3",
-        title: "Guest Lecture: AI & The Future of Careers",
-        description: "Special guest seminar by a senior AI researcher from Google DeepMind. Learn how generative models are reshaping industries, what skills are in high demand, and how to build a portfolio during your college years.",
-        date: "Aug 28, 2026",
-        isoDate: "2026-08-28T14:30:00",
-        time: "2:30 PM - 4:00 PM",
-        venue: "Dental College Auditorium, KS Layout",
+        title: "IEEE Tech-Vision: Generative AI & Deep Learning Masterclass",
+        description: "Hands-on workshop on Large Language Models, Multi-agent Architecture, and Computer Vision by Google DeepMind & industry practitioners. E-Certificates and project credits for all attendees.",
+        date: "Aug 29, 2026",
+        isoDate: "2026-08-29T14:00:00",
+        time: "2:00 PM - 5:00 PM",
+        venue: "Dr. Premachandra Sagar Auditorium, Dental Block, KS Layout",
         category: "Workshops",
         image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80",
-        rsvpsCount: 154,
+        rsvpsCount: 210,
         hasRsvp: false
     },
     {
         id: "ev-4",
-        title: "DSU Inter-Campus Football & Cricket Cup",
-        description: "Annual sports clash between KS Layout & Harohalli campuses. Register your 7-a-side team or come cheer for your branch. Food stalls and trophy presentation ceremony.",
-        date: "Sep 05, 2026",
-        isoDate: "2026-09-05T08:00:00",
-        time: "8:00 AM - 5:00 PM",
-        venue: "DSU Sports Complex Turf, Harohalli",
+        title: "SPARDHA 2026 - DSU Inter-Campus Football & Cricket Cup",
+        description: "Annual sports clash between KS Layout & Harohalli campuses! Knockout 7-a-side football, T10 cricket, basketball, and badminton championships. Register your branch teams with the sports directorate.",
+        date: "Sep 04, 2026",
+        isoDate: "2026-09-04T08:30:00",
+        time: "8:30 AM - 5:30 PM",
+        venue: "DSU Sports Complex & Turf Ground, Harohalli",
         category: "Sports",
         image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80",
-        rsvpsCount: 112,
+        rsvpsCount: 178,
         hasRsvp: false
     }
 ];
 
-// Initialize Database in LocalStorage if not present
+// Initialize LocalStorage with Seeds if not present
 function initDatabase() {
     if (!localStorage.getItem('dsu_user')) {
         localStorage.setItem('dsu_user', JSON.stringify(SEED_USER));
@@ -322,23 +344,58 @@ initDatabase();
 const API_HOSTNAME = window.location.hostname || 'localhost';
 const API_BASE = window.LOCATION_API_BASE || `http://${API_HOSTNAME}:5000/api`;
 
-// Helper to make API requests with fallback
+// Helper to make API requests with graceful fallback
 async function apiFetch(endpoint, options = {}) {
     try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4000);
+        
         const res = await fetch(`${API_BASE}${endpoint}`, {
             headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+            signal: controller.signal,
             ...options
         });
+        clearTimeout(timeoutId);
         if (res.ok) return await res.json();
     } catch (e) {
-        console.warn('API server unreachable, using local storage fallback.', e);
+        // Fallback silently to localStorage cache
     }
     return null;
 }
 
+// Background sync on load
+async function syncDataFromServer() {
+    try {
+        const [knots, confessions, rooms, events] = await Promise.all([
+            apiFetch('/knots'),
+            apiFetch('/confessions'),
+            apiFetch('/rooms'),
+            apiFetch('/events')
+        ]);
+
+        if (knots && Array.isArray(knots) && knots.length > 0) {
+            localStorage.setItem('dsu_knots', JSON.stringify(knots));
+        }
+        if (confessions && Array.isArray(confessions) && confessions.length > 0) {
+            localStorage.setItem('dsu_confessions', JSON.stringify(confessions));
+        }
+        if (rooms && Array.isArray(rooms) && rooms.length > 0) {
+            localStorage.setItem('dsu_rooms', JSON.stringify(rooms));
+        }
+        if (events && Array.isArray(events) && events.length > 0) {
+            localStorage.setItem('dsu_events', JSON.stringify(events));
+        }
+    } catch (e) {}
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', syncDataFromServer);
+} else {
+    syncDataFromServer();
+}
+
 // DB Access Methods
 const db = {
-    // Current User Profile
     getUser() {
         return JSON.parse(localStorage.getItem('dsu_user'));
     },
@@ -359,13 +416,14 @@ const db = {
         return user;
     },
     logoutUser() {
+        const user = this.getUser();
         localStorage.removeItem('dsu_user');
-        apiFetch('/logout', { method: 'POST' });
+        apiFetch('/logout', { method: 'POST', body: JSON.stringify({ userId: user?.id }) });
     },
 
     // Knots (Forum Discussions)
     getKnots() {
-        return JSON.parse(localStorage.getItem('dsu_knots'));
+        return JSON.parse(localStorage.getItem('dsu_knots')) || [];
     },
     getKnot(id) {
         const knots = this.getKnots();
@@ -390,6 +448,7 @@ const db = {
         };
         knots.unshift(newKnot);
         localStorage.setItem('dsu_knots', JSON.stringify(knots));
+        apiFetch('/knots', { method: 'POST', body: JSON.stringify(newKnot) });
         return newKnot;
     },
     upvoteKnot(id) {
@@ -404,10 +463,11 @@ const db = {
                 knot.upvotes += 1;
                 knot.upvotedBy.push(userEmail);
             } else {
-                knot.upvotes -= 1;
+                knot.upvotes = Math.max(0, knot.upvotes - 1);
                 knot.upvotedBy.splice(index, 1);
             }
             localStorage.setItem('dsu_knots', JSON.stringify(knots));
+            apiFetch('/knots/upvote', { method: 'POST', body: JSON.stringify({ id, userEmail }) });
         }
         return knot;
     },
@@ -417,17 +477,18 @@ const db = {
         if (knot) {
             knot.starred = !knot.starred;
             localStorage.setItem('dsu_knots', JSON.stringify(knots));
+            apiFetch('/knots/star', { method: 'POST', body: JSON.stringify({ id }) });
         }
         return knot;
     },
 
     // Comments for Knots
     getKnotComments(knotId) {
-        const comments = JSON.parse(localStorage.getItem('dsu_comments'));
+        const comments = JSON.parse(localStorage.getItem('dsu_comments')) || [];
         return comments.filter(c => c.knotId === knotId).sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
     },
     addKnotComment(knotId, content) {
-        const comments = JSON.parse(localStorage.getItem('dsu_comments'));
+        const comments = JSON.parse(localStorage.getItem('dsu_comments')) || [];
         const user = this.getUser();
         const newComment = {
             id: "c-" + Date.now(),
@@ -440,7 +501,6 @@ const db = {
         comments.push(newComment);
         localStorage.setItem('dsu_comments', JSON.stringify(comments));
 
-        // Update comment counter in parent knot
         const knots = this.getKnots();
         const knot = knots.find(k => k.id === knotId);
         if (knot) {
@@ -448,13 +508,13 @@ const db = {
             localStorage.setItem('dsu_knots', JSON.stringify(knots));
         }
 
+        apiFetch('/knots/comments', { method: 'POST', body: JSON.stringify(newComment) });
         return newComment;
     },
 
     // Anonymous Confessions
     getConfessions() {
         const confs = JSON.parse(localStorage.getItem('dsu_confessions')) || [];
-        // Ensure reactions object exists on legacy data
         confs.forEach(c => {
             if (!c.reactions) {
                 c.reactions = { heart: c.likesCount || 0, fire: 0, skull: 0, cry: 0 };
@@ -470,8 +530,6 @@ const db = {
     },
     createConfession(content, campus, category = 'General') {
         const confessions = this.getConfessions();
-        
-        // Random Anonymous names
         const names = ["Anonymous Tiger", "Silent Cadet", "DSU Maverick", "Ghost Coder", "Hidden Sagarite", "Campus Phantom", "Shadow Scholar", "Midnight Sagarite"];
         const randomName = names[Math.floor(Math.random() * names.length)];
 
@@ -490,6 +548,7 @@ const db = {
         };
         confessions.unshift(newConf);
         localStorage.setItem('dsu_confessions', JSON.stringify(confessions));
+        apiFetch('/confessions', { method: 'POST', body: JSON.stringify(newConf) });
         return newConf;
     },
     reactConfession(id, reactionType) {
@@ -503,7 +562,6 @@ const db = {
             
             const currentReaction = conf.userReactions[userEmail];
             if (currentReaction === reactionType) {
-                // Undo reaction
                 conf.reactions[reactionType] = Math.max(0, (conf.reactions[reactionType] || 0) - 1);
                 delete conf.userReactions[userEmail];
             } else {
@@ -515,6 +573,7 @@ const db = {
             }
             conf.likesCount = Object.values(conf.reactions).reduce((a, b) => a + b, 0);
             localStorage.setItem('dsu_confessions', JSON.stringify(confessions));
+            apiFetch('/confessions/react', { method: 'POST', body: JSON.stringify({ id, reactionType, userEmail }) });
         }
         return conf;
     },
@@ -524,13 +583,11 @@ const db = {
 
     // Comments for Confessions
     getConfessionComments(confessionId) {
-        const comments = JSON.parse(localStorage.getItem('dsu_conf_comments'));
+        const comments = JSON.parse(localStorage.getItem('dsu_conf_comments')) || [];
         return comments.filter(c => c.confessionId === confessionId).sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
     },
     addConfessionComment(confessionId, content) {
-        const comments = JSON.parse(localStorage.getItem('dsu_conf_comments'));
-        
-        // Anonymous reply name
+        const comments = JSON.parse(localStorage.getItem('dsu_conf_comments')) || [];
         const names = ["Anonymous Ninja", "Curious Owl", "Wandering Brain", "Mystery Student", "Code Debugger"];
         const randomName = names[Math.floor(Math.random() * names.length)];
 
@@ -544,7 +601,6 @@ const db = {
         comments.push(newComment);
         localStorage.setItem('dsu_conf_comments', JSON.stringify(comments));
 
-        // Update comment counter in confession
         const confessions = this.getConfessions();
         const conf = confessions.find(c => c.id === confessionId);
         if (conf) {
@@ -552,12 +608,13 @@ const db = {
             localStorage.setItem('dsu_confessions', JSON.stringify(confessions));
         }
 
+        apiFetch('/confessions/comments', { method: 'POST', body: JSON.stringify(newComment) });
         return newComment;
     },
 
     // Roommate Finder Listings
     getRooms() {
-        return JSON.parse(localStorage.getItem('dsu_rooms'));
+        return JSON.parse(localStorage.getItem('dsu_rooms')) || [];
     },
     calculateRoomMatchScore(room, user) {
         if (!user) return 85;
@@ -601,15 +658,16 @@ const db = {
 
     // Events Tracker
     getEvents() {
-        return JSON.parse(localStorage.getItem('dsu_events'));
+        return JSON.parse(localStorage.getItem('dsu_events')) || [];
     },
     rsvpEvent(id) {
         const events = this.getEvents();
         const ev = events.find(e => e.id === id);
         if (ev) {
             ev.hasRsvp = !ev.hasRsvp;
-            ev.rsvpsCount = ev.hasRsvp ? ev.rsvpsCount + 1 : ev.rsvpsCount - 1;
+            ev.rsvpsCount = ev.hasRsvp ? ev.rsvpsCount + 1 : Math.max(0, ev.rsvpsCount - 1);
             localStorage.setItem('dsu_events', JSON.stringify(events));
+            apiFetch('/events/rsvp', { method: 'POST', body: JSON.stringify({ id }) });
         }
         return ev;
     }
