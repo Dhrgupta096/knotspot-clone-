@@ -158,6 +158,19 @@ class KnotSpotHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
                 r['venue'] = r.get('venue') or r.get('location') or 'DSU Campus'
             self.respond_json(rows)
 
+        elif path == '/api/reports':
+            cursor.execute("SELECT * FROM reports ORDER BY created_at DESC")
+            rows = [dict(r) for r in cursor.fetchall()]
+            for r in rows:
+                r['targetId'] = r.pop('target_id', '')
+                r['targetType'] = r.pop('target_type', '')
+                r['reporterEmail'] = r.pop('reporter_email', '')
+                r['createdAt'] = str(r.pop('created_at', ''))
+            self.respond_json(rows)
+
+        elif path == '/api/health':
+            self.respond_json({'status': 'healthy', 'timestamp': time.time(), 'service': 'DSU KnotSpot API'})
+
         else:
             self.respond_json({'error': 'Not Found'}, 404)
 
@@ -469,6 +482,25 @@ class KnotSpotHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             else:
                 conn.close()
                 self.respond_json({'error': 'Event not found'}, 404)
+
+        elif path == '/api/reports':
+            report_id = "rep-" + str(int(time.time() * 1000))
+            target_id = body.get('targetId', '')
+            target_type = body.get('targetType', 'confession')
+            reason = body.get('reason', 'unspecified')
+            reporter_email = body.get('reporterEmail', 'anonymous')
+
+            cursor.execute('''
+                INSERT INTO reports (id, target_id, target_type, reason, reporter_email, status)
+                VALUES (?, ?, ?, ?, ?, 'pending')
+            ''', (report_id, target_id, target_type, reason, reporter_email))
+            conn.commit()
+            conn.close()
+
+            self.respond_json({
+                'id': report_id, 'targetId': target_id, 'targetType': target_type,
+                'reason': reason, 'status': 'pending', 'message': 'Report received for moderation'
+            })
 
         else:
             conn.close()

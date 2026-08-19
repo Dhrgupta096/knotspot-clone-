@@ -148,6 +148,19 @@ def init_db():
     add_column_if_not_exists(cursor, 'events', 'iso_date', "TEXT")
     add_column_if_not_exists(cursor, 'events', 'venue', "TEXT DEFAULT 'DSU Campus'")
 
+    # Reports & Moderation Table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS reports (
+            id TEXT PRIMARY KEY,
+            target_id TEXT NOT NULL,
+            target_type TEXT NOT NULL,
+            reason TEXT NOT NULL,
+            reporter_email TEXT,
+            status TEXT DEFAULT 'pending',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
     conn.commit()
     conn.close()
 

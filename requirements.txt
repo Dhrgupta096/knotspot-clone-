@@ -1,0 +1,4 @@
+# DSU KnotSpot Backend Dependencies
+# Python Standard Library is primarily used for zero-dependency native execution.
+# The following optional dependencies provide production ASGI/WSGI capabilities if deployed on Render/Railway/Fly.io.
+requests>=2.31.0

@@ -365,6 +365,7 @@
 
     <!-- Global Scripts -->
     <script src="../static/js/db.js"></script>
+    <script src="../static/js/moderation.js"></script>
     <script src="../static/js/app.js"></script>
     <script>
         let selectedCategory = 'all';
@@ -469,6 +470,9 @@
                             <button type="button" class="action-icon-btn ${starredClass}" onclick="handleStar('${k.id}', this, event)" title="Bookmark Thread">
                                 <span class="material-symbols-rounded" style="font-size:18px;">star</span>
                             </button>
+                            <button type="button" class="action-icon-btn" onclick="window.moderationEngine.openReportModal('${k.id}', 'knot'); event.stopPropagation();" title="Report Thread" style="color: var(--text-muted);">
+                                <span class="material-symbols-rounded" style="font-size:16px;">flag</span>
+                            </button>
                         </div>
                     </div>
                 `;
@@ -571,6 +575,15 @@
             const campus = document.getElementById('new-knot-campus').value;
 
             if (!title) return;
+
+            // Content Safety validation
+            if (window.moderationEngine) {
+                const check = window.moderationEngine.validateContent(title + " " + desc);
+                if (!check.valid) {
+                    window.showToast(check.reason, "accent");
+                    return;
+                }
+            }
 
             window.dsuDb.createKnot(title, desc, category, campus);
             closeKnotModal();
