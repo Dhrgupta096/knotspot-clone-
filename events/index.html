@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>DSU Events &amp; Fests | DSU KnotSpot</title>
-    
+
     <!-- Typography & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+
     <!-- Theme Controller (instant hydration) -->
     <script src="../static/js/theme.js"></script>
 
@@ -253,13 +256,15 @@
             transition: all 0.2s ease;
         }
 
-        .filter-chip:hover, .filter-chip.active {
+        .filter-chip:hover,
+        .filter-chip.active {
             background: var(--primary-soft);
             color: var(--primary);
             border-color: var(--primary-soft-border);
         }
     </style>
 </head>
+
 <body>
 
     <div class="app-container">
@@ -271,15 +276,19 @@
                 </a>
                 <h1>DSU Events</h1>
             </div>
-            <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme" title="Toggle Theme">
+            <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme"
+                title="Toggle Theme">
                 <span class="material-symbols-rounded">dark_mode</span>
             </button>
         </header>
 
         <!-- Search Bar -->
         <div style="position: relative; height: 44px; margin-bottom: 10px;">
-            <span class="material-symbols-outlined" style="position: absolute; left: 14px; top: 12px; color: var(--text-muted); font-size: 20px;">search</span>
-            <input type="search" id="event-search" placeholder="Search events, workshops, fests..." oninput="searchEvents(this.value)" style="padding-left: 44px; margin-bottom: 0; height: 44px; border-radius: 100px;">
+            <span class="material-symbols-outlined"
+                style="position: absolute; left: 14px; top: 12px; color: var(--text-muted); font-size: 20px;">search</span>
+            <input type="search" id="event-search" placeholder="Search events, workshops, fests..."
+                oninput="searchEvents(this.value)"
+                style="padding-left: 44px; margin-bottom: 0; height: 44px; border-radius: 100px;">
         </div>
 
         <!-- Segmented RSVP tab bar -->
@@ -291,7 +300,8 @@
         <!-- Category Filter Chips -->
         <div class="filter-row">
             <button class="filter-chip active" onclick="filterEventCategory('all', this)">All Categories</button>
-            <button class="filter-chip" onclick="filterEventCategory('Cultural & Fests', this)">Cultural &amp; Fests 🎉</button>
+            <button class="filter-chip" onclick="filterEventCategory('Cultural & Fests', this)">Cultural &amp; Fests
+                🎉</button>
             <button class="filter-chip" onclick="filterEventCategory('Hackathons', this)">Hackathons 💻</button>
             <button class="filter-chip" onclick="filterEventCategory('Workshops', this)">Workshops 🛠️</button>
             <button class="filter-chip" onclick="filterEventCategory('Sports', this)">Sports ⚽</button>
@@ -347,9 +357,9 @@
         // Live countdown string calculator with cross-browser Safari/WebKit normalizer
         function getEventCountdown(isoDate) {
             if (!isoDate) return '📅 Upcoming';
-            const normalized = (typeof isoDate === 'string' && !isoDate.includes('Z') && !isoDate.includes('+')) 
-                               ? isoDate + 'Z' 
-                               : isoDate;
+            const normalized = (typeof isoDate === 'string' && !isoDate.includes('Z') && !isoDate.includes('+'))
+                ? isoDate + 'Z'
+                : isoDate;
             const eventDate = new Date(normalized);
             if (isNaN(eventDate.getTime())) return '📅 Upcoming';
 
@@ -374,10 +384,10 @@
                 const matchesRSVP = (eventFilter === 'all') || (e.hasRsvp);
                 const matchesCat = (selectedCategory === 'all') || (e.category === selectedCategory);
                 const matchesSearch = !eventSearchQuery ||
-                                     e.title.toLowerCase().includes(eventSearchQuery) ||
-                                     e.description.toLowerCase().includes(eventSearchQuery) ||
-                                     e.venue.toLowerCase().includes(eventSearchQuery) ||
-                                     e.date.toLowerCase().includes(eventSearchQuery);
+                    e.title.toLowerCase().includes(eventSearchQuery) ||
+                    e.description.toLowerCase().includes(eventSearchQuery) ||
+                    e.venue.toLowerCase().includes(eventSearchQuery) ||
+                    e.date.toLowerCase().includes(eventSearchQuery);
                 return matchesRSVP && matchesCat && matchesSearch;
             });
 
@@ -468,12 +478,12 @@
         function addToGoogleCalendar(title, desc, venue, isoDate) {
             const start = new Date(isoDate);
             const end = new Date(start.getTime() + (3 * 60 * 60 * 1000)); // Default 3 hours
-            
+
             const formatGDate = d => d.toISOString().replace(/-|:|\.\d\d\d/g, '');
             const datesParam = `${formatGDate(start)}/${formatGDate(end)}`;
-            
+
             const gUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${datesParam}&details=${encodeURIComponent(desc + "\n\nRSVP via DSU KnotSpot")}&location=${encodeURIComponent(venue)}`;
-            
+
             window.open(gUrl, '_blank');
         }
 
@@ -517,7 +527,7 @@
                     title: title,
                     text: shareText,
                     url: window.location.href
-                }).catch(() => {});
+                }).catch(() => { });
             } else if (navigator.clipboard) {
                 navigator.clipboard.writeText(shareText).then(() => {
                     window.showToast("Event details copied to clipboard!");
@@ -546,7 +556,7 @@
 
         function escapeHTML(str) {
             if (!str) return '';
-            return str.replace(/[&<>'"]/g, 
+            return str.replace(/[&<>'"]/g,
                 tag => ({
                     '&': '&amp;',
                     '<': '&lt;',
@@ -558,4 +568,5 @@
         }
     </script>
 </body>
+
 </html>

@@ -12,3 +12,5 @@ server/data/
 # OS / Editor files
 .DS_Store
 *.log
+.knotspot_pids
+
